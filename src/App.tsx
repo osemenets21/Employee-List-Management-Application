@@ -5,8 +5,8 @@ import { Home } from "./pages/Home/Home";
 import { WorkersList } from "./pages/WorkersList/WorkersList";
 import { Footer } from "./components/Footer/Footer";
 import { NavBar } from "./components/Header/NavBar/NavBar";
-import { Login } from "./components/Login/Login";
-import { SingUp } from "./components/SingUp/SingUp";
+import { Login } from "./pages/Login/Login";
+import { SingUp } from "./pages/SingUp/SingUp";
 
 function App() {
   return (
