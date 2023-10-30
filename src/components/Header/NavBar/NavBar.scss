@@ -1,9 +1,14 @@
 .btn-login {
+    font-family: var(--font-family);
+        font-weight: 600;
     color: white;
 }
 
-.btn-sing-up {
+.btn-sign-up {
     color: black;
+    font-family: var(--font-family);
+        font-weight: 600;
+        color: white;
 }
 
 .link {
@@ -14,4 +19,12 @@
     font-weight: 800;
     font-size: 64px;
     line-height: 75px;
+}
+.link-item {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 20px;
+    margin-left: 15px;
+    text-decoration: none;
+    color: var(--color-blog);
 }

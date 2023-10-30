@@ -7,6 +7,7 @@ import { Footer } from "./components/Footer/Footer";
 import { NavBar } from "./components/Header/NavBar/NavBar";
 import { Login } from "./components/Login/Login";
 import { SingUp } from "./components/SingUp/SingUp";
+import { FindWorkers } from "./pages/FindWorkers/FindWorkers";
 
 function App() {
   return (
@@ -18,10 +19,11 @@ function App() {
           <Route path="/workers-list" element={<WorkersList />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sing-up" element={<SingUp />} />
+          <Route path="/find-workers" element={<FindWorkers />} />
         </Routes>
       </main>
 
-      <Footer/>
+      <Footer />
     </div>
   );
 }

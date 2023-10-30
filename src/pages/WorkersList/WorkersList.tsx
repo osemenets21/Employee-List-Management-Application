@@ -4,6 +4,8 @@ import {
   WorkersListContext,
   WorkersContextType,
 } from "../../context/WorkersListContext";
+import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
 
 export const WorkersList = () => {
   const workersContext = useContext<WorkersContextType | undefined>(
@@ -18,7 +20,7 @@ export const WorkersList = () => {
 
   return (
     <div>
-      <table>
+      <Table striped bordered hover>
         <thead>
           <tr>
             <th>ID</th>
@@ -48,12 +50,14 @@ export const WorkersList = () => {
               <td>{worker.statusOfWork}</td>
               <td>{worker.phone}</td>
               <td>
-                <button type="button">DELETE</button>
+                <Button variant="danger" type="button">
+                  DELETE
+                </Button>
               </td>
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 };

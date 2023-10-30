@@ -9,32 +9,37 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 export const NavBar = () => {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary ">
+    <Navbar expand="md" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand className="navBar__logo ">
-          Employee list management application
+        <Navbar.Brand className="navBar__logo">
+          Employee List Management Application
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" navbarScroll></Nav>
           <Nav className="d-flex align-items-center">
-            <Nav.Link>
-              <Link to="/workers-list" className="link ">
+            <Nav.Link className="nav-item">
+              <Link to="/workers-list" className="link-item">
                 Workers
               </Link>
             </Nav.Link>
+            <Nav.Link className="nav-item">
+              <Link to="/find-workers" className="link-item">
+                Find Worker
+              </Link>
+            </Nav.Link>
             <ButtonGroup aria-label="Basic example">
-              <Nav.Link>
+              <Nav.Link className="nav-item">
                 <Button variant="dark">
                   <Link to="/login" className="btn-login link">
                     Login
                   </Link>
                 </Button>
               </Nav.Link>
-              <Nav.Link>
+              <Nav.Link className="nav-item">
                 <Button variant="warning">
-                  <Link to="/sing-up" className="btn-sing-up link">
-                    Sing Up
+                  <Link to="/sign-up" className="btn-sign-up link">
+                    Sign Up
                   </Link>
                 </Button>
               </Nav.Link>
