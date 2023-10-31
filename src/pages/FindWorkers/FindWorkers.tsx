@@ -33,6 +33,14 @@ export const FindWorkers: React.FC = () => {
     }
   };
 
+  const handleDelete = (worker: Workers) => {
+    if (workersContext) {
+      workersContext.deleteWorker(worker.id);
+      setIsEditing(false); // Wyłącz tryb edycji
+      setEditedWorker(null); // Wyczyść edytowanego pracownika
+    }
+  };
+
   return (
     <div>
       <h1>Find Workers</h1>
@@ -183,6 +191,9 @@ export const FindWorkers: React.FC = () => {
                         Edit
                       </Button>
                     )}
+                    <Button variant="danger" onClick={() => handleDelete(worker)}>
+                      Delete
+                    </Button>
                   </td>
                 </tr>
               ))}
