@@ -64,5 +64,11 @@
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
+    transition: .3s;
+    &:hover {
+        background-color: #94A684;
+        color: white;
+        border-color: white;
+    }
   }
   
