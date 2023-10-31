@@ -1,0 +1,58 @@
+// Mixins for background
+@mixin background-primary {
+    background-color: #94A684;
+  }
+  
+  @mixin background-secondary {
+    background-color: #AEC3AE;
+  }
+  
+  @mixin background-tertiary {
+    background-color: #E4E4D0;
+  }
+  
+  @mixin background-quaternary {
+    background-color: #FFEEF4;
+  }
+  
+  // Mixins for buttons
+  @mixin button-primary {
+    background-color: #94A684;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  @mixin button-secondary {
+    background-color: #AEC3AE;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  @mixin button-tertiary {
+    background-color: #E4E4D0;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  @mixin button-quaternary {
+    background-color: #FFEEF4;
+    color: #94A684;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
