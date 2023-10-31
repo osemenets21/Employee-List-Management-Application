@@ -55,4 +55,14 @@
     cursor: pointer;
     text-decoration: none;
   }
+
+  @mixin button-transparent {
+    background-color: #FFEEF4;
+    color: #94A684;
+    padding: 10px 20px;
+    border: 2px solid #94A684;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
   
