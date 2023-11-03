@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
   Workers,
   WorkersContextType,
@@ -11,6 +11,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
+import "./FindWorkers.scss";
 
 export const FindWorkers: React.FC = () => {
   const workersContext = useContext<WorkersContextType | undefined>(
@@ -65,11 +66,13 @@ export const FindWorkers: React.FC = () => {
 
     return isEditingField ? (
       <Form.Control
-        type={type}
+        as="textarea"
+        rows={2}
         value={editedWorker ? editedWorker[field] : ""}
         onChange={(e) =>
           setEditedWorker({ ...editedWorker, [field]: e.target.value })
         }
+        className="formControl"
       />
     ) : (
       worker[field].toString()
@@ -77,11 +80,11 @@ export const FindWorkers: React.FC = () => {
   };
 
   return (
-    <Container>
+    <Container className="FindWorkers">
       <h1>Find Workers</h1>
       <Form>
         <Form.Group as={Row}>
-          <Col sm="10">
+          <Col xs="9" sm="10">
             <Form.Control
               type="text"
               placeholder="Search for a worker..."
@@ -89,15 +92,15 @@ export const FindWorkers: React.FC = () => {
               onChange={(e) => setSearchText(e.target.value)}
             />
           </Col>
-          <Col sm="2">
-            <Button variant="primary" onClick={handleSearch}>
+          <Col xs="3" sm="2">
+            <Button variant="primary search-button" onClick={handleSearch}>
               Search
             </Button>
           </Col>
         </Form.Group>
       </Form>
       {workersContext && searchText && (
-        <Table striped bordered hover>
+        <Table striped bordered hover responsive className="expanded-table">
           <thead>
             <tr>
               <th>First Name</th>

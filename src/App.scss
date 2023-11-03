@@ -1,8 +1,11 @@
+$beige-gradient: linear-gradient(to bottom, #F3E5AB, #C4A685);
+
 .content {
     flex: 1;
 }
 
 .App {
+    background: $beige-gradient;
     display: flex;
     flex-direction: column;
     min-height: 100vh;

@@ -12,7 +12,9 @@ export const NavBar = () => {
     <Navbar expand="md" className="bg-body-tertiary">
       <Container fluid>
         <Navbar.Brand className="navBar__logo">
-          Employee List Management Application
+          <Link className="navBar__logo" to="/">
+            Employee List Management Application
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">

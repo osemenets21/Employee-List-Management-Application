@@ -1,18 +1,14 @@
+// WorkersList.js
+
 import React, { useContext, useState } from "react";
 import "./WorkersList.scss";
-import {
-  WorkersListContext,
-  WorkersContextType,
-} from "../../context/WorkersListContext";
+import { WorkersListContext, WorkersContextType } from "../../context/WorkersListContext";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 export const WorkersList = () => {
-  const workersContext = useContext<WorkersContextType | undefined>(
-    WorkersListContext
-  );
-
+  const workersContext = useContext<WorkersContextType | undefined>(WorkersListContext);
   const [selectedWorker, setSelectedWorker] = useState<any | null>(null);
 
   const handleDetailsClick = (worker: any) => {
@@ -30,7 +26,7 @@ export const WorkersList = () => {
   const { workers } = workersContext;
 
   return (
-    <div>
+    <div className="WorkersList">
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -65,7 +61,7 @@ export const WorkersList = () => {
       </Table>
 
       {selectedWorker && (
-        <Card className="mt-4">
+        <Card className="Card mt-4">
           <Card.Body>
             <Card.Title>Szczegóły Pracownika</Card.Title>
             <Card.Text>
