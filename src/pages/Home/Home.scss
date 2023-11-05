@@ -16,6 +16,10 @@
         top: 0;
         left: 60%;
         @include background-primary;
+
+        @media (max-width: 768px) {
+            width: 150px;
+        }
     }
 
     .workers-first-img {
@@ -23,6 +27,11 @@
         position: absolute;
         top: 4rem;
         left: 11rem;
+        @media (max-width: 768px) {
+            width: 100%; // Змінюємо розмір на 100% ширини контейнера
+            top: 2rem; // Змінюємо позицію на менший відступ зверху
+            left: 0; // Змінюємо позицію на нуль
+        }
     }
 
     .workers-second-img {
@@ -30,12 +39,17 @@
         bottom: 4rem;
         right: 5rem;
         width: 35rem;
+        @media (max-width: 768px) {
+            width: 100%; // Змінюємо розмір на 100% ширини контейнера
+            bottom: 2rem; // Змінюємо позицію на менший відступ знизу
+            right: 0; // Змінюємо позицію на нуль
+        }
     }
 }
 
 .heading {
     @include background-secondary;
-    opacity: .8;
+    opacity: 0.8;
     width: 395px;
     height: 240px;
     border-radius: 10px;
@@ -53,7 +67,6 @@
     &-text {
         font-size: 24px;
         margin-bottom: 20px;
-
     }
 
     &-button {
@@ -62,5 +75,19 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    @media (max-width: 768px) {
+        width: 90%; // Змінюємо ширину контейнера
+        left: 5%; // Змінюємо позицію контейнера
+        top: 20rem; // Змінюємо позицію контейнера
+        flex-direction: column; // Змінюємо напрямок flex
+        text-align: center; // Центруємо текст
+        &-text {
+            font-size: 20px; // Змінюємо розмір тексту
+        }
+        &-button {
+            width: 100%; // Розтягуємо кнопку на всю ширину контейнера
+        }
     }
 }
