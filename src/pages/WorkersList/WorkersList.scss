@@ -1,0 +1,41 @@
+table {
+  width: 100%;
+  table-layout: fixed;
+  background-color: #94a684;
+}
+
+tbody {
+  width: 100%;
+  background-color: #aec3ae;
+  font-family: "Raleway", sans-serif;
+}
+
+tr {
+  width: 100%;
+  font-family: "Raleway", sans-serif;
+}
+
+th,
+td {
+  padding: 20px 15px;
+  text-align: left;
+  font-size: 18px;
+  color: black;
+}
+
+.sort-button {
+  background-color: transparent;
+  border: none;
+  padding: 5px 10px;
+  margin: 0;
+  line-height: 1;
+  font-size: 15px;
+  color: #ffeef4;
+  cursor: pointer;
+
+  transition: transform 0.05s ease-out;
+}
+
+.sort-reverse {
+  transform: rotate(180deg);
+}

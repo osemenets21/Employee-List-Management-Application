@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "firstName": "Anna",
+    "lastName": "Kovalczuk",
+    "dateOfBirth": "04-05-1997",
+    "street": "Marszałkowska",
+    "city": "Warszawa",
+    "postCode": "00-060",
+    "salary": 1500,
+    "statusOfWork": "zwolniony",
+    "phone": "+48456345244"
+  },
+  {
+    "id": 2,
+    "firstName": "Jan",
+    "lastName": "Nowak",
+    "dateOfBirth": "10-12-1985",
+    "street": "Wolska",
+    "city": "Warszawa",
+    "postCode": "00-150",
+    "salary": 2500,
+    "statusOfWork": "zatrudniony",
+    "phone": "+48456567890"
+  },
+  {
+    "id": 3,
+    "firstName": "Maria",
+    "lastName": "Kowalska",
+    "dateOfBirth": "25-09-1990",
+    "street": "Żelazna",
+    "city": "Warszawa",
+    "postCode": "00-200",
+    "salary": 1800,
+    "statusOfWork": "zatrudniony",
+    "phone": "+48457788999"
+  },
+  {
+    "id": 4,
+    "firstName": "Piotr",
+    "lastName": "Lewandowski",
+    "dateOfBirth": "15-07-1988",
+    "street": "Wiejska",
+    "city": "Warszawa",
+    "postCode": "00-250",
+    "salary": 2200,
+    "statusOfWork": "zatrudniony",
+    "phone": "+48567457956"
+  }
+]

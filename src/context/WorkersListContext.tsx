@@ -23,7 +23,7 @@ export type WorkersContextType = {
   setWorkers: React.Dispatch<React.SetStateAction<Workers[]>>;
   editWorker: (worker: Workers) => void;
   updatedWorker: Workers | null;
-  deleteWorker: (workerId: number) => Promise<void>
+  deleteWorker: (workerId: number) => Promise<void>;
 };
 
 export const WorkersListContext = createContext<WorkersContextType | undefined>(
@@ -33,10 +33,11 @@ export const WorkersListContext = createContext<WorkersContextType | undefined>(
 export type EditWorkersContextType = {
   editWorker: (worker: Workers) => void;
   updatedWorker: Workers | null;
-  
 };
 
-export const WorkersListContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const WorkersListContextProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [workers, setWorkers] = useState<Workers[]>([]);
   const [updatedWorker, setUpdatedWorker] = useState<Workers | null>(null);
 
