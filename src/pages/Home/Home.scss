@@ -28,9 +28,9 @@
         top: 4rem;
         left: 11rem;
         @media (max-width: 768px) {
-            width: 100%; // Змінюємо розмір на 100% ширини контейнера
-            top: 2rem; // Змінюємо позицію на менший відступ зверху
-            left: 0; // Змінюємо позицію на нуль
+            width: 100%; 
+            top: 2rem; 
+            left: 0; 
         }
     }
 
@@ -40,9 +40,9 @@
         right: 5rem;
         width: 35rem;
         @media (max-width: 768px) {
-            width: 100%; // Змінюємо розмір на 100% ширини контейнера
-            bottom: 2rem; // Змінюємо позицію на менший відступ знизу
-            right: 0; // Змінюємо позицію на нуль
+            width: 100%; 
+            bottom: 2rem; 
+            right: 0; 
         }
     }
 }
@@ -78,16 +78,16 @@
     }
 
     @media (max-width: 768px) {
-        width: 90%; // Змінюємо ширину контейнера
-        left: 5%; // Змінюємо позицію контейнера
-        top: 20rem; // Змінюємо позицію контейнера
-        flex-direction: column; // Змінюємо напрямок flex
-        text-align: center; // Центруємо текст
+        width: 90%; 
+        left: 5%; 
+        top: 20rem; 
+        flex-direction: column; 
+        text-align: center; 
         &-text {
-            font-size: 20px; // Змінюємо розмір тексту
+            font-size: 20px; 
         }
         &-button {
-            width: 100%; // Розтягуємо кнопку на всю ширину контейнера
+            width: 100%; 
         }
     }
 }
