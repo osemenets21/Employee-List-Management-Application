@@ -92,11 +92,7 @@ export const FindWorkers: React.FC = () => {
               onChange={(e) => setSearchText(e.target.value)}
             />
           </Col>
-          <Col xs="3" sm="2">
-            <Button variant="primary search-button" onClick={handleSearch}>
-              Search
-            </Button>
-          </Col>
+          <Col xs="3" sm="2"></Col>
         </Form.Group>
       </Form>
       {workersContext && searchText && (
@@ -176,12 +172,15 @@ export const FindWorkers: React.FC = () => {
       <Alert show={showDeleteAlert} variant="danger">
         <Alert.Heading>Confirmation</Alert.Heading>
         <p>
-          Czy na pewno chcesz usunąć pracownika{" "}
-          {workerToDelete?.firstName} {workerToDelete?.lastName}?
+          Czy na pewno chcesz usunąć pracownika {workerToDelete?.firstName}{" "}
+          {workerToDelete?.lastName}?
         </p>
         <hr />
         <div className="d-flex justify-content-end">
-          <Button onClick={() => setShowDeleteAlert(false)} variant="outline-success">
+          <Button
+            onClick={() => setShowDeleteAlert(false)}
+            variant="outline-success"
+          >
             Nie
           </Button>
           <Button onClick={confirmDelete} variant="danger">
