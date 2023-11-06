@@ -16,28 +16,28 @@ export const FindWorkers: React.FC = () => {
   const [editedWorker, setEditedWorker] = useState<Workers | null>(null);
 
   const handleSearch = () => {
-    setIsEditing(false); // Wyłącz tryb edycji
-    setEditedWorker(null); // Wyczyść edytowanego pracownika
+    setIsEditing(false); 
+    setEditedWorker(null); 
   };
 
   const handleEdit = (worker: Workers) => {
     setIsEditing(true);
-    setEditedWorker({ ...worker }); // Skopiuj pracownika do edycji
+    setEditedWorker({ ...worker }); 
   };
 
   const handleSave = () => {
     if (editedWorker && workersContext) {
       workersContext.editWorker(editedWorker);
-      setIsEditing(false); // Wyłącz tryb edycji po zapisaniu
-      setEditedWorker(null); // Wyczyść edytowanego pracownika
+      setIsEditing(false); 
+      setEditedWorker(null); 
     }
   };
 
   const handleDelete = (worker: Workers) => {
     if (workersContext) {
       workersContext.deleteWorker(worker.id);
-      setIsEditing(false); // Wyłącz tryb edycji
-      setEditedWorker(null); // Wyczyść edytowanego pracownika
+      setIsEditing(false); 
+      setEditedWorker(null); 
     }
   };
 
