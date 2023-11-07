@@ -1,17 +1,5 @@
 {
-    "workerList": [
-    {
-      "id": 1,
-      "firstName": "Anna",
-      "lastName": "Kovalczuk",
-      "dateOfBirth": "04-05-1997",
-      "street": "Marszałkowska",
-      "city": "Warszawa",
-      "postCode": "00-060",
-      "salary": 1500,
-      "statusOfWork": "zwolniony",
-      "phone": "+48456345244"
-    },
+  "workerList": [
     {
       "id": 2,
       "firstName": "Jan",
@@ -20,7 +8,7 @@
       "street": "Wolska",
       "city": "Warszawa",
       "postCode": "00-150",
-      "salary": 2500,
+      "salary": "2500",
       "statusOfWork": "zatrudniony",
       "phone": "+48456567890"
     },
