@@ -6,7 +6,7 @@ import { WorkersList } from "./pages/WorkersList/WorkersList";
 import { Footer } from "./components/Footer/Footer";
 import { NavBar } from "./components/NavBar/NavBar";
 import { Login } from "./pages/Login/Login";
-import { SingUp } from "./pages/SingUp/SingUp";
+import { SignUp } from "./pages/SingUp/SingUp";
 import { FindWorkers } from "./pages/FindWorkers/FindWorkers";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/workers-list" element={<WorkersList />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/sing-up" element={<SingUp />} />
+          <Route path="/sign-up" element={<SignUp />} />
           <Route path="/find-workers" element={<FindWorkers />} />
         </Routes>
       </main>
