@@ -8,6 +8,7 @@ import { NavBar } from "./components/NavBar/NavBar";
 import { Login } from "./pages/Login/Login";
 import { SignUp } from "./pages/SingUp/SingUp";
 import { FindWorkers } from "./pages/FindWorkers/FindWorkers";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/find-workers" element={<FindWorkers />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
 
