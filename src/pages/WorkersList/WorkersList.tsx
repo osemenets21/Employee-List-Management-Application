@@ -1,14 +1,17 @@
-// WorkersList.js
-
 import React, { useContext, useState } from "react";
 import "./WorkersList.scss";
-import { WorkersListContext, WorkersContextType } from "../../context/WorkersListContext";
+import {
+  WorkersListContext,
+  WorkersContextType,
+} from "../../context/WorkersListContext";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 export const WorkersList = () => {
-  const workersContext = useContext<WorkersContextType | undefined>(WorkersListContext);
+  const workersContext = useContext<WorkersContextType | undefined>(
+    WorkersListContext
+  );
   const [selectedWorker, setSelectedWorker] = useState<any | null>(null);
 
   const handleDetailsClick = (worker: any) => {
