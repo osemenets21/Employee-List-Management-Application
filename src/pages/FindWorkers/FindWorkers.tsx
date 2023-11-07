@@ -23,11 +23,6 @@ export const FindWorkers: React.FC = () => {
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [workerToDelete, setWorkerToDelete] = useState<Workers | null>(null);
 
-  const handleSearch = () => {
-    setIsEditing(false);
-    setEditedWorker(null);
-  };
-
   const handleEdit = (worker: Workers) => {
     setIsEditing(true);
     setEditedWorker({ ...worker });
