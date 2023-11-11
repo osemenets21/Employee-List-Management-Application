@@ -29,7 +29,7 @@ export const NavBar = () => {
   }, []);
 
   return (
-    <Navbar expand="md" className="bg-body-tertiary">
+    <Navbar expand="md" className="navbar" fixed="top">
       <Container fluid>
         <Navbar.Brand className="navBar__logo">
           {isMobile ? "ELMA" : "Employee List Management Application"}

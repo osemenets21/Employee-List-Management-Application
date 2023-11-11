@@ -8,21 +8,9 @@
       "street": "Wolska",
       "city": "Warszawa",
       "postCode": "00-150",
-      "salary": 2500,
+      "salary": "2500",
       "statusOfWork": "zatrudniony",
       "phone": "+48456567890"
-    },
-    {
-      "id": 3,
-      "firstName": "Maria",
-      "lastName": "Kowalska",
-      "dateOfBirth": "25-09-1990",
-      "street": "Żelazna",
-      "city": "Warszawa",
-      "postCode": "00-200",
-      "salary": 1800,
-      "statusOfWork": "zatrudniony",
-      "phone": "+48457788999"
     },
     {
       "id": 4,
@@ -35,6 +23,18 @@
       "salary": 2200,
       "statusOfWork": "zatrudniony",
       "phone": "+48567457956"
+    },
+    {
+      "id": 1,
+      "firstName": "Anna",
+      "lastName": "Anna",
+      "dateOfBirth": "19-05-1998",
+      "street": "Smolenska",
+      "city": "Warszawa",
+      "postCode": "05-090",
+      "salary": 100,
+      "statusOfWork": "zartudniona",
+      "phone": "+480945654756"
     }
   ]
 }

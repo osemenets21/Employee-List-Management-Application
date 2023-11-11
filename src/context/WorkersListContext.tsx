@@ -20,6 +20,7 @@ export type Workers = {
 export type WorkersContextType = {
   workers: Workers[];
   setWorkers: React.Dispatch<React.SetStateAction<Workers[]>>;
+  addWorker: (newWorker: Workers) => void;
   editWorker: (worker: Workers) => void;
   updatedWorker: Workers | null;
   deleteWorker: (workerId: number) => Promise<void>
@@ -48,6 +49,27 @@ export const WorkersListContextProvider: React.FC<{ children: ReactNode }> = ({ 
 
       const data = await response.json();
       setWorkers(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const addWorker = async (newWorkerData: Workers) => {
+    try {
+      const response = await fetch("http://localhost:5000/workerList", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newWorkerData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Problem with the server");
+      }
+
+      const newWorkerResponse = await response.json();
+      setWorkers((prevWorkers) => [...prevWorkers, newWorkerResponse]);
     } catch (error) {
       console.log(error);
     }
@@ -107,7 +129,7 @@ export const WorkersListContextProvider: React.FC<{ children: ReactNode }> = ({ 
 
   return (
     <WorkersListContext.Provider
-      value={{ workers, setWorkers, editWorker, updatedWorker, deleteWorker }}
+      value={{ workers, setWorkers, addWorker, editWorker, updatedWorker, deleteWorker }}
     >
       {children}
     </WorkersListContext.Provider>

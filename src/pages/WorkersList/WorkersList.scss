@@ -1,0 +1,24 @@
+@import "bootstrap/scss/bootstrap";
+
+table {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+th,
+td {
+    word-break: break-word;
+}
+
+.WorkersList {
+    margin: 20px;
+}
+
+.Card {
+    @media (max-width: 767px) {
+        & {
+            margin: 10px;
+        }
+    }
+}
