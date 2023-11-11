@@ -8,6 +8,7 @@ import { NavBar } from "./components/NavBar/NavBar";
 import { Login } from "./pages/Login/Login";
 import { SingUp } from "./pages/SingUp/SingUp";
 import { FindWorkers } from "./pages/FindWorkers/FindWorkers";
+import { AddWorker } from "./components/AddWorker/AddWorker";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/sing-up" element={<SingUp />} />
           <Route path="/find-workers" element={<FindWorkers />} />
+          <Route path="/add-worker" element={<AddWorker />} />
         </Routes>
       </main>
 
