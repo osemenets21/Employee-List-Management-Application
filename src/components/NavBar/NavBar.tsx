@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./NavBar.scss";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -8,13 +8,37 @@ import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 export const NavBar = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <Navbar expand="md" className="bg-body-tertiary">
+    <Navbar expand="md" className="navbar" fixed="top">
       <Container fluid>
         <Navbar.Brand className="navBar__logo">
+<<<<<<< HEAD:src/components/NavBar/NavBar.tsx
+          {isMobile ? "ELMA" : "Employee List Management Application"}
+=======
           <Link className="navBar__logo" to="/">
             Employee List Management Application
           </Link>
+>>>>>>> 5928a4001cf1c89e8278b98ffe3e3c5660f65872:src/components/Header/NavBar/NavBar.tsx
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">

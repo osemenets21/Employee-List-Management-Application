@@ -1,7 +1,17 @@
+@import '../../mixins/_mixins.scss';
+
+
+.navbar {
+    height: 50px;
+    background-color: rgba(147, 147, 147, 0.53) !important;
+    
+}
+
 .btn-login {
     font-family: var(--font-family);
         font-weight: 600;
     color: white;
+   
 }
 
 .btn-sign-up {
