@@ -1,7 +1,30 @@
+@import '../../mixins/mixins';
+
 .footer {
-    background-color: #333;
+    @include background-secondary;
     color: #fff;
     text-align: center;
     padding: 10px;
     width: 100%;
-  }
+}
+
+.footer-icons {
+    font-size: 2rem;
+    margin-right: 5px;
+    color: white;
+
+}
+
+.social-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.github-ico {
+    font-size: 27px;
+}
+
+.footer-text {
+    font-size: 14px;
+}

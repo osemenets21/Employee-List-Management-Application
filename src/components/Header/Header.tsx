@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Header.scss";
 import { Link } from "react-router-dom";
+import { FaBars } from 'react-icons/fa'; 
 
 export const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [showMenu, setShowMenu] = useState(false); 
 
   useEffect(() => {
     const handleResize = () => {
@@ -23,6 +25,11 @@ export const Header = () => {
     };
   }, []);
 
+  const toggleMenu = () => {
+    console.log('ok')
+    setShowMenu(!showMenu); 
+  };
+
   return (
     <header className="header">
       <div className="header-logo">
@@ -31,12 +38,16 @@ export const Header = () => {
         </Link>
       </div>
       <nav className="header-nav">
-        <ul className="header-nav-menu">
-            <li><Link to="/workers-list">Workers</Link></li>
-            <li><Link to="/find-workers">Find Worker</Link></li>
+        {isMobile ? (
+          <FaBars className="burger-icon" onClick={toggleMenu} />
+        ) : (
+          <ul className={`header-nav-menu ${showMenu ? 'show' : ''}`}>
+            <li><Link className="workers-link" to="/workers-list">Workers</Link></li>
+            <li><Link className="find-workers-link" to="/find-workers">Find Worker</Link></li>
             <li><Link className="btn-login" to="/login">Login</Link></li>
             <li><Link className="btn-sign-up" to="/sign-up">Sign Up</Link></li>
-        </ul>
+          </ul>
+        )}
       </nav>
     </header>
   );

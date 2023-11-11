@@ -15,8 +15,18 @@
     height: 3rem;
     padding: 1rem;
 
+ 
+
+
     &-logo-link {
         font-weight: bold;
+        text-decoration: none;
+        color: black;
+        transition: all .2s;
+
+        &:hover {
+            color: white;
+        }
     }
 
     &-nav {
@@ -27,10 +37,24 @@
         &-menu {
             display: flex;
             align-items: center;
+            list-style: none;
+
+
+            .workers-link,
+            .find-workers-link {
+                text-decoration: none;
+                transition: all .2s;
+                color: black;
+
+                &:hover {
+                    color: white;
+                }
+            }
 
             li {
                 margin-right: 20px;
                 cursor: pointer;
+
             }
 
             li:nth-child(3) {
@@ -48,3 +72,43 @@
 
     }
 }
+
+.header-nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  
+    li {
+      margin-right: 20px;
+      cursor: pointer;
+    }
+  
+    .workers-link, .find-workers-link {
+      transition: color 0.2s;
+    }
+  
+    // .btn-login, .btn-sign-up {
+    //   // Ваші стилі для кнопок
+    // }
+  
+    @media (max-width: 768px) {
+      flex-direction: column;
+      max-height: 0;
+      overflow: hidden;
+  
+      &.show {
+        max-height: 200px;  // Змініть на необхідне значення
+      }
+  
+      li {
+        margin-bottom: 10px;
+      }
+    }
+  }
+  
+  .burger-icon {
+    cursor: pointer;
+  }
+  
