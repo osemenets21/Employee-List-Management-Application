@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import {
   Workers,
   WorkersContextType,
@@ -20,46 +20,23 @@ export const FindWorkers: React.FC = () => {
   const [searchText, setSearchText] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [editedWorker, setEditedWorker] = useState<Workers | null>(null);
-<<<<<<< HEAD
-
-  const handleSearch = () => {
-    setIsEditing(false); 
-    setEditedWorker(null); 
-  };
-
-  const handleEdit = (worker: Workers) => {
-    setIsEditing(true);
-    setEditedWorker({ ...worker }); 
-=======
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [workerToDelete, setWorkerToDelete] = useState<Workers | null>(null);
 
   const handleEdit = (worker: Workers) => {
     setIsEditing(true);
     setEditedWorker({ ...worker });
->>>>>>> 5928a4001cf1c89e8278b98ffe3e3c5660f65872
   };
 
   const handleSave = () => {
     if (editedWorker && workersContext) {
       workersContext.editWorker(editedWorker);
-<<<<<<< HEAD
       setIsEditing(false); 
       setEditedWorker(null); 
-=======
-      setIsEditing(false);
-      setEditedWorker(null);
->>>>>>> 5928a4001cf1c89e8278b98ffe3e3c5660f65872
     }
   };
 
   const handleDelete = (worker: Workers) => {
-<<<<<<< HEAD
-    if (workersContext) {
-      workersContext.deleteWorker(worker.id);
-      setIsEditing(false); 
-      setEditedWorker(null); 
-=======
     setWorkerToDelete(worker);
     setShowDeleteAlert(true);
   };
@@ -70,7 +47,6 @@ export const FindWorkers: React.FC = () => {
       setIsEditing(false);
       setEditedWorker(null);
       setShowDeleteAlert(false);
->>>>>>> 5928a4001cf1c89e8278b98ffe3e3c5660f65872
     }
   };
 
