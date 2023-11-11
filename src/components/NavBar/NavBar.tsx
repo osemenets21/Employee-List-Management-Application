@@ -32,7 +32,13 @@ export const NavBar = () => {
     <Navbar expand="md" className="navbar" fixed="top">
       <Container fluid>
         <Navbar.Brand className="navBar__logo">
+<<<<<<< HEAD:src/components/NavBar/NavBar.tsx
           {isMobile ? "ELMA" : "Employee List Management Application"}
+=======
+          <Link className="navBar__logo" to="/">
+            Employee List Management Application
+          </Link>
+>>>>>>> 5928a4001cf1c89e8278b98ffe3e3c5660f65872:src/components/Header/NavBar/NavBar.tsx
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">

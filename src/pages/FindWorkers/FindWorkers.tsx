@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
   Workers,
   WorkersContextType,
@@ -6,6 +6,12 @@ import {
 } from "../../context/WorkersListContext";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Alert from "react-bootstrap/Alert";
+import "./FindWorkers.scss";
 
 export const FindWorkers: React.FC = () => {
   const workersContext = useContext<WorkersContextType | undefined>(
@@ -14,6 +20,7 @@ export const FindWorkers: React.FC = () => {
   const [searchText, setSearchText] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [editedWorker, setEditedWorker] = useState<Workers | null>(null);
+<<<<<<< HEAD
 
   const handleSearch = () => {
     setIsEditing(false); 
@@ -23,36 +30,92 @@ export const FindWorkers: React.FC = () => {
   const handleEdit = (worker: Workers) => {
     setIsEditing(true);
     setEditedWorker({ ...worker }); 
+=======
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
+  const [workerToDelete, setWorkerToDelete] = useState<Workers | null>(null);
+
+  const handleEdit = (worker: Workers) => {
+    setIsEditing(true);
+    setEditedWorker({ ...worker });
+>>>>>>> 5928a4001cf1c89e8278b98ffe3e3c5660f65872
   };
 
   const handleSave = () => {
     if (editedWorker && workersContext) {
       workersContext.editWorker(editedWorker);
+<<<<<<< HEAD
       setIsEditing(false); 
       setEditedWorker(null); 
+=======
+      setIsEditing(false);
+      setEditedWorker(null);
+>>>>>>> 5928a4001cf1c89e8278b98ffe3e3c5660f65872
     }
   };
 
   const handleDelete = (worker: Workers) => {
+<<<<<<< HEAD
     if (workersContext) {
       workersContext.deleteWorker(worker.id);
       setIsEditing(false); 
       setEditedWorker(null); 
+=======
+    setWorkerToDelete(worker);
+    setShowDeleteAlert(true);
+  };
+
+  const confirmDelete = () => {
+    if (workerToDelete && workersContext) {
+      workersContext.deleteWorker(workerToDelete.id);
+      setIsEditing(false);
+      setEditedWorker(null);
+      setShowDeleteAlert(false);
+>>>>>>> 5928a4001cf1c89e8278b98ffe3e3c5660f65872
     }
   };
 
-  return (
-    <div>
-      <h1>Find Workers</h1>
-      <input
-        type="text"
-        placeholder="Search for a worker..."
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
+  const renderField = (
+    worker: Workers,
+    field: keyof Workers,
+    label: string,
+    type: string
+  ) => {
+    const isEditingField =
+      isEditing && editedWorker && editedWorker.id === worker.id;
+
+    return isEditingField ? (
+      <Form.Control
+        as="textarea"
+        rows={2}
+        value={editedWorker ? editedWorker[field] : ""}
+        onChange={(e) =>
+          setEditedWorker({ ...editedWorker, [field]: e.target.value })
+        }
+        className="formControl"
       />
-      <button onClick={handleSearch}>Search</button>
+    ) : (
+      worker[field].toString()
+    );
+  };
+
+  return (
+    <Container className="FindWorkers">
+      <h1>Find Workers</h1>
+      <Form>
+        <Form.Group as={Row}>
+          <Col xs="9" sm="10">
+            <Form.Control
+              type="text"
+              placeholder="Search for a worker..."
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+          </Col>
+          <Col xs="3" sm="2"></Col>
+        </Form.Group>
+      </Form>
       {workersContext && searchText && (
-        <Table striped bordered hover>
+        <Table striped bordered hover responsive className="expanded-table">
           <thead>
             <tr>
               <th>First Name</th>
@@ -77,121 +140,46 @@ export const FindWorkers: React.FC = () => {
               .map((worker) => (
                 <tr key={worker.id}>
                   <td>
-                    {isEditing && editedWorker && editedWorker.id === worker.id ? (
-                      <input
-                        type="text"
-                        value={editedWorker.firstName}
-                        onChange={(e) =>
-                          setEditedWorker({ ...editedWorker, firstName: e.target.value })
-                        }
-                      />
-                    ) : (
-                      worker.firstName
-                    )}
+                    {renderField(worker, "firstName", "First Name", "text")}
                   </td>
                   <td>
-                    {isEditing && editedWorker && editedWorker.id === worker.id ? (
-                      <input
-                        type="text"
-                        value={editedWorker.lastName}
-                        onChange={(e) =>
-                          setEditedWorker({ ...editedWorker, lastName: e.target.value })
-                        }
-                      />
-                    ) : (
-                      worker.lastName
-                    )}
+                    {renderField(worker, "lastName", "Last Name", "text")}
                   </td>
                   <td>{worker.dateOfBirth}</td>
+                  <td>{renderField(worker, "street", "Street", "text")}</td>
+                  <td>{renderField(worker, "city", "City", "text")}</td>
                   <td>
-                    {isEditing && editedWorker && editedWorker.id === worker.id ? (
-                      <input
-                        type="text"
-                        value={editedWorker.street}
-                        onChange={(e) =>
-                          setEditedWorker({ ...editedWorker, street: e.target.value })
-                        }
-                      />
-                    ) : (
-                      worker.street
+                    {renderField(worker, "postCode", "Post Code", "text")}
+                  </td>
+                  <td>{renderField(worker, "salary", "Salary", "number")}</td>
+                  <td>
+                    {renderField(
+                      worker,
+                      "statusOfWork",
+                      "Status of Work",
+                      "text"
                     )}
                   </td>
+                  <td>{renderField(worker, "phone", "Phone", "text")}</td>
                   <td>
-                    {isEditing && editedWorker && editedWorker.id === worker.id ? (
-                      <input
-                        type="text"
-                        value={editedWorker.city}
-                        onChange={(e) =>
-                          setEditedWorker({ ...editedWorker, city: e.target.value })
-                        }
-                      />
-                    ) : (
-                      worker.city
-                    )}
-                  </td>
-                  <td>
-                    {isEditing && editedWorker && editedWorker.id === worker.id ? (
-                      <input
-                        type="text"
-                        value={editedWorker.postCode}
-                        onChange={(e) =>
-                          setEditedWorker({ ...editedWorker, postCode: e.target.value })
-                        }
-                      />
-                    ) : (
-                      worker.postCode
-                    )}
-                  </td>
-                  <td>
-                    {isEditing && editedWorker && editedWorker.id === worker.id ? (
-                      <input
-                        type="text"
-                        value={editedWorker.salary}
-                        onChange={(e) =>
-                          setEditedWorker({ ...editedWorker, salary: Number(e.target.value) })
-                        }
-                      />
-                    ) : (
-                      worker.salary
-                    )}
-                  </td>
-                  <td>
-                    {isEditing && editedWorker && editedWorker.id === worker.id ? (
-                      <input
-                        type="text"
-                        value={editedWorker.statusOfWork}
-                        onChange={(e) =>
-                          setEditedWorker({ ...editedWorker, statusOfWork: e.target.value })
-                        }
-                      />
-                    ) : (
-                      worker.statusOfWork
-                    )}
-                  </td>
-                  <td>
-                    {isEditing && editedWorker && editedWorker.id === worker.id ? (
-                      <input
-                        type="text"
-                        value={editedWorker.phone}
-                        onChange={(e) =>
-                          setEditedWorker({ ...editedWorker, phone: e.target.value })
-                        }
-                      />
-                    ) : (
-                      worker.phone
-                    )}
-                  </td>
-                  <td>
-                    {isEditing && editedWorker && editedWorker.id === worker.id ? (
+                    {isEditing &&
+                    editedWorker &&
+                    editedWorker.id === worker.id ? (
                       <Button variant="success" onClick={handleSave}>
                         Save
                       </Button>
                     ) : (
-                      <Button variant="primary" onClick={() => handleEdit(worker)}>
+                      <Button
+                        variant="primary"
+                        onClick={() => handleEdit(worker)}
+                      >
                         Edit
                       </Button>
                     )}
-                    <Button variant="danger" onClick={() => handleDelete(worker)}>
+                    <Button
+                      variant="danger"
+                      onClick={() => handleDelete(worker)}
+                    >
                       Delete
                     </Button>
                   </td>
@@ -200,7 +188,26 @@ export const FindWorkers: React.FC = () => {
           </tbody>
         </Table>
       )}
-    </div>
+      <Alert show={showDeleteAlert} variant="danger">
+        <Alert.Heading>Confirmation</Alert.Heading>
+        <p>
+          Czy na pewno chcesz usunąć pracownika {workerToDelete?.firstName}{" "}
+          {workerToDelete?.lastName}?
+        </p>
+        <hr />
+        <div className="d-flex justify-content-end">
+          <Button
+            onClick={() => setShowDeleteAlert(false)}
+            variant="outline-success"
+          >
+            Nie
+          </Button>
+          <Button onClick={confirmDelete} variant="danger">
+            Tak
+          </Button>
+        </div>
+      </Alert>
+    </Container>
   );
 };
 
