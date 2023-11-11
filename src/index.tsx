@@ -5,7 +5,6 @@ import App from "./App";
 import './index.css'
 import { BrowserRouter } from "react-router-dom";
 import { WorkersListContextProvider } from "./context/WorkersListContext";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
