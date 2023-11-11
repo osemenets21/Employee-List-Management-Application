@@ -1,4 +1,3 @@
-import { log } from "console";
 import React, { useEffect, useState, createContext, ReactNode } from "react";
 
 export type Props = {
@@ -38,7 +37,7 @@ export type EditWorkersContextType = {
 
 export const WorkersListContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [workers, setWorkers] = useState<Workers[]>([]);
-  const [updatedWorker, setUpdatedWorker] = useState<Workers | null>(null);
+  const [updatedWorker] = useState<Workers | null>(null);
 
   const getWorkers = async () => {
     try {
