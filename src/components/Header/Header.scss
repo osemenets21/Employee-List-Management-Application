@@ -29,6 +29,15 @@
         }
     }
 
+    .switch-mode {
+        border: 2px solid #c8d7bb;
+        padding: 4px;
+        border-radius: 50%;
+        .moon-icon {
+            color: white;
+        }
+    }
+
     &-nav {
         margin-bottom: 0;
         display: flex;
@@ -61,6 +70,10 @@
                 margin-right: 5px;
             }
 
+            li:nth-child(4) {
+                margin-right: 5px;
+            }
+
             .btn-login {
                 @include button-primary;
             }
@@ -89,10 +102,7 @@
       transition: color 0.2s;
     }
   
-    // .btn-login, .btn-sign-up {
-    //   // Ваші стилі для кнопок
-    // }
-  
+
     @media (max-width: 768px) {
       flex-direction: column;
       max-height: 0;
@@ -110,5 +120,6 @@
   
   .burger-icon {
     cursor: pointer;
+    margin-right: 5px;
   }
   

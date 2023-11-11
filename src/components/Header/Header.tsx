@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./Header.scss";
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
+import { BsMoon, BsSun } from "react-icons/bs";
 
 export const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [theme, setTheme] = useState("light");
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -40,22 +42,20 @@ export const Header = () => {
   }, [theme]);
 
   const handleThemeSwitch = () => {
+    setDarkMode(!darkMode);
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
   return (
-    <header className="header bg-white dark:bg-black ">
+    <header className="header bg-white dark:bg-slate-800">
       <div className="header-logo">
         <Link to="/" className="header-logo-link dark:text-white">
           {isMobile ? "ELMA" : "Employee List Management Application"}
         </Link>
       </div>
       <nav className="header-nav">
-        <button className="dark:text-white" onClick={handleThemeSwitch}>
-          Dark mode
-        </button>
         {isMobile ? (
-          <FaBars className="burger-icon " onClick={toggleMenu} />
+          <FaBars className="burger-icon dark:text-white" onClick={toggleMenu} />
         ) : (
           <ul className={`header-nav-menu  ${showMenu ? "show" : ""}`}>
             <li>
@@ -80,6 +80,14 @@ export const Header = () => {
             </li>
           </ul>
         )}
+
+        <div className="switch-mode">
+          {darkMode ? (
+            <BsMoon className="moon-icon" onClick={handleThemeSwitch} />
+          ) : (
+            <BsSun onClick={handleThemeSwitch} />
+          )}
+        </div>
       </nav>
     </header>
   );
