@@ -15,7 +15,7 @@
     height: 3rem;
     padding: 1rem;
 
- 
+
 
 
     &-logo-link {
@@ -33,6 +33,8 @@
         border: 2px solid #c8d7bb;
         padding: 4px;
         border-radius: 50%;
+        cursor: pointer;
+
         .moon-icon {
             color: white;
         }
@@ -86,40 +88,8 @@
     }
 }
 
-.header-nav-menu {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  
-    li {
-      margin-right: 20px;
-      cursor: pointer;
-    }
-  
-    .workers-link, .find-workers-link {
-      transition: color 0.2s;
-    }
-  
 
-    @media (max-width: 768px) {
-      flex-direction: column;
-      max-height: 0;
-      overflow: hidden;
-  
-      &.show {
-        max-height: 200px;  // Змініть на необхідне значення
-      }
-  
-      li {
-        margin-bottom: 10px;
-      }
-    }
-  }
-  
-  .burger-icon {
+.burger-icon {
     cursor: pointer;
     margin-right: 5px;
-  }
-  
+}

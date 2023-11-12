@@ -6,9 +6,9 @@ import { BsMoon, BsSun } from "react-icons/bs";
 
 export const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
   const [theme, setTheme] = useState("light");
   const [darkMode, setDarkMode] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -29,7 +29,6 @@ export const Header = () => {
   }, []);
 
   const toggleMenu = () => {
-    console.log("ok");
     setShowMenu(!showMenu);
   };
 
@@ -47,7 +46,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="header bg-white dark:bg-slate-800">
+    <header className={`header ${isMobile ? 'mobile' : ''} bg-white dark:bg-slate-800`}>
       <div className="header-logo">
         <Link to="/" className="header-logo-link dark:text-white">
           {isMobile ? "ELMA" : "Employee List Management Application"}
@@ -55,9 +54,35 @@ export const Header = () => {
       </div>
       <nav className="header-nav">
         {isMobile ? (
-          <FaBars className="burger-icon dark:text-white" onClick={toggleMenu} />
+          <>
+            <FaBars className="burger-icon dark:text-white" onClick={toggleMenu} />
+            {showMenu && (
+              <ul className={`header-nav-menu`}>
+                <li>
+                  <Link className="workers-link" to="/workers-list">
+                    <span className="dark:text-white">Workers</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link className="find-workers-link" to="/find-workers">
+                    <span className="dark:text-white">Find Worker</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link className="btn-login" to="/login">
+                    <span className="dark:text-black">Login</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link className="btn-sign-up" to="/sign-up">
+                    <span className="dark:text-black">Sign Up</span>
+                  </Link>
+                </li>
+              </ul>
+            )}
+          </>
         ) : (
-          <ul className={`header-nav-menu  ${showMenu ? "show" : ""}`}>
+          <ul className={`header-nav-menu`}>
             <li>
               <Link className="workers-link" to="/workers-list">
                 <span className="dark:text-white">Workers</span>
@@ -69,7 +94,7 @@ export const Header = () => {
               </Link>
             </li>
             <li>
-              <Link className="btn-login " to="/login">
+              <Link className="btn-login" to="/login">
                 <span className="dark:text-black">Login</span>
               </Link>
             </li>
@@ -80,7 +105,7 @@ export const Header = () => {
             </li>
           </ul>
         )}
-
+  
         <div className="switch-mode">
           {darkMode ? (
             <BsMoon className="moon-icon" onClick={handleThemeSwitch} />
@@ -91,4 +116,10 @@ export const Header = () => {
       </nav>
     </header>
   );
+  
+  
+  
+  
+  
+  
 };
