@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./Header.scss";
 import { Link } from "react-router-dom";
-import { FaBars } from "react-icons/fa";
 import { BsMoon, BsSun } from "react-icons/bs";
+import Hamburger from "hamburger-react";
 
 export const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [theme, setTheme] = useState("light");
   const [darkMode, setDarkMode] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [isOpen, setOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -58,14 +59,13 @@ export const Header = () => {
       </div>
       <nav className="header-nav">
         {isMobile ? (
-          <>
-            <FaBars
-              className="burger-icon dark:text-white"
-              onClick={toggleMenu}
-            />
+          <> 
+            <div className="burger-icon dark:text-white" onClick={toggleMenu}>
+              <Hamburger size={20} toggled={isOpen} toggle={setOpen}/>
+            </div>
             {showMenu && (
-              <div className="menu-wrapper">
-                <ul className={`header-nav-menu vertical`}>
+              <div className="menu-wrapper dark:bg-slate-700">
+                <ul className={`header-nav-menu vertical `}>
                   <li>
                     <Link className="workers-link" to="/workers-list">
                       <span className="dark:text-white">Workers</span>
