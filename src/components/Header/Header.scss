@@ -75,11 +75,7 @@
                 margin-right: 5px;
             }
 
-            .btn-login {
-                @include button-primary;
-            }
-
-            .btn-sign-up {
+            .btn-login, .btn-sign-up {
                 @include button-primary;
             }
         }
