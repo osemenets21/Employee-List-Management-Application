@@ -119,7 +119,7 @@ export const Header = () => {
           {darkMode ? (
             <BsMoon className="moon-icon" onClick={handleThemeSwitch} />
           ) : (
-            <BsSun onClick={handleThemeSwitch} />
+            <BsSun className="sun-icon" onClick={handleThemeSwitch} />
           )}
         </div>
       </nav>
