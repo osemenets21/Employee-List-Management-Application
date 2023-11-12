@@ -59,9 +59,9 @@ export const Header = () => {
       </div>
       <nav className="header-nav">
         {isMobile ? (
-          <> 
+          <>
             <div className="burger-icon dark:text-white" onClick={toggleMenu}>
-              <Hamburger size={20} toggled={isOpen} toggle={setOpen}/>
+              <Hamburger size={20} toggled={isOpen} toggle={setOpen} />
             </div>
             {showMenu && (
               <div className="menu-wrapper dark:bg-slate-700">
