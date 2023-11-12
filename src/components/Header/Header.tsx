@@ -46,7 +46,11 @@ export const Header = () => {
   };
 
   return (
-    <header className={`header ${isMobile ? 'mobile' : ''} bg-white dark:bg-slate-800`}>
+    <header
+      className={`header ${
+        isMobile ? "mobile" : ""
+      } bg-white dark:bg-slate-800`}
+    >
       <div className="header-logo">
         <Link to="/" className="header-logo-link dark:text-white">
           {isMobile ? "ELMA" : "Employee List Management Application"}
@@ -55,34 +59,39 @@ export const Header = () => {
       <nav className="header-nav">
         {isMobile ? (
           <>
-            <FaBars className="burger-icon dark:text-white" onClick={toggleMenu} />
+            <FaBars
+              className="burger-icon dark:text-white"
+              onClick={toggleMenu}
+            />
             {showMenu && (
-              <ul className={`header-nav-menu`}>
-                <li>
-                  <Link className="workers-link" to="/workers-list">
-                    <span className="dark:text-white">Workers</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link className="find-workers-link" to="/find-workers">
-                    <span className="dark:text-white">Find Worker</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link className="btn-login" to="/login">
-                    <span className="dark:text-black">Login</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link className="btn-sign-up" to="/sign-up">
-                    <span className="dark:text-black">Sign Up</span>
-                  </Link>
-                </li>
-              </ul>
+              <div className="menu-wrapper">
+                <ul className={`header-nav-menu vertical`}>
+                  <li>
+                    <Link className="workers-link" to="/workers-list">
+                      <span className="dark:text-white">Workers</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="find-workers-link" to="/find-workers">
+                      <span className="dark:text-white">Find Worker</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="btn-login" to="/login">
+                      <span className="dark:text-black">Login</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="btn-sign-up" to="/sign-up">
+                      <span className="dark:text-black">Sign Up</span>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             )}
           </>
         ) : (
-          <ul className={`header-nav-menu`}>
+          <ul className={`header-nav-menu horizontal`}>
             <li>
               <Link className="workers-link" to="/workers-list">
                 <span className="dark:text-white">Workers</span>
@@ -105,7 +114,7 @@ export const Header = () => {
             </li>
           </ul>
         )}
-  
+
         <div className="switch-mode">
           {darkMode ? (
             <BsMoon className="moon-icon" onClick={handleThemeSwitch} />
@@ -116,10 +125,4 @@ export const Header = () => {
       </nav>
     </header>
   );
-  
-  
-  
-  
-  
-  
 };

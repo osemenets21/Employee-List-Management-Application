@@ -14,8 +14,7 @@
     align-items: center;
     height: 3rem;
     padding: 1rem;
-
-
+    position: relative;
 
 
     &-logo-link {
@@ -92,4 +91,58 @@
 .burger-icon {
     cursor: pointer;
     margin-right: 5px;
+}
+
+.menu-wrapper {
+    background-color: #aec3ae75;
+    position: absolute;
+    width: 164px;
+    height: 170px;
+    top: 14px;
+    right: 45px;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        /* Забрати зовнішній відступ у списку */
+        padding: 0;
+        /* Забрати внутрішній відступ у списку */
+
+        li {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            /* Забрати маркери списку */
+            text-align: center;
+            /* Вирівняти текст по центру */
+            margin-bottom: 10px;
+            /* Внутрішній відступ між елементами списку */
+        }
+    }
+}
+
+.header-nav-menu {
+    display: flex;
+    flex-direction: row;
+    /* За замовчуванням: горизонтально */
+
+    &.vertical {
+        flex-direction: column;
+        /* Показувати вертикально на невеликих екранах */
+    }
+}
+
+@media (max-width: 768px) {
+    .header-nav-menu.horizontal {
+        display: none;
+        /* Сховати горизонтальне меню на невеликих екранах */
+    }
 }
