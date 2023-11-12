@@ -36,6 +36,16 @@
 
         .moon-icon {
             color: white;
+            transition: all .5s;
+            &:hover {
+                transform: rotate(360deg)
+            }
+        }
+
+        .sun-icon {
+            
+            @extend .moon-icon;
+            color: black;
         }
     }
 
