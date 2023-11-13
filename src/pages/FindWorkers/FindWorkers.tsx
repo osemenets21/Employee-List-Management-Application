@@ -1,16 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Workers,
   WorkersContextType,
   WorkersListContext,
 } from "../../context/WorkersListContext";
-import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import "./FindWorkers.scss";
+
 
 export const FindWorkers: React.FC = () => {
   const workersContext = useContext<WorkersContextType | undefined>(
@@ -31,8 +26,8 @@ export const FindWorkers: React.FC = () => {
   const handleSave = () => {
     if (editedWorker && workersContext) {
       workersContext.editWorker(editedWorker);
-      setIsEditing(false); 
-      setEditedWorker(null); 
+      setIsEditing(false);
+      setEditedWorker(null);
       setShowSuccessAlert(true);
     }
   };
@@ -51,6 +46,18 @@ export const FindWorkers: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
+    if (showSuccessAlert) {
+      timeoutId = setTimeout(() => {
+        setShowSuccessAlert(false);
+      }, 5000);
+    }
+
+    return () => clearTimeout(timeoutId);
+  }, [showSuccessAlert]);
+
   const renderField = (
     worker: Workers,
     field: keyof Workers,
@@ -61,8 +68,7 @@ export const FindWorkers: React.FC = () => {
       isEditing && editedWorker && editedWorker.id === worker.id;
 
     return isEditingField ? (
-      <Form.Control
-        as="textarea"
+      <textarea
         rows={2}
         value={editedWorker ? editedWorker[field] : ""}
         onChange={(e) =>
@@ -76,25 +82,20 @@ export const FindWorkers: React.FC = () => {
   };
 
   return (
-    <Container className="FindWorkers bg-gray-200 p-4">
+    <div className="FindWorkers bg-gray-200 p-4">
       <h1 className="text-2xl font-bold mb-4">Find Workers</h1>
-      <Form>
-        <Form.Group as={Row}>
-          <Col xs="9" sm="10">
-            <Form.Control
-              type="text"
-              placeholder="Search for a worker..."
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              className="border rounded p-2"
-            />
-          </Col>
-          <Col xs="3" sm="2"></Col>
-        </Form.Group>
-      </Form>
+      <div className="mb-4">
+        <input
+          type="text"
+          placeholder="Search for a worker..."
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          className="border rounded p-2 w-full"
+        />
+      </div>
       {workersContext && searchText && (
         <div className="overflow-x-auto">
-          <Table striped bordered hover responsive className="table-auto w-full border mt-4">
+          <table className="min-w-full bg-white border border-gray-300">
             <thead className="bg-blue-500 text-white">
               <tr>
                 <th className="border p-2">ID</th>
@@ -153,37 +154,35 @@ export const FindWorkers: React.FC = () => {
                     <td className="border px-4 py-2">
                       {isEditing &&
                       editedWorker &&
-                      editedWorker.id === worker.id ? (
-                        <Button
-                          variant="primary"
+                      editedWorker.id === worker.id && (
+                        <button
                           onClick={handleSave}
-                          className="mr-2 bg-blue-500 rounded-full"
+                          className="mr-2 bg-blue-500 text-white py-1 px-2 rounded-full"
                         >
                           Save
-                        </Button>
-                      ) : (
+                        </button>
+                      )}
+                      {!isEditing && (
                         <>
-                          <Button
-                            variant="success"
+                          <button
                             onClick={() => handleEdit(worker)}
-                            className="mr-2 bg-green-500 rounded-full"
+                            className="mr-2 bg-green-500 text-white py-1 px-2 rounded-full"
                           >
                             Edit
-                          </Button>
-                          <Button
-                            variant="danger"
+                          </button>
+                          <button
                             onClick={() => handleDelete(worker)}
-                            className="bg-red-500 rounded-full"
+                            className="bg-red-500 text-white py-1 px-2 rounded-full"
                           >
                             Delete
-                          </Button>
+                          </button>
                         </>
                       )}
                     </td>
                   </tr>
                 ))}
             </tbody>
-            </Table>
+          </table>
         </div>
       )}
       {showSuccessAlert && (
@@ -195,24 +194,22 @@ export const FindWorkers: React.FC = () => {
         <div className="bg-red-500 text-white p-4 mb-4 rounded-md">
           <p className="mb-2">Are you sure you want to delete this employee?</p>
           <div className="flex justify-end">
-            <Button
+            <button
               onClick={() => setShowDeleteAlert(false)}
-              variant="outline-success"
-              className="rounded-full px-4 py-2 mr-2"
+              className="text-white bg-green-500 py-1 px-2 rounded-full mr-2"
             >
               No
-            </Button>
-            <Button
+            </button>
+            <button
               onClick={confirmDelete}
-              variant="danger"
-              className="rounded-full px-4 py-2"
+              className="text-white bg-red-500 py-1 px-2 rounded-full"
             >
               Yes
-            </Button>
+            </button>
           </div>
         </div>
       )}
-    </Container>
+    </div>
   );
 };
 
