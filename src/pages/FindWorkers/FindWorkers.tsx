@@ -10,7 +10,6 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Alert from "react-bootstrap/Alert";
 import "./FindWorkers.scss";
 
 export const FindWorkers: React.FC = () => {
@@ -22,6 +21,7 @@ export const FindWorkers: React.FC = () => {
   const [editedWorker, setEditedWorker] = useState<Workers | null>(null);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [workerToDelete, setWorkerToDelete] = useState<Workers | null>(null);
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
 
   const handleEdit = (worker: Workers) => {
     setIsEditing(true);
@@ -33,6 +33,7 @@ export const FindWorkers: React.FC = () => {
       workersContext.editWorker(editedWorker);
       setIsEditing(false); 
       setEditedWorker(null); 
+      setShowSuccessAlert(true);
     }
   };
 
@@ -75,8 +76,8 @@ export const FindWorkers: React.FC = () => {
   };
 
   return (
-    <Container className="FindWorkers">
-      <h1>Find Workers</h1>
+    <Container className="FindWorkers bg-gray-200 p-4">
+      <h1 className="text-2xl font-bold mb-4">Find Workers</h1>
       <Form>
         <Form.Group as={Row}>
           <Col xs="9" sm="10">
@@ -85,104 +86,132 @@ export const FindWorkers: React.FC = () => {
               placeholder="Search for a worker..."
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
+              className="border rounded p-2"
             />
           </Col>
           <Col xs="3" sm="2"></Col>
         </Form.Group>
       </Form>
       {workersContext && searchText && (
-        <Table striped bordered hover responsive className="expanded-table">
-          <thead>
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Date of Birth</th>
-              <th>Street</th>
-              <th>City</th>
-              <th>Post Code</th>
-              <th>Salary</th>
-              <th>Status of Work</th>
-              <th>Phone</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {workersContext.workers
-              .filter((worker) =>
-                Object.values(worker)
-                  .map((value) => value.toString().toLowerCase())
-                  .some((value) => value.includes(searchText.toLowerCase()))
-              )
-              .map((worker) => (
-                <tr key={worker.id}>
-                  <td>
-                    {renderField(worker, "firstName", "First Name", "text")}
-                  </td>
-                  <td>
-                    {renderField(worker, "lastName", "Last Name", "text")}
-                  </td>
-                  <td>{worker.dateOfBirth}</td>
-                  <td>{renderField(worker, "street", "Street", "text")}</td>
-                  <td>{renderField(worker, "city", "City", "text")}</td>
-                  <td>
-                    {renderField(worker, "postCode", "Post Code", "text")}
-                  </td>
-                  <td>{renderField(worker, "salary", "Salary", "number")}</td>
-                  <td>
-                    {renderField(
-                      worker,
-                      "statusOfWork",
-                      "Status of Work",
-                      "text"
-                    )}
-                  </td>
-                  <td>{renderField(worker, "phone", "Phone", "text")}</td>
-                  <td>
-                    {isEditing &&
-                    editedWorker &&
-                    editedWorker.id === worker.id ? (
-                      <Button variant="success" onClick={handleSave}>
-                        Save
-                      </Button>
-                    ) : (
-                      <Button
-                        variant="primary"
-                        onClick={() => handleEdit(worker)}
-                      >
-                        Edit
-                      </Button>
-                    )}
-                    <Button
-                      variant="danger"
-                      onClick={() => handleDelete(worker)}
-                    >
-                      Delete
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </Table>
-      )}
-      <Alert show={showDeleteAlert} variant="danger">
-        <Alert.Heading>Confirmation</Alert.Heading>
-        <p>
-          Czy na pewno chcesz usunąć pracownika {workerToDelete?.firstName}{" "}
-          {workerToDelete?.lastName}?
-        </p>
-        <hr />
-        <div className="d-flex justify-content-end">
-          <Button
-            onClick={() => setShowDeleteAlert(false)}
-            variant="outline-success"
-          >
-            Nie
-          </Button>
-          <Button onClick={confirmDelete} variant="danger">
-            Tak
-          </Button>
+        <div className="overflow-x-auto">
+          <Table striped bordered hover responsive className="table-auto w-full border mt-4">
+            <thead className="bg-blue-500 text-white">
+              <tr>
+                <th className="border p-2">ID</th>
+                <th className="border p-2">First Name</th>
+                <th className="border p-2">Last Name</th>
+                <th className="border p-2">Date of Birth</th>
+                <th className="border p-2">Street</th>
+                <th className="border p-2">City</th>
+                <th className="border p-2">Post Code</th>
+                <th className="border p-2">Salary</th>
+                <th className="border p-2">Status of Work</th>
+                <th className="border p-2">Phone</th>
+                <th className="border p-2">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {workersContext.workers
+                .filter((worker) =>
+                  Object.values(worker)
+                    .map((value) => value.toString().toLowerCase())
+                    .some((value) => value.includes(searchText.toLowerCase()))
+                )
+                .map((worker) => (
+                  <tr key={worker.id} className="border">
+                    <td className="border px-4 py-2">{worker.id}</td>
+                    <td className="border px-4 py-2">
+                      {renderField(worker, "firstName", "First Name", "text")}
+                    </td>
+                    <td className="border px-4 py-2">
+                      {renderField(worker, "lastName", "Last Name", "text")}
+                    </td>
+                    <td className="border px-4 py-2">{worker.dateOfBirth}</td>
+                    <td className="border px-4 py-2">
+                      {renderField(worker, "street", "Street", "text")}
+                    </td>
+                    <td className="border px-4 py-2">
+                      {renderField(worker, "city", "City", "text")}
+                    </td>
+                    <td className="border px-4 py-2">
+                      {renderField(worker, "postCode", "Post Code", "text")}
+                    </td>
+                    <td className="border px-4 py-2">
+                      {renderField(worker, "salary", "Salary", "number")}
+                    </td>
+                    <td className="border px-4 py-2">
+                      {renderField(
+                        worker,
+                        "statusOfWork",
+                        "Status of Work",
+                        "text"
+                      )}
+                    </td>
+                    <td className="border px-4 py-2">
+                      {renderField(worker, "phone", "Phone", "text")}
+                    </td>
+                    <td className="border px-4 py-2">
+                      {isEditing &&
+                      editedWorker &&
+                      editedWorker.id === worker.id ? (
+                        <Button
+                          variant="primary"
+                          onClick={handleSave}
+                          className="mr-2 bg-blue-500 rounded-full"
+                        >
+                          Save
+                        </Button>
+                      ) : (
+                        <>
+                          <Button
+                            variant="success"
+                            onClick={() => handleEdit(worker)}
+                            className="mr-2 bg-green-500 rounded-full"
+                          >
+                            Edit
+                          </Button>
+                          <Button
+                            variant="danger"
+                            onClick={() => handleDelete(worker)}
+                            className="bg-red-500 rounded-full"
+                          >
+                            Delete
+                          </Button>
+                        </>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+            </Table>
         </div>
-      </Alert>
+      )}
+      {showSuccessAlert && (
+        <div className="bg-green-500 text-white p-4 mb-4 rounded-md">
+          Data updated successfully!
+        </div>
+      )}
+      {showDeleteAlert && (
+        <div className="bg-red-500 text-white p-4 mb-4 rounded-md">
+          <p className="mb-2">Are you sure you want to delete this employee?</p>
+          <div className="flex justify-end">
+            <Button
+              onClick={() => setShowDeleteAlert(false)}
+              variant="outline-success"
+              className="rounded-full px-4 py-2 mr-2"
+            >
+              No
+            </Button>
+            <Button
+              onClick={confirmDelete}
+              variant="danger"
+              className="rounded-full px-4 py-2"
+            >
+              Yes
+            </Button>
+          </div>
+        </div>
+      )}
     </Container>
   );
 };
