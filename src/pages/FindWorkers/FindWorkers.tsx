@@ -120,48 +120,61 @@ export const FindWorkers: React.FC = () => {
                 )
                 .map((worker) => (
                   <tr key={worker.id} className="border">
-                    <td className="border px-4 py-2">{worker.id}</td>
-                    <td className="border px-4 py-2">
-                      {renderField(worker, "firstName", "First Name", "text")}
+                    <td className="border px-4 py-2"> {worker.id}</td>
+                    <td className="border px-4 py-2 md:table-cell">
+                      <div className="md:inline">
+                        {renderField(worker, "firstName", "", "text")}
+                      </div>
                     </td>
-                    <td className="border px-4 py-2">
-                      {renderField(worker, "lastName", "Last Name", "text")}
+                    <td className="border px-4 py-2 md:table-cell">
+                      <div className="md:inline">
+                        {renderField(worker, "lastName", "", "text")}
+                      </div>
                     </td>
-                    <td className="border px-4 py-2">{worker.dateOfBirth}</td>
-                    <td className="border px-4 py-2">
-                      {renderField(worker, "street", "Street", "text")}
+                    <td className="border px-4 py-2 hidden md:table-cell">
+                      {worker.dateOfBirth}
                     </td>
-                    <td className="border px-4 py-2">
-                      {renderField(worker, "city", "City", "text")}
+                    <td className="border px-4 py-2 md:table-cell">
+                      <div className="md:inline">
+                        {renderField(worker, "street", "", "text")}
+                      </div>
                     </td>
-                    <td className="border px-4 py-2">
-                      {renderField(worker, "postCode", "Post Code", "text")}
+                    <td className="border px-4 py-2 md:table-cell">
+                      <div className="md:inline">
+                        {renderField(worker, "city", "", "text")}
+                      </div>
                     </td>
-                    <td className="border px-4 py-2">
-                      {renderField(worker, "salary", "Salary", "number")}
+                    <td className="border px-4 py-2 md:table-cell">
+                      <div className="md:inline">
+                        {renderField(worker, "postCode", "", "text")}
+                      </div>
                     </td>
-                    <td className="border px-4 py-2">
-                      {renderField(
-                        worker,
-                        "statusOfWork",
-                        "Status of Work",
-                        "text"
-                      )}
+                    <td className="border px-4 py-2 md:table-cell">
+                      <div className="md:inline">
+                        {renderField(worker, "salary", "", "number")}
+                      </div>
                     </td>
-                    <td className="border px-4 py-2">
-                      {renderField(worker, "phone", "Phone", "text")}
+                    <td className="border px-4 py-2 md:table-cell">
+                      <div className="md:inline">
+                        {renderField(worker, "statusOfWork", "", "text")}
+                      </div>
+                    </td>
+                    <td className="border px-4 py-2 md:table-cell">
+                      <div className="md:inline">
+                        {renderField(worker, "phone", "", "text")}
+                      </div>
                     </td>
                     <td className="border px-4 py-2">
                       {isEditing &&
-                      editedWorker &&
-                      editedWorker.id === worker.id && (
-                        <button
-                          onClick={handleSave}
-                          className="mr-2 bg-blue-500 text-white py-1 px-2 rounded-full"
-                        >
-                          Save
-                        </button>
-                      )}
+                        editedWorker &&
+                        editedWorker.id === worker.id && (
+                          <button
+                            onClick={handleSave}
+                            className="mr-2 bg-blue-500 text-white py-1 px-2 rounded-full"
+                          >
+                            Save
+                          </button>
+                        )}
                       {!isEditing && (
                         <>
                           <button
