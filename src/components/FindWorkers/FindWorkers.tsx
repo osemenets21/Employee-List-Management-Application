@@ -153,8 +153,11 @@ export const FindWorkers: React.FC = () => {
               Szczegóły Pracownika
             </h2>
             <div>
-                <label htmlFor="worker-id">ID</label>
-              <input type="text" id="worker-id" value={selectedWorker.id} />
+              <label htmlFor="worker-id">
+                ID
+                <input type="text" id="worker-id" value={selectedWorker.id} />
+              </label>
+
               <p>ID: {selectedWorker.id}</p>
               <p>Name: {selectedWorker.firstName}</p>
               <p>Sure name: {selectedWorker.lastName}</p>
