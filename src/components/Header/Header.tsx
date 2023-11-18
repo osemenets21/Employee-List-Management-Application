@@ -73,7 +73,7 @@ export const Header = () => {
                   </li>
                   <li>
                     <Link className="find-workers-link" to="/find-workers">
-                      <span className="dark:text-white">Find Worker</span>
+                      <span className="dark:text-white">Workers</span>
                     </Link>
                   </li>
                   <li>
