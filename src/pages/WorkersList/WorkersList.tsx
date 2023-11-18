@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./WorkersList.scss";
 import {
   WorkersListContext,
@@ -11,6 +12,7 @@ export const WorkersList = () => {
   const workersContext = useContext<WorkersContextType | undefined>(
     WorkersListContext
   );
+  const navigate = useNavigate();
 
   if (!workersContext) {
     return <div>Loading...</div>;
@@ -18,8 +20,15 @@ export const WorkersList = () => {
 
   const { workers } = workersContext;
 
+  const handleAddWorkerClick = () => {
+    navigate("/add-worker"); // Przejdź do strony dodawania pracownika
+  };
+
   return (
     <div>
+      <Button variant="primary" type="button" onClick={handleAddWorkerClick}>
+        Add Worker
+      </Button>
       <Table striped bordered hover>
         <thead>
           <tr>
