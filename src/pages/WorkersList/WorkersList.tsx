@@ -27,10 +27,6 @@ export const WorkersList = () => {
     return <div>Loading...</div>;
   }
 
-  if (!workersContext) {
-    return <div>Loading...</div>;
-  }
-
   const { workers } = workersContext;
 
   const handleAddWorkerClick = () => {

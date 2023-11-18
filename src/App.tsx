@@ -6,7 +6,7 @@ import { WorkersList } from "./pages/WorkersList/WorkersList";
 import { Footer } from "./components/Footer/Footer";
 import { Login } from "./pages/Login/Login";
 import { SignUp } from "./pages/SignUp/SignUp";
-import { FindWorkers } from "./pages/FindWorkers/FindWorkers";
+import { FindWorkers } from "./components/FindWorkers/FindWorkers";
 import NotFound from "./pages/NotFound/NotFound";
 import { AddWorker } from "./components/AddWorker/AddWorker";
 import { Header } from "./components/Header/Header";
