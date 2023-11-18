@@ -149,17 +149,58 @@ export const FindWorkers: React.FC = () => {
 
         {selectedWorker && (
           <div className="mt-4 p-4 bg-white border border-gray-300 text-center">
-            {/* ... (details for selected worker) */}
+            <h2 className="text-xl font-semibold text-gray-800">
+              Szczegóły Pracownika
+            </h2>
+            <div>
+                <label htmlFor="worker-id">ID</label>
+              <input type="text" id="worker-id" value={selectedWorker.id} />
+              <p>ID: {selectedWorker.id}</p>
+              <p>Name: {selectedWorker.firstName}</p>
+              <p>Sure name: {selectedWorker.lastName}</p>
+              <p>Date of birgth: {selectedWorker.dateOfBirth}</p>
+              <p>Street: {selectedWorker.street}</p>
+              <p>City: {selectedWorker.city}</p>
+              <p>Zip-code: {selectedWorker.postCode}</p>
+              <p>Salary: {selectedWorker.salary} zł</p>
+              <p>Status of work: {selectedWorker.statusOfWork}</p>
+              <p>Phone: {selectedWorker.phone}</p>
+
+              {isEditing &&
+                editedWorker &&
+                editedWorker.id === selectedWorker.id && (
+                  <button
+                    onClick={handleSave}
+                    className="mr-2 bg-blue-500 text-white py-1 px-2 rounded-full"
+                  >
+                    Save
+                  </button>
+                )}
+
+              <button
+                onClick={() => handleEdit(selectedWorker)}
+                className="mr-2 bg-green-500 text-white py-1 px-2 rounded-full"
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => handleDelete(selectedWorker)}
+                className="bg-red-500 text-white py-1 px-2 rounded-full"
+              >
+                Delete
+              </button>
+
+              <button
+                className="bg-red-500 text-white py-2 px-4 rounded mt-2"
+                onClick={handleCloseDetails}
+              >
+                Zamknij
+              </button>
+            </div>
           </div>
         )}
       </div>
-      {workersContext && searchText && (
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-300">
-            {/* ... (filtered workers table) */}
-          </table>
-        </div>
-      )}
+
       {showSuccessAlert && (
         <div className="bg-green-500 text-white p-4 mb-4 rounded-md">
           Data updated successfully!
@@ -167,7 +208,25 @@ export const FindWorkers: React.FC = () => {
       )}
       {showDeleteAlert && (
         <div className="bg-red-500 text-white p-4 mb-4 rounded-md">
-          {/* ... (delete alert) */}
+          <div className="bg-red-500 text-white p-4 mb-4 rounded-md">
+            <p className="mb-2">
+              Are you sure you want to delete this employee?
+            </p>
+            <div className="flex justify-end">
+              <button
+                onClick={() => setShowDeleteAlert(false)}
+                className="text-white bg-green-500 py-1 px-2 rounded-full mr-2"
+              >
+                No
+              </button>
+              <button
+                onClick={confirmDelete}
+                className="text-white bg-red-500 py-1 px-2 rounded-full"
+              >
+                Yes
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>
