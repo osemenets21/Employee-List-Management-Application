@@ -7,6 +7,7 @@ import {
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { Link, useNavigate } from "react-router-dom";
 
 export const WorkersList = () => {
   const workersContext = useContext<WorkersContextType | undefined>(
@@ -22,14 +23,27 @@ export const WorkersList = () => {
     setSelectedWorker(null);
   };
 
+  const navigate = useNavigate();
+
+  if (!workersContext) {
+    return <div>Loading...</div>;
+  }
+
   if (!workersContext) {
     return <div>Loading...</div>;
   }
 
   const { workers } = workersContext;
 
+  const handleAddWorkerClick = () => {
+    navigate("/add-worker");
+  };
+
   return (
     <div className="WorkersList">
+      <Button variant="primary" type="button" onClick={handleAddWorkerClick}>
+        Add Worker
+      </Button>
       <Table striped bordered hover>
         <thead>
           <tr>
