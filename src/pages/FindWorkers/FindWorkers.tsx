@@ -6,7 +6,6 @@ import {
 } from "../../context/WorkersListContext";
 import "./FindWorkers.scss";
 
-
 export const FindWorkers: React.FC = () => {
   const workersContext = useContext<WorkersContextType | undefined>(
     WorkersListContext
@@ -87,11 +86,14 @@ export const FindWorkers: React.FC = () => {
       <div className="mb-4">
         <input
           type="text"
-          placeholder="Search for a worker..."
+          placeholder={searchText ? "" : "Search for a worker..."}
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
           className="border rounded p-2 w-full"
         />
+        {searchText && (
+          <p className="text-center mt-2">Wyszukiwanie pracowników...</p>
+        )}
       </div>
       {workersContext && searchText && (
         <div className="overflow-x-auto">
