@@ -11,9 +11,9 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="login-page">
-      <div className="login-form">
-        <h1>Login</h1>
+    <div className="login-page dark:bg-slate-500">
+      <div className="login-form dark:bg-slate-800 dark:border-slate-800">
+        <h1 className='dark:text-white'>Login</h1>
         <div className="input-group">
           <input
             type="text"
@@ -30,7 +30,7 @@ export const Login: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button onClick={handleLogin}>Login</button>
+        <button className="dark:bg-slate-500" onClick={handleLogin}>Login</button>
       </div>
     </div>
   );

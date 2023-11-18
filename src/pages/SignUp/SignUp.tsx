@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './SignUp.scss';
 
 export const SignUp: React.FC = () => {
-//   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -46,9 +45,9 @@ export const SignUp: React.FC = () => {
   };
 
   return (
-    <div className="signup-page">
-      <div className="signup-form">
-        <h1>Sign Up</h1>
+    <div className="signup-page dark:bg-slate-500">
+      <div className="signup-form dark:bg-slate-800 dark:border-slate-800">
+        <h1 className='dark:text-white'>Sign Up</h1>
         <div className={`input-group ${emailError ? 'error' : ''}`}>
           <input
             type="text"
@@ -75,7 +74,7 @@ export const SignUp: React.FC = () => {
         </div>
         {emailError && <div className="error-message">{emailError}</div>}
         {passwordError && <div className="error-message">{passwordError}</div>}
-        <button onClick={handleSignUp}>Sign Up</button>
+        <button className='dark:bg-slate-500' onClick={handleSignUp}>Sign Up</button>
       </div>
     </div>
   );

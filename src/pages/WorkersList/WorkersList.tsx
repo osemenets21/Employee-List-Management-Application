@@ -4,6 +4,8 @@ import {
   WorkersListContext,
   WorkersContextType,
 } from "../../context/WorkersListContext";
+import { useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 export const WorkersList = () => {
   const workersContext = useContext<WorkersContextType | undefined>(
@@ -19,14 +21,27 @@ export const WorkersList = () => {
     setSelectedWorker(null);
   };
 
+  const navigate = useNavigate();
+
+  if (!workersContext) {
+    return <div>Loading...</div>;
+  }
+
   if (!workersContext) {
     return <div>Loading...</div>;
   }
 
   const { workers } = workersContext;
 
+  const handleAddWorkerClick = () => {
+    navigate("/add-worker");
+  };
+
   return (
     <div className="WorkersList">
+      <Button variant="primary" type="button" onClick={handleAddWorkerClick}>
+        Add Worker
+      </Button>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-300">
           <thead className="bg-gray-800 text-white">

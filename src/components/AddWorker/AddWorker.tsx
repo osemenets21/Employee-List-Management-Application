@@ -3,10 +3,8 @@ import { WorkersListContext } from "../../context/WorkersListContext";
 import { WorkersContextType } from "../../context/WorkersListContext";
 
 export const AddWorker = () => {
-  const { addWorker } = useContext(WorkersListContext) as WorkersContextType;
-  const [nextId, setNextId] = useState(1);
+  const { workers, addWorker } = useContext(WorkersListContext) as WorkersContextType;
   const [newWorker, setNewWorker] = useState({
-    id: nextId,
     firstName: "",
     lastName: "",
     dateOfBirth: "",
@@ -24,10 +22,10 @@ export const AddWorker = () => {
       return;
     }
 
-    addWorker(newWorker);
-    setNextId(nextId + 1);
+    const newId = workers.length > 0 ? Math.max(...workers.map((worker) => worker.id)) + 1 : 1;
+
+    addWorker({ ...newWorker, id: newId });
     setNewWorker({
-      id: nextId + 1,
       firstName: "",
       lastName: "",
       dateOfBirth: "",
@@ -44,10 +42,6 @@ export const AddWorker = () => {
     <div>
       <h2>Add new worker</h2>
       <form>
-        <div>
-          <label>ID:</label>
-          <input type="text" value={newWorker.id} readOnly />
-        </div>
         <div>
           <label>First Name:</label>
           <input
