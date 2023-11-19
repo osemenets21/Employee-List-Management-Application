@@ -20,6 +20,7 @@ export const FindWorkers: React.FC = () => {
 
   const handleDetailsClick = (worker: Workers) => {
     setSelectedWorker(worker);
+    setEditedWorker({ ...worker });
   };
 
   const handleCloseDetails = () => {
@@ -35,7 +36,6 @@ export const FindWorkers: React.FC = () => {
     if (editedWorker && workersContext) {
       workersContext.editWorker(editedWorker);
       setIsEditing(false);
-      setEditedWorker(null);
       setShowSuccessAlert(true);
     }
   };
@@ -66,28 +66,16 @@ export const FindWorkers: React.FC = () => {
     return () => clearTimeout(timeoutId);
   }, [showSuccessAlert]);
 
-  const renderField = (
-    worker: Workers,
-    field: keyof Workers,
-    label: string,
-    type: string
-  ) => {
-    const isEditingField =
-      isEditing && editedWorker && editedWorker.id === worker.id;
+  const renderField =
+    (worker: Workers, field: keyof Workers) =>
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const isEditingField =
+        isEditing && editedWorker && editedWorker.id === worker.id;
 
-    return isEditingField ? (
-      <textarea
-        rows={2}
-        value={editedWorker ? editedWorker[field] : ""}
-        onChange={(e) =>
-          setEditedWorker({ ...editedWorker, [field]: e.target.value })
-        }
-        className="formControl"
-      />
-    ) : (
-      worker[field].toString()
-    );
-  };
+      if (isEditingField && editedWorker) {
+        setEditedWorker({ ...editedWorker, [field]: event.target.value });
+      }
+    };
 
   const filteredWorkers = workersContext?.workers.filter(
     (worker) =>
@@ -148,47 +136,156 @@ export const FindWorkers: React.FC = () => {
         </div>
 
         {selectedWorker && (
-          <div className="mt-4 p-4 bg-white border border-gray-300 text-center">
+          <div className="mt-4 p-4 bg-white border border-gray-300 text-center flex flex-col items-start">
             <h2 className="text-xl font-semibold text-gray-800">
               Szczegóły Pracownika
             </h2>
-            <div>
-              <label htmlFor="worker-id">
-                ID
-                <input type="text" id="worker-id" value={selectedWorker.id} />
-              </label>
-
-              <p>ID: {selectedWorker.id}</p>
-              <p>Name: {selectedWorker.firstName}</p>
-              <p>Sure name: {selectedWorker.lastName}</p>
-              <p>Date of birgth: {selectedWorker.dateOfBirth}</p>
-              <p>Street: {selectedWorker.street}</p>
-              <p>City: {selectedWorker.city}</p>
-              <p>Zip-code: {selectedWorker.postCode}</p>
-              <p>Salary: {selectedWorker.salary} zł</p>
-              <p>Status of work: {selectedWorker.statusOfWork}</p>
-              <p>Phone: {selectedWorker.phone}</p>
-
-              {isEditing &&
-                editedWorker &&
-                editedWorker.id === selectedWorker.id && (
-                  <button
-                    onClick={handleSave}
-                    className="mr-2 bg-blue-500 text-white py-1 px-2 rounded-full"
-                  >
-                    Save
-                  </button>
-                )}
+            <div className="flex flex-col items-start">
+              <table className="datails-of-worker">
+                <tbody>
+                  <tr>
+                    <td>ID:</td>
+                    <td>{selectedWorker.id}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label htmlFor="input-name">Name:</label>
+                    </td>
+                    <td>
+                      <input
+                        id="input-name"
+                        type="text"
+                        value={editedWorker ? editedWorker.firstName : ""}
+                        onChange={renderField(selectedWorker, "firstName")}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label htmlFor="sureName">Sure name:</label>
+                    </td>
+                    <td>
+                      <input
+                        id="sureName"
+                        type="text"
+                        value={editedWorker ? editedWorker.lastName : ""}
+                        onChange={renderField(selectedWorker, "lastName")}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label htmlFor="DateOfBirth">Date of birth:</label>
+                    </td>
+                    <td>
+                      <input
+                        id="DateOfBirth"
+                        type="text"
+                        value={editedWorker ? editedWorker.dateOfBirth : ""}
+                        onChange={renderField(selectedWorker, "dateOfBirth")}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label htmlFor="street">Street:</label>
+                    </td>
+                    <td>
+                      <input
+                        id="street"
+                        type="text"
+                        value={editedWorker ? editedWorker.street : ""}
+                        onChange={renderField(selectedWorker, "street")}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label htmlFor="city">City:</label>
+                    </td>
+                    <td>
+                      <input
+                        id="city"
+                        type="text"
+                        value={editedWorker ? editedWorker.city : ""}
+                        onChange={renderField(selectedWorker, "city")}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label htmlFor="postCode">Post code:</label>
+                    </td>
+                    <td>
+                      <input
+                        id="postCode"
+                        type="text"
+                        value={editedWorker ? editedWorker.postCode : ""}
+                        onChange={renderField(selectedWorker, "postCode")}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label htmlFor="salary">Salary:</label>
+                    </td>
+                    <td>
+                      <input
+                        id="salary"
+                        type="text"
+                        value={editedWorker ? `${editedWorker.salary}` : ""}
+                        onChange={renderField(selectedWorker, "salary")}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label htmlFor="statusOfWork">Status of work:</label>
+                    </td>
+                    <td>
+                      <input
+                        id="statusOfWork"
+                        type="text"
+                        value={editedWorker ? editedWorker.statusOfWork : ""}
+                        onChange={renderField(selectedWorker, "statusOfWork")}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label htmlFor="phone">Phone:</label>
+                    </td>
+                    <td>
+                      <input
+                        id="phone"
+                        type="text"
+                        value={editedWorker ? editedWorker.phone : ""}
+                        onChange={renderField(selectedWorker, "phone")}
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
 
               <button
-                onClick={() => handleEdit(selectedWorker)}
-                className="mr-2 bg-green-500 text-white py-1 px-2 rounded-full"
+                onClick={() => {
+                  if (isEditing) {
+                    handleSave();
+                  } else {
+                    handleEdit(selectedWorker);
+                  }
+                  setIsEditing(!isEditing);
+                }}
+                className={`mr-2 ${
+                  isEditing ? "bg-blue-500" : "bg-green-500"
+                } text-white py-1 px-2 rounded-md`}
               >
-                Edit
+                {isEditing ? "Save" : "Edit"}
               </button>
+
               <button
                 onClick={() => handleDelete(selectedWorker)}
-                className="bg-red-500 text-white py-1 px-2 rounded-full"
+                className="bg-red-500 text-white py-1 px-2 rounded-md"
               >
                 Delete
               </button>

@@ -3,14 +3,14 @@
     {
       "id": 1,
       "firstName": "Anna",
-      "lastName": "Anna",
-      "dateOfBirth": "19-05-1998",
+      "lastName": "Ola",
+      "dateOfBirth": "19-05-1990",
       "street": "Smolenska",
       "city": "Warszawa",
       "postCode": "05-090",
-      "salary": 100,
+      "salary": "1777",
       "statusOfWork": "zartudniona",
-      "phone": "+480945654756"
+      "phone": "+48094565475"
     }
   ]
 }
