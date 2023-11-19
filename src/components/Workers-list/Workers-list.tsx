@@ -55,9 +55,9 @@ export const WorkersList: React.FC = () => {
     }
   };
 
-  const handleLoadMore = async () => {
-    if (workersContext) {
-      await workersContext.getWorkers(workersContext.pageNumber, 10);
+  const handleLoadMore = () => {
+    if (workersContext && workersContext.pageNumber < workersContext.maxPage) {
+      workersContext.setPageNumber(workersContext.pageNumber + 1);
     }
   };
 
@@ -92,7 +92,13 @@ export const WorkersList: React.FC = () => {
 
   return (
     <div className="FindWorkers bg-gray-200 p-4">
-      <h1 className="text-2xl font-bold mb-4">Find Workers</h1>
+      <div className="flex items-start justify-between">
+        <h1 className="text-2xl font-bold mb-4">Find Workers</h1>
+        <button type="button" className="bg-green-600 text-white px-3 py-1 mt-0 rounded-lg uppercase hover:opacity-95 disabled:opacity-80">
+          Add worker
+        </button>
+      </div>
+
       <div className="mb-4">
         <input
           type="text"
@@ -107,9 +113,6 @@ export const WorkersList: React.FC = () => {
       </div>
       <div className="WorkersList">
         <div className="overflow-x-auto">
-          {/* <div className="relative p-4 min-[0px]:overflow-y-auto">
-                <p>dfgtrhtrh</p>
-            </div> */}
           <table className="min-w-full bg-white border border-gray-300">
             <thead className="bg-gray-800 text-white">
               <tr>
@@ -143,7 +146,19 @@ export const WorkersList: React.FC = () => {
               ))}
             </tbody>
           </table>
-          <button className="mt-5 bg-gray-500 text-white p-2 rounded-lg uppercase hover:opacity-95 disabled:opacity-80" onClick={handleLoadMore}>Load more...</button>
+          <button
+            className="bg-blue-500 mt-5 text-white p-2 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+            onClick={handleLoadMore}
+            disabled={
+              !workersContext ||
+              workersContext.pageNumber >= (workersContext.maxPage || 1)
+            }
+          >
+            {!workersContext ||
+            workersContext.pageNumber >= (workersContext.maxPage || 1)
+              ? "No more data"
+              : "Load more..."}
+          </button>
         </div>
 
         {/* MODAL WINDOW  */}
@@ -327,7 +342,6 @@ export const WorkersList: React.FC = () => {
                     >
                       Delete
                     </button>
-
                   </div>
                 </div>
                 <div className="bg-gray-800 text-center py-2">
@@ -343,9 +357,7 @@ export const WorkersList: React.FC = () => {
           </div>
         )}
 
-
         {/* THE END OF MODAL WINDOW  */}
-
       </div>
 
       {showSuccessAlert && (

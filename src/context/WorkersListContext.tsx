@@ -30,8 +30,10 @@ export type WorkersContextType = {
   editWorker: (worker: Workers) => void;
   updatedWorker: Workers | null;
   deleteWorker: (workerId: number) => Promise<void>;
+  maxPage: number;
   pageNumber: number;
   getWorkers: (page: number, limit: number) => Promise<void>;
+  setPageNumber: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export const WorkersListContext = createContext<WorkersContextType | undefined>(
@@ -49,8 +51,8 @@ export const WorkersListContextProvider: React.FC<{ children: ReactNode }> = ({
   const [workers, setWorkers] = useState<Workers[]>([]);
   const [updatedWorker] = useState<Workers | null>(null);
   const [pageNumber, setPageNumber] = useState<number>(1);
+  const [maxPage, setMaxPage] = useState<number>(0);
   
-
   const getWorkers = useCallback(async (page: number, limit: number) => {
     try {
       const response = await fetch(
@@ -59,14 +61,16 @@ export const WorkersListContextProvider: React.FC<{ children: ReactNode }> = ({
       if (!response.ok) {
         throw new Error("Problem z serwerem");
       }
-
-    
       
       const data = await response.json();
       setWorkers((prevWorkers) => [...prevWorkers, ...data]);
+
+      const count = response.headers.get("X-Total-Count");
       
-     
-  
+      if (count) setMaxPage(Math.ceil(Number(count) / limit));
+
+      
+      
     } catch (error) {
       console.log(error);
     }
@@ -144,15 +148,16 @@ export const WorkersListContextProvider: React.FC<{ children: ReactNode }> = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await getWorkers(1, 10);
-        setPageNumber(2);
+        await getWorkers(pageNumber, 10);
       } catch (error) {
         console.error("Błąd podczas pobierania pracowników:", error);
       }
     };
 
+    
+
     fetchData();
-  }, [getWorkers]);
+  }, [getWorkers, pageNumber]);
 
   return (
     <WorkersListContext.Provider
@@ -165,6 +170,8 @@ export const WorkersListContextProvider: React.FC<{ children: ReactNode }> = ({
         deleteWorker,
         pageNumber,
         getWorkers,
+        maxPage,
+        setPageNumber
       }}
     >
       {children}
