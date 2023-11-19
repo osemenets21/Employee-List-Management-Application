@@ -66,13 +66,9 @@ export const Header = () => {
             {showMenu && (
               <div className="menu-wrapper dark:bg-slate-700">
                 <ul className={`header-nav-menu vertical `}>
+               
                   <li>
-                    <Link className="workers-link" to="/workers-list">
-                      <span className="dark:text-white">Workers</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="find-workers-link" to="/find-workers">
+                    <Link className="find-workers-link" to="/workers-list">
                       <span className="dark:text-white">Workers</span>
                     </Link>
                   </li>
@@ -93,13 +89,8 @@ export const Header = () => {
         ) : (
           <ul className={`header-nav-menu horizontal`}>
             <li>
-              <Link className="workers-link" to="/workers-list">
+              <Link className="find-workers-link" to="/workers-list">
                 <span className="dark:text-white">Workers</span>
-              </Link>
-            </li>
-            <li>
-              <Link className="find-workers-link" to="/find-workers">
-                <span className="dark:text-white">Find Worker</span>
               </Link>
             </li>
             <li>
