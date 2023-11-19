@@ -143,7 +143,7 @@ export const WorkersList: React.FC = () => {
               ))}
             </tbody>
           </table>
-          <button className="bg-gray-500 text-white p-2 rounded-lg uppercase hover:opacity-95 disabled:opacity-80" onClick={handleLoadMore}>Load more...</button>
+          <button className="mt-5 bg-gray-500 text-white p-2 rounded-lg uppercase hover:opacity-95 disabled:opacity-80" onClick={handleLoadMore}>Load more...</button>
         </div>
 
         {/* MODAL WINDOW  */}
