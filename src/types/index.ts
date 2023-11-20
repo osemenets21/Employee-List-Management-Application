@@ -5,7 +5,7 @@ export interface IButtonProps {
   action: (() => void) | string;
   title: string | JSX.Element;
   classes?: string;
-  isDisabled: boolean;
+  isDisabled?: boolean;
 }
 
 export type Props = {

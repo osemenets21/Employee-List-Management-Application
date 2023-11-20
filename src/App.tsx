@@ -8,7 +8,7 @@ import { SignUp } from "./pages/SignUp/SignUp";
 import NotFound from "./pages/NotFound/NotFound";
 import { AddWorker } from "./pages/AddWorker/AddWorker";
 import { Header } from "./components/Header/Header";
-import WorkersList from "./components/Workers-list/Workers-list";
+import WorkersList from "./pages/Workers-list/Workers-list";
 
 function App() {
   return (

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Header.scss";
-import { Link } from "react-router-dom";
 import { BsMoon, BsSun } from "react-icons/bs";
 import Hamburger from "hamburger-react";
+import UniversalButton from "../UniversalButton/UniversalButton";
 
 export const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -53,9 +53,16 @@ export const Header = () => {
       } bg-white dark:bg-slate-800`}
     >
       <div className="header-logo">
-        <Link to="/" className="header-logo-link dark:text-white">
-          {isMobile ? "ELMA" : "Employee List Management Application"}
-        </Link>
+        <UniversalButton
+          type="link"
+          action="/"
+          title={
+            <span className="dark:text-white">
+              {isMobile ? "ELMA" : "Employee List Management Application"}
+            </span>
+          }
+          classes="header-logo-link dark:text-white"
+        />
       </div>
       <nav className="header-nav">
         {isMobile ? (
@@ -66,21 +73,29 @@ export const Header = () => {
             {showMenu && (
               <div className="menu-wrapper dark:bg-slate-700">
                 <ul className={`header-nav-menu vertical `}>
-               
                   <li>
-                    <Link className="find-workers-link" to="/workers-list">
-                      <span className="dark:text-white">Workers</span>
-                    </Link>
+                    <UniversalButton
+                      type="link"
+                      action="/workers-list"
+                      title={<span className="dark:text-white">Workers</span>}
+                      classes="find-workers-link"
+                    />
                   </li>
                   <li>
-                    <Link className="btn-login" to="/login">
-                      <span className="dark:text-black">Login</span>
-                    </Link>
+                    <UniversalButton
+                      type="link"
+                      action="/login"
+                      title={<span className="dark:text-black">Login</span>}
+                      classes="btn-login"
+                    />
                   </li>
                   <li>
-                    <Link className="btn-sign-up" to="/sign-up">
-                      <span className="dark:text-black">Sign Up</span>
-                    </Link>
+                    <UniversalButton
+                      type="link"
+                      action="/sign-up"
+                      title={<span className="dark:text-black">Sign Up</span>}
+                      classes="btn-sign-up"
+                    />
                   </li>
                 </ul>
               </div>
@@ -89,19 +104,28 @@ export const Header = () => {
         ) : (
           <ul className={`header-nav-menu horizontal`}>
             <li>
-              <Link className="find-workers-link" to="/workers-list">
-                <span className="dark:text-white">Workers</span>
-              </Link>
+              <UniversalButton
+                type="link"
+                action="/workers-list"
+                title={<span className="dark:text-white">Workers</span>}
+                classes="find-workers-link"
+              />
             </li>
             <li>
-              <Link className="btn-login" to="/login">
-                <span className="dark:text-black">Login</span>
-              </Link>
+              <UniversalButton
+                type="link"
+                action="/login"
+                title={<span className="dark:text-black">Login</span>}
+                classes="btn-login"
+              />
             </li>
             <li>
-              <Link className="btn-sign-up" to="/sign-up">
-                <span className="dark:text-black">Sign Up</span>
-              </Link>
+              <UniversalButton
+                type="link"
+                action="/sign-up"
+                title={<span className="dark:text-black">Sign Up</span>}
+                classes="btn-sign-up"
+              />
             </li>
           </ul>
         )}

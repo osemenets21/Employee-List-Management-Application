@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { IButtonProps } from '../../types';
 
 
-const UniversalButton: React.FC<IButtonProps> = ({ type, action, title, classes }) => {
+const UniversalButton: React.FC<IButtonProps> = ({ type, action, title, classes, isDisabled }) => {
   const commonProps = {
     className: classnames(classes),
   };
