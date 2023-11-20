@@ -1,15 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  Workers,
-  WorkersContextType,
-  WorkersListContext,
-} from "../../context/WorkersListContext";
 import "./Workers-list.scss";
+import { Workers, WorkersContextType } from "../../types";
+import { WorkersListContext } from "../../context/WorkersListContext";
 
 export const WorkersList: React.FC = () => {
-  const workersContext = useContext<WorkersContextType | undefined>(
-    WorkersListContext
-  );
+  const workersContext = useContext<WorkersContextType | undefined>(WorkersListContext);
   const [searchText, setSearchText] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [editedWorker, setEditedWorker] = useState<Workers | null>(null);
@@ -94,7 +89,10 @@ export const WorkersList: React.FC = () => {
     <div className="FindWorkers bg-gray-200 p-4">
       <div className="flex items-start justify-between">
         <h1 className="text-2xl font-bold mb-4">Find Workers</h1>
-        <button type="button" className="bg-green-600 text-white px-3 py-1 mt-0 rounded-lg uppercase hover:opacity-95 disabled:opacity-80">
+        <button
+          type="button"
+          className="bg-green-600 text-white px-3 py-1 mt-0 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+        >
           Add worker
         </button>
       </div>

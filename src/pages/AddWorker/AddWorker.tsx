@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { WorkersListContext } from "../../context/WorkersListContext";
-import { WorkersContextType } from "../../context/WorkersListContext";
+import { WorkersContextType } from "../../types";
 import './AddWorker.scss';
 
 export const AddWorker = () => {
