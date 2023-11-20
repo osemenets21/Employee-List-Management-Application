@@ -54,12 +54,20 @@ export const WorkersList: React.FC = () => {
       setShowDeleteAlert(false);
     }
   };
+const handleLoadMore = async () => {
+  if (workersContext) {
+    const limit = 10; // You can adjust this value as needed
+    const hasMoreWorkers = await workersContext.getWorkers(
+      workersContext.pageNumber,
+      limit
+    );
 
-  const handleLoadMore = async () => {
-    if (workersContext) {
-      await workersContext.getWorkers(workersContext.pageNumber, 10);
+    if (!hasMoreWorkers) {
+      // Disable the button or perform any other action when there are no more workers
+      console.log("No more workers to load");
     }
-  };
+  }
+};
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -143,7 +151,15 @@ export const WorkersList: React.FC = () => {
               ))}
             </tbody>
           </table>
-          <button className="bg-gray-500 text-white p-2 rounded-lg uppercase hover:opacity-95 disabled:opacity-80" onClick={handleLoadMore}>Load more...</button>
+          <button
+            className="bg-gray-500 text-white p-2 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+            onClick={handleLoadMore}
+            disabled={!workersContext || !workersContext.hasMoreWorkers}
+          >
+            {workersContext && workersContext.hasMoreWorkers
+              ? "Load more..."
+              : "No more load"}
+          </button>
         </div>
 
         {/* MODAL WINDOW  */}
@@ -327,7 +343,6 @@ export const WorkersList: React.FC = () => {
                     >
                       Delete
                     </button>
-
                   </div>
                 </div>
                 <div className="bg-gray-800 text-center py-2">
@@ -343,9 +358,7 @@ export const WorkersList: React.FC = () => {
           </div>
         )}
 
-
         {/* THE END OF MODAL WINDOW  */}
-
       </div>
 
       {showSuccessAlert && (
