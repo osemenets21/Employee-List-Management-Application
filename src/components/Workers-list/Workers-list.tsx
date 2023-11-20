@@ -5,6 +5,7 @@ import {
   WorkersListContext,
 } from "../../context/WorkersListContext";
 import "./Workers-list.scss";
+import UniversalButton from "../Button&Link/UniversalButton";
 
 export const WorkersList: React.FC = () => {
   const workersContext = useContext<WorkersContextType | undefined>(
@@ -17,6 +18,10 @@ export const WorkersList: React.FC = () => {
   const [workerToDelete, setWorkerToDelete] = useState<Workers | null>(null);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [selectedWorker, setSelectedWorker] = useState<Workers | null>(null);
+
+  const isDisabled =
+    !workersContext ||
+    workersContext.pageNumber >= (workersContext.maxPage || 1);
 
   const handleDetailsClick = (worker: Workers) => {
     setSelectedWorker(worker);
@@ -40,6 +45,15 @@ export const WorkersList: React.FC = () => {
       setShowSuccessAlert(true);
     }
   };
+
+//   const handleEditSave = () => {
+//     if (isEditing) {
+//       handleSave();
+//     } else {
+//       handleEdit(selectedWorker);
+//     }
+//     setIsEditing(!isEditing);
+//   };
 
   const handleDelete = (worker: Workers) => {
     setWorkerToDelete(worker);
@@ -94,9 +108,12 @@ export const WorkersList: React.FC = () => {
     <div className="FindWorkers bg-gray-200 p-4">
       <div className="flex items-start justify-between">
         <h1 className="text-2xl font-bold mb-4">Find Workers</h1>
-        <button type="button" className="bg-green-600 text-white px-3 py-1 mt-0 rounded-lg uppercase hover:opacity-95 disabled:opacity-80">
-          Add worker
-        </button>
+        <UniversalButton
+          type="link"
+          action="/add-worker"
+          title="Add worker"
+          classes="bg-green-600 text-white px-3 py-1 mt-0 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+        />
       </div>
 
       <div className="mb-4">
@@ -135,30 +152,24 @@ export const WorkersList: React.FC = () => {
                     {worker.statusOfWork}
                   </td>
                   <td className="py-2 px-4 text-center">
-                    <button
-                      className="bg-blue-500 text-white py-2 px-4 rounded"
-                      onClick={() => handleDetailsClick(worker)}
-                    >
-                      Details
-                    </button>
+                    <UniversalButton
+                      type="button"
+                      action={() => handleDetailsClick(worker)}
+                      title="Details"
+                      classes="bg-blue-500 text-white py-2 px-4 rounded"
+                    />
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <button
-            className="bg-blue-500 mt-5 text-white p-2 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
-            onClick={handleLoadMore}
-            disabled={
-              !workersContext ||
-              workersContext.pageNumber >= (workersContext.maxPage || 1)
-            }
-          >
-            {!workersContext ||
-            workersContext.pageNumber >= (workersContext.maxPage || 1)
-              ? "No more data"
-              : "Load more..."}
-          </button>
+          <UniversalButton
+            type="button"
+            action={handleLoadMore}
+            title={isDisabled ? "No more data" : "Load more..."}
+            classes="bg-blue-500 mt-5 text-white p-2 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+            isDisabled={isDisabled}
+          />
         </div>
 
         {/* MODAL WINDOW  */}
@@ -320,28 +331,21 @@ export const WorkersList: React.FC = () => {
                       </tbody>
                     </table>
 
-                    <button
-                      onClick={() => {
-                        if (isEditing) {
-                          handleSave();
-                        } else {
-                          handleEdit(selectedWorker);
-                        }
-                        setIsEditing(!isEditing);
-                      }}
-                      className={`mr-2 ${
+                    {/* <UniversalButton
+                      type="button"
+                      action={handleEditSave}
+                      title={isEditing ? "Save" : "Edit"}
+                      classes={`mr-2 ${
                         isEditing ? "bg-blue-500" : "bg-green-500"
                       } text-white py-1 px-2 rounded-md`}
-                    >
-                      {isEditing ? "Save" : "Edit"}
-                    </button>
+                    /> */}
 
-                    <button
-                      onClick={() => handleDelete(selectedWorker)}
-                      className="bg-red-500 text-white p-2 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
-                    >
-                      Delete
-                    </button>
+                    <UniversalButton
+                      type="button"
+                      action={() => handleDelete(selectedWorker)}
+                      title="Delete"
+                      classes="bg-red-500 text-white p-2 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+                    />
                   </div>
                 </div>
                 <div className="bg-gray-800 text-center py-2">
