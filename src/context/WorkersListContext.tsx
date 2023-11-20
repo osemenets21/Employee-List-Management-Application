@@ -1,4 +1,10 @@
-import React, { useEffect, useState, createContext, ReactNode } from "react";
+import React, {
+  useEffect,
+  useState,
+  createContext,
+  ReactNode,
+  useCallback,
+} from "react";
 
 export type Props = {
   children: ReactNode;
@@ -23,7 +29,11 @@ export type WorkersContextType = {
   addWorker: (newWorker: Workers) => void;
   editWorker: (worker: Workers) => void;
   updatedWorker: Workers | null;
-  deleteWorker: (workerId: number) => Promise<void>
+  deleteWorker: (workerId: number) => Promise<void>;
+  maxPage: number;
+  pageNumber: number;
+  getWorkers: (page: number, limit: number) => Promise<void>;
+  setPageNumber: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export const WorkersListContext = createContext<WorkersContextType | undefined>(
@@ -33,26 +43,38 @@ export const WorkersListContext = createContext<WorkersContextType | undefined>(
 export type EditWorkersContextType = {
   editWorker: (worker: Workers) => void;
   updatedWorker: Workers | null;
-  
 };
 
-export const WorkersListContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const WorkersListContextProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [workers, setWorkers] = useState<Workers[]>([]);
   const [updatedWorker] = useState<Workers | null>(null);
-
-  const getWorkers = async () => {
+  const [pageNumber, setPageNumber] = useState<number>(1);
+  const [maxPage, setMaxPage] = useState<number>(0);
+  
+  const getWorkers = useCallback(async (page: number, limit: number) => {
     try {
-      const response = await fetch("http://localhost:5000/workerList");
+      const response = await fetch(
+        `http://localhost:5000/workerList?_page=${page}&_limit=${limit}`
+      );
       if (!response.ok) {
-        throw new Error("Problem with the server");
+        throw new Error("Problem z serwerem");
       }
-
+      
       const data = await response.json();
-      setWorkers(data);
+      setWorkers((prevWorkers) => [...prevWorkers, ...data]);
+
+      const count = response.headers.get("X-Total-Count");
+      
+      if (count) setMaxPage(Math.ceil(Number(count) / limit));
+
+      
+      
     } catch (error) {
       console.log(error);
     }
-  };
+  }, []);
 
   const addWorker = async (newWorkerData: Workers) => {
     try {
@@ -124,12 +146,33 @@ export const WorkersListContextProvider: React.FC<{ children: ReactNode }> = ({ 
   };
 
   useEffect(() => {
-    getWorkers();
-  }, []);
+    const fetchData = async () => {
+      try {
+        await getWorkers(pageNumber, 10);
+      } catch (error) {
+        console.error("Błąd podczas pobierania pracowników:", error);
+      }
+    };
+
+    
+
+    fetchData();
+  }, [getWorkers, pageNumber]);
 
   return (
     <WorkersListContext.Provider
-      value={{ workers, setWorkers, addWorker, editWorker, updatedWorker, deleteWorker }}
+      value={{
+        workers,
+        setWorkers,
+        addWorker,
+        editWorker,
+        updatedWorker,
+        deleteWorker,
+        pageNumber,
+        getWorkers,
+        maxPage,
+        setPageNumber
+      }}
     >
       {children}
     </WorkersListContext.Provider>

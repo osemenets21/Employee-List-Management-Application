@@ -21,11 +21,17 @@ $lighter-beige-gradient-table: linear-gradient(to bottom, #FDF1C8, #E0B88A);
 
     }
 
+ 
 
     .table {
         font-size: 17px;
         width: 100%;
 
+       
+    }
+
+    td {
+        width: 150px;
     }
 
     @media (min-width: 768px) {
