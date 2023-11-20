@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import './SignUp.scss';
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import "./SignUp.scss";
+import UniversalButton from "../../components/UniversalButton/UniversalButton";
 
 export const SignUp: React.FC = () => {
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -38,10 +38,6 @@ export const SignUp: React.FC = () => {
       return;
     }
 
-    // Add your logic for user registration here.
-    // For example, you can make a request to a server to create the account.
-
-    // Reset the password and email error messages
     setPasswordError("");
     setEmailError("");
   };
@@ -85,9 +81,12 @@ export const SignUp: React.FC = () => {
       </form>
       <div className="flex gap-2 mt-5">
         <p>Have an account?</p>
-        <Link to={"/Login"}>
-          <span className="text-blue-700">Sign in</span>
-        </Link>
+
+        <UniversalButton
+          type="link"
+          action="/login"
+          title={<span className="text-blue-700">Sign in</span>}
+        />
       </div>
       {<p className="text-red-500 mt-5"></p>}
     </div>
