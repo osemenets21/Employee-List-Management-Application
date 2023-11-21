@@ -11,9 +11,9 @@
     "@types/react": "^18.2.33",
     "@types/react-bootstrap": "^0.32.34",
     "@types/react-dom": "^18.2.14",
+    "bcrypt": "^5.1.1",
     "express": "^4.18.2",
     "hamburger-react": "^2.5.0",
-    "json-server": "^0.17.4",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.1",
     "react-dom": "^18.2.0",
@@ -29,7 +29,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server --watch API/db.json --port 5000"
+    "server": "json-server --watch API/db.json --port 5000",
+    "dev": "nodemon API/index.js --port 5002"
   },
   "eslintConfig": {
     "extends": [
@@ -50,6 +51,8 @@
     ]
   },
   "devDependencies": {
+    "json-server": "^0.17.4",
+    "json-server-auth": "^2.1.0",
     "tailwindcss": "^3.3.5"
   }
 }

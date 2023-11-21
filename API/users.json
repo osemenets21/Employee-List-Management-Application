@@ -1,14 +1,5 @@
 {
   "users": [
-    {
-        "username": "exampleUser",
-        "email": "user@example.com",
-        "password": "hashedPassword"
-      },
-      {
-        "username": "anotherUser",
-        "email": "anotheruser@example.com",
-        "password": "anotherHashedPassword"
-      }
+   
   ]
 }

@@ -10,6 +10,7 @@ export const SignUp: React.FC = () => {
   const [emailError, setEmailError] = useState("");
   const [userName, setUserName] = useState("");
   const [signupError, setSignupError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const validateEmail = (email: string) => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -37,7 +38,7 @@ export const SignUp: React.FC = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5001/users', {
+      const response = await fetch('http://localhost:5002/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -52,6 +53,8 @@ export const SignUp: React.FC = () => {
       if (!response.ok) {
         throw new Error('Error during sign-up');
       }
+
+      setSuccessMessage('User registered successfully');
 
       setPasswordError("");
       setEmailError("");
@@ -103,6 +106,7 @@ export const SignUp: React.FC = () => {
           {"Sign Up"}
         </button>
       </form>
+      {successMessage && <div className="success-message">{successMessage}</div>}
       <div className="flex gap-2 mt-5">
         <p>Have an account?</p>
         <Link to={"/Login"}>
