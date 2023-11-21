@@ -5,6 +5,7 @@ import {
   WorkersListContext,
 } from "../../context/WorkersListContext";
 import "./Workers-list.scss";
+import TableComponent from "../TableComponent/TableComponent";
 
 export const WorkersList: React.FC = () => {
   const workersContext = useContext<WorkersContextType | undefined>(
@@ -84,17 +85,22 @@ export const WorkersList: React.FC = () => {
       }
     };
 
-  const filteredWorkers = workersContext?.workers.filter(
-    (worker) =>
-      worker.firstName.toLowerCase().includes(searchText.toLowerCase()) ||
-      worker.lastName.toLowerCase().includes(searchText.toLowerCase())
-  );
+  const filterWorkers = (searchText: string): Workers[] | undefined => {
+    return workersContext?.workers.filter(
+      (worker) =>
+        worker.firstName.toLowerCase().includes(searchText.toLowerCase()) ||
+        worker.lastName.toLowerCase().includes(searchText.toLowerCase())
+    );
+  };
 
   return (
     <div className="FindWorkers bg-gray-200 p-4">
       <div className="flex items-start justify-between">
         <h1 className="text-2xl font-bold mb-4">Find Workers</h1>
-        <button type="button" className="bg-green-600 text-white px-3 py-1 mt-0 rounded-lg uppercase hover:opacity-95 disabled:opacity-80">
+        <button
+          type="button"
+          className="bg-green-600 text-white px-3 py-1 mt-0 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+        >
           Add worker
         </button>
       </div>
@@ -113,39 +119,11 @@ export const WorkersList: React.FC = () => {
       </div>
       <div className="WorkersList">
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-300">
-            <thead className="bg-gray-800 text-white">
-              <tr>
-                <th className="py-2 px-4 text-center">#</th>
-                <th className="py-2 px-4 text-center">Name</th>
-                <th className="py-2 px-4 text-center">Surname</th>
-                <th className="py-2 px-4 text-center">Salary</th>
-                <th className="py-2 px-4 text-center">Status</th>
-                <th className="py-2 px-4 text-center">Details</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredWorkers?.map((worker) => (
-                <tr key={worker.id}>
-                  <td className="py-2 px-4 text-center">{worker.id}</td>
-                  <td className="py-2 px-4 text-center">{worker.firstName}</td>
-                  <td className="py-2 px-4 text-center">{worker.lastName}</td>
-                  <td className="py-2 px-4 text-center">{worker.salary} zł</td>
-                  <td className="py-2 px-4 text-center">
-                    {worker.statusOfWork}
-                  </td>
-                  <td className="py-2 px-4 text-center">
-                    <button
-                      className="bg-blue-500 text-white py-2 px-4 rounded"
-                      onClick={() => handleDetailsClick(worker)}
-                    >
-                      Details
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <TableComponent
+            workers={filterWorkers(searchText) || []}
+            handleDetailsClick={handleDetailsClick}
+            filterWorkers={filterWorkers}
+          />
           <button
             className="bg-blue-500 mt-5 text-white p-2 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
             onClick={handleLoadMore}
