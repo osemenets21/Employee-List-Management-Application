@@ -6,6 +6,7 @@ import './index.css'
 import { BrowserRouter } from "react-router-dom";
 import { WorkersListContextProvider } from "./context/WorkersListContext";
 
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );

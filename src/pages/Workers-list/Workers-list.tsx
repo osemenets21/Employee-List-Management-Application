@@ -1,8 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Workers-list.scss";
+import trash2 from "react-useanimations/lib/trash2";
 import { Workers, WorkersContextType } from "../../types";
 import { WorkersListContext } from "../../context/WorkersListContext";
 import UniversalButton from "../../components/UniversalButton/UniversalButton";
+import UseAnimations from "react-useanimations";
+
 
 export const WorkersList: React.FC = () => {
   const workersContext = useContext<WorkersContextType | undefined>(
@@ -93,7 +96,7 @@ export const WorkersList: React.FC = () => {
   );
 
   return (
-    <div className="FindWorkers bg-gray-200 p-4">
+    <div className="workers-container bg-gray-200 p-4">
       <div className="flex items-start justify-between">
         <h1 className="text-2xl font-bold mb-4">Find Workers</h1>
         <UniversalButton
@@ -191,6 +194,9 @@ export const WorkersList: React.FC = () => {
                               id="input-name"
                               type="text"
                               value={editedWorker ? editedWorker.firstName : ""}
+                              className={`px-2 ${
+                                isEditing ? "input-editing" : ""
+                              }`}
                               onChange={renderField(
                                 selectedWorker,
                                 "firstName"
@@ -207,6 +213,9 @@ export const WorkersList: React.FC = () => {
                               id="sureName"
                               type="text"
                               value={editedWorker ? editedWorker.lastName : ""}
+                              className={`px-2 ${
+                                isEditing ? "input-editing" : ""
+                              }`}
                               onChange={renderField(selectedWorker, "lastName")}
                             />
                           </td>
@@ -222,6 +231,9 @@ export const WorkersList: React.FC = () => {
                               value={
                                 editedWorker ? editedWorker.dateOfBirth : ""
                               }
+                              className={`px-2 ${
+                                isEditing ? "input-editing" : ""
+                              }`}
                               onChange={renderField(
                                 selectedWorker,
                                 "dateOfBirth"
@@ -238,6 +250,9 @@ export const WorkersList: React.FC = () => {
                               id="street"
                               type="text"
                               value={editedWorker ? editedWorker.street : ""}
+                              className={`px-2 ${
+                                isEditing ? "input-editing" : ""
+                              }`}
                               onChange={renderField(selectedWorker, "street")}
                             />
                           </td>
@@ -251,6 +266,9 @@ export const WorkersList: React.FC = () => {
                               id="city"
                               type="text"
                               value={editedWorker ? editedWorker.city : ""}
+                              className={`px-2 ${
+                                isEditing ? "input-editing" : ""
+                              }`}
                               onChange={renderField(selectedWorker, "city")}
                             />
                           </td>
@@ -264,6 +282,9 @@ export const WorkersList: React.FC = () => {
                               id="postCode"
                               type="text"
                               value={editedWorker ? editedWorker.postCode : ""}
+                              className={`px-2 ${
+                                isEditing ? "input-editing" : ""
+                              }`}
                               onChange={renderField(selectedWorker, "postCode")}
                             />
                           </td>
@@ -279,6 +300,9 @@ export const WorkersList: React.FC = () => {
                               value={
                                 editedWorker ? `${editedWorker.salary}` : ""
                               }
+                              className={`px-2 ${
+                                isEditing ? "input-editing" : ""
+                              }`}
                               onChange={renderField(selectedWorker, "salary")}
                             />
                           </td>
@@ -296,6 +320,9 @@ export const WorkersList: React.FC = () => {
                               value={
                                 editedWorker ? editedWorker.statusOfWork : ""
                               }
+                              className={`px-2 ${
+                                isEditing ? "input-editing" : ""
+                              }`}
                               onChange={renderField(
                                 selectedWorker,
                                 "statusOfWork"
@@ -312,6 +339,9 @@ export const WorkersList: React.FC = () => {
                               id="phone"
                               type="text"
                               value={editedWorker ? editedWorker.phone : ""}
+                              className={`px-2 ${
+                                isEditing ? "input-editing" : ""
+                              }`}
                               onChange={renderField(selectedWorker, "phone")}
                             />
                           </td>
@@ -319,28 +349,31 @@ export const WorkersList: React.FC = () => {
                       </tbody>
                     </table>
 
-                    <UniversalButton
-                      type="button"
-                      action={() => {
-                        if (isEditing) {
-                          handleSave();
-                        } else {
-                          handleEdit(selectedWorker);
-                        }
-                        setIsEditing(!isEditing);
-                      }}
-                      title={isEditing ? "Save" : "Edit"}
-                      classes={`mr-2 ${
-                        isEditing ? "bg-blue-500" : "bg-green-500"
-                      } text-white py-1 px-2 rounded-md`}
-                    />
+                    <div className="btns-wrapper flex justify-between w-full">
+                      <UniversalButton
+                        type="button"
+                        action={() => {
+                          if (isEditing) {
+                            handleSave();
+                          } else {
+                            handleEdit(selectedWorker);
+                          }
+                          setIsEditing(!isEditing);
+                        }}
+                        title={isEditing ? "Save" : "Edit"}
+                        classes={`mr-2 ${
+                          isEditing ? "bg-blue-500" : "bg-green-500"
+                        } text-white py-1 px-2 rounded-md`}
+                      />
 
-                    <UniversalButton
-                      type="button"
-                      action={() => handleDelete(selectedWorker)}
-                      title="Delete"
-                      classes="bg-red-500 text-white p-2 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
-                    />
+                      <div className="cursor-pointer">
+                        <UseAnimations
+                          animation={trash2}
+                          size={40}
+                          onClick={() => handleDelete(selectedWorker)}
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="bg-gray-800 text-center py-2">

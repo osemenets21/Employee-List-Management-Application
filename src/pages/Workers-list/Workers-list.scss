@@ -1,13 +1,24 @@
 $lighter-beige-gradient-table: linear-gradient(to bottom, #FDF1C8, #E0B88A);
 
 
-.FindWorkers {
+.workers-container {
 
     padding: 20px;
     font-size: 16px;
 
     .container {
         max-width: 100%;
+    }
+
+    .datails-of-worker {
+        .input-editing {
+            border: 2px solid #AEC3AE;
+            border-radius: 5px
+        }
+
+        .trash-icon {
+            cursor: pointer;
+        }
     }
 
     .btn {
@@ -21,13 +32,13 @@ $lighter-beige-gradient-table: linear-gradient(to bottom, #FDF1C8, #E0B88A);
 
     }
 
- 
+
 
     .table {
         font-size: 17px;
         width: 100%;
 
-       
+
     }
 
     td {
