@@ -1,49 +1,36 @@
-import React, { useState } from 'react';
-import './Login.scss';
+import React, { useState } from "react";
+import "./Login.scss";
 import { Link } from "react-router-dom";
+import avatar from "../../assets/avatar.png";
+import useAuth from "../../hooks/useAuth";
 
-export const Login: React.FC = () => {
+ export const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState<string | null>(null);
+  const { token, user, handleLogin, handleLogout } = useAuth();
 
-  const handleLogin = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5002/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Error during login');
-      }
-
-      const data = await response.json();
-     
-      console.log('Login successful', data);
-      setToken(data.accessToken);
+      await handleLogin(email, password);
     } catch (error) {
-      console.error('Error during login. Please try again.', error);
-      
+      console.error('error.message');
     }
   };
 
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl text-center font-semibold my-7">Login</h1>
-      {token ? ( 
-        <div>
-          <p>Token: {token}</p>
-          <p>You can now use this token for further requests.</p>
+      {token ? (
+        <div className="rounded-full h-7 w-7 object-cover">
+          {user && user.avatar ? (
+            <img src={user.avatar} alt="User Avatar" className="avatar" />
+          ) : (
+            <img src={avatar} alt="User Avatar" className="avatar" />
+          )}
         </div>
       ) : (
-        <form className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <input
             type="email"
             placeholder="email"
@@ -62,8 +49,8 @@ export const Login: React.FC = () => {
           />
 
           <button
+            type="submit"
             className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
-            onClick={handleLogin}
           >
             {"Sign In"}
           </button>
@@ -78,3 +65,5 @@ export const Login: React.FC = () => {
     </div>
   );
 };
+
+export default Login;

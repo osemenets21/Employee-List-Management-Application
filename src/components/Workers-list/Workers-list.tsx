@@ -18,6 +18,13 @@ export const WorkersList: React.FC = () => {
   const [workerToDelete, setWorkerToDelete] = useState<Workers | null>(null);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [selectedWorker, setSelectedWorker] = useState<Workers | null>(null);
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Tutaj możesz skorzystać z lokalnego storage, kontekstu, itp. do przechowania tokenu
+    const storedToken = localStorage.getItem("accessToken");
+    setToken(storedToken);
+  }, []);
 
   const isDisabled =
     !workersContext ||
@@ -112,7 +119,10 @@ export const WorkersList: React.FC = () => {
           type="link"
           action="/add-worker"
           title="Add worker"
-          classes="bg-green-600 text-white px-3 py-1 mt-0 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+          classes={`bg-green-600 text-white px-3 py-1 mt-0 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 ${
+            token ? "disabled:opacity-80" : ""
+          }`} // Dodaj warunek dla dostępności
+          isDisabled={token ? true : false} // Ustaw dostępność na podstawie tokenu
         />
       </div>
 
