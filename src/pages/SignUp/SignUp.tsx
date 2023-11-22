@@ -17,6 +17,8 @@ export const SignUp: React.FC = () => {
     return emailPattern.test(email);
   };
 
+  
+
   const validatePassword = (password: string) => {
     return password.length >= 8;
   };
