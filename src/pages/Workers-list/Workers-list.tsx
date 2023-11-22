@@ -4,6 +4,8 @@ import { Workers, WorkersContextType } from "../../types";
 import { WorkersListContext } from "../../context/WorkersListContext";
 import UniversalButton from "../../components/UniversalButton/UniversalButton";
 
+type SortKeys = keyof Workers;
+
 export const WorkersList: React.FC = () => {
   const workersContext = useContext<WorkersContextType | undefined>(
     WorkersListContext
@@ -15,6 +17,8 @@ export const WorkersList: React.FC = () => {
   const [workerToDelete, setWorkerToDelete] = useState<Workers | null>(null);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [selectedWorker, setSelectedWorker] = useState<Workers | null>(null);
+  const [sortColumn, setSortColumn] = useState<SortKeys>("id");
+  const [sortOrder, setSortOrder] = useState<string>("asc");
 
   const isDisabled =
     !workersContext ||
@@ -32,6 +36,11 @@ export const WorkersList: React.FC = () => {
   const handleEdit = (worker: Workers) => {
     setIsEditing(true);
     setEditedWorker({ ...worker });
+  };
+
+  const handleSort = (column: SortKeys) => {
+    setSortColumn(column);
+    setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
   };
 
   const handleSave = () => {
@@ -59,7 +68,7 @@ export const WorkersList: React.FC = () => {
 
   const handleLoadMore = () => {
     if (workersContext && workersContext.pageNumber < workersContext.maxPage) {
-      workersContext.setPageNumber(workersContext.pageNumber + 1);
+      workersContext.setPageNumber((prevPage) => prevPage + 1);
     }
   };
 
@@ -76,21 +85,47 @@ export const WorkersList: React.FC = () => {
   }, [showSuccessAlert]);
 
   const renderField =
-    (worker: Workers, field: keyof Workers) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
+    (field: keyof Workers) => (event: React.ChangeEvent<HTMLInputElement>) => {
       const isEditingField =
-        isEditing && editedWorker && editedWorker.id === worker.id;
+        isEditing && editedWorker && editedWorker.id === selectedWorker?.id;
 
       if (isEditingField && editedWorker) {
         setEditedWorker({ ...editedWorker, [field]: event.target.value });
       }
     };
 
-  const filteredWorkers = workersContext?.workers.filter(
-    (worker) =>
-      worker.firstName.toLowerCase().includes(searchText.toLowerCase()) ||
-      worker.lastName.toLowerCase().includes(searchText.toLowerCase())
-  );
+  const handleFilterAndSort = () => {
+    if (workersContext) {
+      let filteredAndSortedWorkers = [...workersContext.workers];
+
+      filteredAndSortedWorkers.sort((a, b) => {
+        const columnA = a[sortColumn];
+        const columnB = b[sortColumn];
+
+        if (sortOrder === "asc") {
+          return String(columnA).localeCompare(String(columnB), undefined, {
+            numeric: true,
+          });
+        } else {
+          return String(columnB).localeCompare(String(columnA), undefined, {
+            numeric: true,
+          });
+        }
+      });
+
+      filteredAndSortedWorkers = filteredAndSortedWorkers.filter(
+        (worker) =>
+          worker.firstName.toLowerCase().includes(searchText.toLowerCase()) ||
+          worker.lastName.toLowerCase().includes(searchText.toLowerCase())
+      );
+
+      return filteredAndSortedWorkers;
+    }
+
+    return [];
+  };
+
+  const workersToDisplay = handleFilterAndSort();
 
   return (
     <div className="FindWorkers bg-gray-200 p-4">
@@ -121,16 +156,34 @@ export const WorkersList: React.FC = () => {
           <table className="min-w-full bg-white border border-gray-300">
             <thead className="bg-gray-800 text-white">
               <tr>
-                <th className="py-2 px-4 text-center">#</th>
-                <th className="py-2 px-4 text-center">Name</th>
-                <th className="py-2 px-4 text-center">Surname</th>
-                <th className="py-2 px-4 text-center">Salary</th>
-                <th className="py-2 px-4 text-center">Status</th>
+                <th onClick={() => handleSort("id")}>
+                  #{sortColumn === "id" && sortOrder === "asc" ? "▲" : "▼"}
+                </th>
+                <th onClick={() => handleSort("firstName")}>
+                  Imię
+                  {sortColumn === "firstName" && sortOrder === "asc"
+                    ? "▲"
+                    : "▼"}
+                </th>
+                <th onClick={() => handleSort("lastName")}>
+                  Nazwisko
+                  {sortColumn === "lastName" && sortOrder === "asc" ? "▲" : "▼"}
+                </th>
+                <th onClick={() => handleSort("salary")}>
+                  Pensja
+                  {sortColumn === "salary" && sortOrder === "asc" ? "▲" : "▼"}
+                </th>
+                <th onClick={() => handleSort("statusOfWork")}>
+                  Status
+                  {sortColumn === "statusOfWork" && sortOrder === "asc"
+                    ? "▲"
+                    : "▼"}
+                </th>
                 <th className="py-2 px-4 text-center">Details</th>
               </tr>
             </thead>
             <tbody>
-              {filteredWorkers?.map((worker) => (
+              {workersToDisplay.map((worker) => (
                 <tr key={worker.id}>
                   <td className="py-2 px-4 text-center">{worker.id}</td>
                   <td className="py-2 px-4 text-center">{worker.firstName}</td>
@@ -191,10 +244,7 @@ export const WorkersList: React.FC = () => {
                               id="input-name"
                               type="text"
                               value={editedWorker ? editedWorker.firstName : ""}
-                              onChange={renderField(
-                                selectedWorker,
-                                "firstName"
-                              )}
+                              onChange={renderField("firstName")}
                             />
                           </td>
                         </tr>
@@ -207,7 +257,7 @@ export const WorkersList: React.FC = () => {
                               id="sureName"
                               type="text"
                               value={editedWorker ? editedWorker.lastName : ""}
-                              onChange={renderField(selectedWorker, "lastName")}
+                              onChange={renderField("lastName")}
                             />
                           </td>
                         </tr>
@@ -222,10 +272,7 @@ export const WorkersList: React.FC = () => {
                               value={
                                 editedWorker ? editedWorker.dateOfBirth : ""
                               }
-                              onChange={renderField(
-                                selectedWorker,
-                                "dateOfBirth"
-                              )}
+                              onChange={renderField("dateOfBirth")}
                             />
                           </td>
                         </tr>
@@ -238,7 +285,7 @@ export const WorkersList: React.FC = () => {
                               id="street"
                               type="text"
                               value={editedWorker ? editedWorker.street : ""}
-                              onChange={renderField(selectedWorker, "street")}
+                              onChange={renderField("street")}
                             />
                           </td>
                         </tr>
@@ -251,7 +298,7 @@ export const WorkersList: React.FC = () => {
                               id="city"
                               type="text"
                               value={editedWorker ? editedWorker.city : ""}
-                              onChange={renderField(selectedWorker, "city")}
+                              onChange={renderField("city")}
                             />
                           </td>
                         </tr>
@@ -264,7 +311,7 @@ export const WorkersList: React.FC = () => {
                               id="postCode"
                               type="text"
                               value={editedWorker ? editedWorker.postCode : ""}
-                              onChange={renderField(selectedWorker, "postCode")}
+                              onChange={renderField("postCode")}
                             />
                           </td>
                         </tr>
@@ -279,7 +326,7 @@ export const WorkersList: React.FC = () => {
                               value={
                                 editedWorker ? `${editedWorker.salary}` : ""
                               }
-                              onChange={renderField(selectedWorker, "salary")}
+                              onChange={renderField("salary")}
                             />
                           </td>
                         </tr>
@@ -296,10 +343,7 @@ export const WorkersList: React.FC = () => {
                               value={
                                 editedWorker ? editedWorker.statusOfWork : ""
                               }
-                              onChange={renderField(
-                                selectedWorker,
-                                "statusOfWork"
-                              )}
+                              onChange={renderField("statusOfWork")}
                             />
                           </td>
                         </tr>
@@ -312,7 +356,7 @@ export const WorkersList: React.FC = () => {
                               id="phone"
                               type="text"
                               value={editedWorker ? editedWorker.phone : ""}
-                              onChange={renderField(selectedWorker, "phone")}
+                              onChange={renderField("phone")}
                             />
                           </td>
                         </tr>
@@ -357,36 +401,37 @@ export const WorkersList: React.FC = () => {
         )}
 
         {/* THE END OF MODAL WINDOW  */}
-      </div>
 
-      {showSuccessAlert && (
-        <div className="bg-green-500 text-white p-4 mb-4 rounded-md">
-          Data updated successfully!
-        </div>
-      )}
-      {showDeleteAlert && (
-        <div className="bg-red-500 text-white p-4 mb-4 rounded-md">
+        {showSuccessAlert && (
+          <div className="bg-green-500 text-white p-4 mb-4 rounded-md">
+            Data updated successfully!
+          </div>
+        )}
+
+        {showDeleteAlert && (
           <div className="bg-red-500 text-white p-4 mb-4 rounded-md">
-            <p className="mb-2">
-              Are you sure you want to delete this employee?
-            </p>
-            <div className="flex justify-end">
-              <UniversalButton
-                type="button"
-                action={() => setShowDeleteAlert(false)}
-                title="No"
-                classes="text-white bg-green-500 py-1 px-2 rounded-full mr-2"
-              />
-              <UniversalButton
-                type="button"
-                action={confirmDelete}
-                title="Yes"
-                classes="text-white bg-red-500 py-1 px-2 rounded-full"
-              />
+            <div className="bg-red-500 text-white p-4 mb-4 rounded-md">
+              <p className="mb-2">
+                Are you sure you want to delete this employee?
+              </p>
+              <div className="flex justify-end">
+                <UniversalButton
+                  type="button"
+                  action={() => setShowDeleteAlert(false)}
+                  title="No"
+                  classes="text-white bg-green-500 py-1 px-2 rounded-full mr-2"
+                />
+                <UniversalButton
+                  type="button"
+                  action={confirmDelete}
+                  title="Yes"
+                  classes="text-white bg-red-500 py-1 px-2 rounded-full"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
