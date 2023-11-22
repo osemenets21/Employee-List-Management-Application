@@ -115,15 +115,14 @@ export const WorkersList: React.FC = () => {
     <div className="FindWorkers bg-gray-200 p-4">
       <div className="flex items-start justify-between">
         <h1 className="text-2xl font-bold mb-4">Find Workers</h1>
-        <UniversalButton
-          type="link"
-          action="/add-worker"
-          title="Add worker"
-          classes={`bg-green-600 text-white px-3 py-1 mt-0 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 ${
-            token ? "disabled:opacity-80" : ""
-          }`} // Dodaj warunek dla dostępności
-          isDisabled={token ? true : false} // Ustaw dostępność na podstawie tokenu
-        />
+        {token && ( 
+          <UniversalButton
+            type="link"
+            action="/add-worker"
+            title="Add worker"
+            classes="bg-green-600 text-white px-3 py-1 mt-0 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+          />
+        )}
       </div>
 
       <div className="mb-4">
@@ -162,12 +161,15 @@ export const WorkersList: React.FC = () => {
                     {worker.statusOfWork}
                   </td>
                   <td className="py-2 px-4 text-center">
-                    <UniversalButton
+                    {token && (
+                      
+                      <UniversalButton
                       type="button"
                       action={() => handleDetailsClick(worker)}
                       title="Details"
                       classes="bg-blue-500 text-white py-2 px-4 rounded"
-                    />
+                      />
+                      )}
                   </td>
                 </tr>
               ))}
