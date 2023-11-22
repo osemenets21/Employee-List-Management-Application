@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Login.scss";
 import { Link } from "react-router-dom";
-import avatar from "../../assets/avatar.png";
+
 import useAuth from "../../hooks/useAuth";
 
  export const Login: React.FC = () => {

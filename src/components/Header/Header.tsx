@@ -3,6 +3,8 @@ import "./Header.scss";
 import { BsMoon, BsSun } from "react-icons/bs";
 import Hamburger from "hamburger-react";
 import UniversalButton from "../Button&Link/UniversalButton";
+import avatar from "../../assets/avatar.png";
+import useAuth from "../../hooks/useAuth";
 
 export const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -10,6 +12,13 @@ export const Header = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [isOpen, setOpen] = useState(false);
+  const [token, setToken] = useState<string | null>(null);
+  const { user, handleLogout } = useAuth();
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("accessToken");
+    setToken(storedToken);
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -77,14 +86,35 @@ export const Header = () => {
                       classes="find-workers-link"
                     />
                   </li>
-                  <li>
-                    <UniversalButton
-                      type="link"
-                      action="/login"
-                      title={<span className="dark:text-black">Login</span>}
-                      classes="dark:text-black"
-                    />
-                  </li>
+                  {token ? (
+                    <li>
+                      <div className="avatar-container rounded-full h-7 w-7 object-cover">
+                        {user && user.avatar ? (
+                          <img
+                            src={avatar}
+                            alt="User Avatar"
+                            className="avatar rounded-full h-7 w-7 object-cover"
+                          />
+                        ) : (
+                          <img
+                            src={avatar}
+                            alt="Default Avatar"
+                            className="avatar rounded-full h-7 w-7 object-cover"
+                          />
+                        )}
+                      </div>
+                    </li>
+                  ) : (
+                    <li>
+                      <UniversalButton
+                        type="link"
+                        action="/login"
+                        title={<span className="dark:text-black">Login</span>}
+                        classes="btn-login"
+                      />
+                    </li>
+                  )}
+                  
                   <li>
                     <UniversalButton
                       type="link"
@@ -93,6 +123,16 @@ export const Header = () => {
                       classes="btn-sign-up"
                     />
                   </li>
+                  {token && ( // Dodano warunek dla przycisku logout
+                    <li>
+                      <UniversalButton
+                        type="button"
+                        action={handleLogout}
+                        title={<span className="dark:text-black">Logout</span>}
+                        classes="btn-logout"
+                      />
+                    </li>
+                  )}
                 </ul>
               </div>
             )}
@@ -107,14 +147,34 @@ export const Header = () => {
                 classes="find-workers-link"
               />
             </li>
-            <li>
-              <UniversalButton
-                type="link"
-                action="/login"
-                title={<span className="dark:text-black">Login</span>}
-                classes="btn-login"
-              />
-            </li>
+            {token ? (
+              <li>
+                <div className="avatar-container rounded-full h-7 w-7 object-cover">
+                  {user && user.avatar ? (
+                    <img
+                      src={avatar}
+                      alt="User Avatar"
+                      className="avatar rounded-full h-7 w-7 object-cover"
+                    />
+                  ) : (
+                    <img
+                      src={avatar}
+                      alt="Default Avatar"
+                      className="avatar rounded-full h-7 w-7 object-cover"
+                    />
+                  )}
+                </div>
+              </li>
+            ) : (
+              <li>
+                <UniversalButton
+                  type="link"
+                  action="/login"
+                  title={<span className="dark:text-black">Login</span>}
+                  classes="btn-login"
+                />
+              </li>
+            )}
             <li>
               <UniversalButton
                 type="link"
@@ -123,8 +183,19 @@ export const Header = () => {
                 classes="btn-sign-up"
               />
             </li>
+            {token && ( 
+              <li>
+                <UniversalButton
+                  type="button"
+                  action={handleLogout}
+                  title={<span className="dark:text-black">Logout</span>}
+                  classes="btn-logout"
+                />
+              </li>
+            )}
           </ul>
         )}
+
 
         <div className="switch-mode">
           {darkMode ? (

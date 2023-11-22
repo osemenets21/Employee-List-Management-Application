@@ -19,6 +19,7 @@ export const WorkersList: React.FC = () => {
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [selectedWorker, setSelectedWorker] = useState<Workers | null>(null);
   const [token, setToken] = useState<string | null>(null);
+  
 
   useEffect(() => {
     // Tutaj możesz skorzystać z lokalnego storage, kontekstu, itp. do przechowania tokenu
