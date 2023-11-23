@@ -6,7 +6,6 @@ import { WorkersListContext } from "../../context/WorkersListContext";
 import UniversalButton from "../../components/UniversalButton/UniversalButton";
 import UseAnimations from "react-useanimations";
 
-
 export const WorkersList: React.FC = () => {
   const workersContext = useContext<WorkersContextType | undefined>(
     WorkersListContext
@@ -17,6 +16,7 @@ export const WorkersList: React.FC = () => {
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [workerToDelete, setWorkerToDelete] = useState<Workers | null>(null);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+//   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedWorker, setSelectedWorker] = useState<Workers | null>(null);
 
   const isDisabled =
@@ -48,7 +48,7 @@ export const WorkersList: React.FC = () => {
 
   const handleDelete = (worker: Workers) => {
     setWorkerToDelete(worker);
-    setShowDeleteAlert(true);
+    // setModalOpen(true);
   };
 
   const confirmDelete = () => {
@@ -59,6 +59,10 @@ export const WorkersList: React.FC = () => {
       setShowDeleteAlert(false);
     }
   };
+
+//   const handleCloseModal = () => {
+//     setModalOpen(false);
+//   };
 
   const handleLoadMore = () => {
     if (workersContext && workersContext.pageNumber < workersContext.maxPage) {
@@ -388,9 +392,11 @@ export const WorkersList: React.FC = () => {
             </div>
           </div>
         )}
-
-        {/* THE END OF MODAL WINDOW  */}
       </div>
+
+      {/* THE END OF MODAL WINDOW  */}
+
+    
 
       {showSuccessAlert && (
         <div className="bg-green-500 text-white p-4 mb-4 rounded-md">

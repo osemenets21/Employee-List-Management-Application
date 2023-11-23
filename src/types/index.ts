@@ -42,3 +42,8 @@ export type EditWorkersContextType = {
   editWorker: (worker: Workers) => void;
   updatedWorker: Workers | null;
 };
+
+export type ModalDialogScrollableProps = {
+    onClose: () => void;
+    setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
