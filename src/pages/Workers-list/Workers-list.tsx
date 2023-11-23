@@ -157,27 +157,44 @@ export const WorkersList: React.FC = () => {
             <thead className="bg-gray-800 text-white">
               <tr>
                 <th onClick={() => handleSort("id")}>
-                  #{sortColumn === "id" && sortOrder === "asc" ? "▲" : "▼"}
+                  #
+                  {sortColumn === "id" && sortOrder === "asc" ? (
+                    <span className="up-arrow">▲</span>
+                  ) : (
+                    <span className="down-arrow">▼</span>
+                  )}
                 </th>
                 <th onClick={() => handleSort("firstName")}>
-                  Imię
-                  {sortColumn === "firstName" && sortOrder === "asc"
-                    ? "▲"
-                    : "▼"}
+                  Name
+                  {sortColumn === "firstName" && sortOrder === "asc" ? (
+                    <span className="up-arrow">▲</span>
+                  ) : (
+                    <span className="down-arrow">▼</span>
+                  )}
                 </th>
                 <th onClick={() => handleSort("lastName")}>
-                  Nazwisko
-                  {sortColumn === "lastName" && sortOrder === "asc" ? "▲" : "▼"}
+                  Surname
+                  {sortColumn === "lastName" && sortOrder === "asc" ? (
+                    <span className="up-arrow">▲</span>
+                  ) : (
+                    <span className="down-arrow">▼</span>
+                  )}
                 </th>
                 <th onClick={() => handleSort("salary")}>
-                  Pensja
-                  {sortColumn === "salary" && sortOrder === "asc" ? "▲" : "▼"}
+                  Salary
+                  {sortColumn === "salary" && sortOrder === "asc" ? (
+                    <span className="up-arrow">▲</span>
+                  ) : (
+                    <span className="down-arrow">▼</span>
+                  )}
                 </th>
                 <th onClick={() => handleSort("statusOfWork")}>
                   Status
-                  {sortColumn === "statusOfWork" && sortOrder === "asc"
-                    ? "▲"
-                    : "▼"}
+                  {sortColumn === "statusOfWork" && sortOrder === "asc" ? (
+                    <span className="up-arrow">▲</span>
+                  ) : (
+                    <span className="down-arrow">▼</span>
+                  )}
                 </th>
                 <th className="py-2 px-4 text-center">Details</th>
               </tr>
