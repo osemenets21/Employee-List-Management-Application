@@ -22,7 +22,6 @@ export const WorkersList: React.FC = () => {
   
 
   useEffect(() => {
-    // Tutaj możesz skorzystać z lokalnego storage, kontekstu, itp. do przechowania tokenu
     const storedToken = localStorage.getItem("accessToken");
     setToken(storedToken);
   }, []);

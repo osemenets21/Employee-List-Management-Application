@@ -7,7 +7,7 @@ import useAuth from "../../hooks/useAuth";
  export const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { token, user, handleLogin, handleLogout } = useAuth();
+  const {  handleLogin } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

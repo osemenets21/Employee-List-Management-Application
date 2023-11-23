@@ -123,7 +123,7 @@ export const Header = () => {
                       classes="btn-sign-up"
                     />
                   </li>
-                  {token && ( // Dodano warunek dla przycisku logout
+                  {token && ( 
                     <li>
                       <UniversalButton
                         type="button"

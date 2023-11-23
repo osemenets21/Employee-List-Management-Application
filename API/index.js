@@ -7,6 +7,11 @@ const path = require('path');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const app = express();
+const port = 5002;
+
+app.use(bodyParser.json());
+app.use(cors());
 
 
 const generateJwtToken = (user) => {
@@ -18,11 +23,6 @@ const generateJwtToken = (user) => {
   return token;
 };
 
-const app = express();
-const port = 5002;
-
-app.use(bodyParser.json());
-app.use(cors());
 
 
 const generateUniqueId = () => {
@@ -48,7 +48,7 @@ const usersFilePath = path.join(__dirname, 'users.json');
 
 app.post('/register', async (req, res) => {
   try {
-    const { email, password, username } = req.body;
+    const { email, username } = req.body;
 
     const newUser = {
       id: generateUniqueId(), 

@@ -1,5 +1,3 @@
-
-
 {
   "users": [
     {
@@ -13,7 +11,12 @@
       "username": "radek_15722",
       "email": "radekssds.lach1@wp.pl",
       "password": "$2b$10$e7SP/us56r8/lRva0yBXTuOVa2pRxAHRjzut4e2ju2RmM77JqfLei"
-      
+    },
+    {
+      "id": "13163326-8272-4e0b-88fd-16fe9c0b2eda",
+      "username": "radziuu22",
+      "email": "radek32131@gmail.com.pl",
+      "password": "$2b$10$XOa.i0iPNNX7q0BLBCOxhu7GY4GsocnGzagG/ZI12bZAK7YLuqCtq"
     }
   ]
 }
