@@ -98,7 +98,7 @@ export const WorkersList: React.FC = () => {
   );
 
   return (
-    <div className="workers-container bg-gray-200 p-4">
+    <div className="workers-container bg-gray-200 p-4 dark:bg-slate-600">
       <div className="flex items-start justify-between">
         <h1 className="text-2xl font-bold mb-4">Find Workers</h1>
         <UniversalButton
@@ -115,7 +115,7 @@ export const WorkersList: React.FC = () => {
           placeholder={searchText ? "" : "Search for a worker..."}
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
-          className="border rounded p-2 w-full"
+          className="border rounded p-2 w-full dark:bg-slate-300"
         />
         {searchText && (
           <p className="text-center mt-2">Searching for workers...</p>
@@ -123,7 +123,7 @@ export const WorkersList: React.FC = () => {
       </div>
       <div className="WorkersList">
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-300">
+          <table className="min-w-full bg-white border border-gray-300 dark:bg-slate-600 dark:text-white">
             <thead className="bg-gray-800 text-white">
               <tr>
                 <th className="py-2 px-4 text-center">#</th>
