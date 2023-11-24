@@ -5,6 +5,8 @@ import { Workers, WorkersContextType } from "../../types";
 import { WorkersListContext } from "../../context/WorkersListContext";
 import UniversalButton from "../../components/UniversalButton/UniversalButton";
 import UseAnimations from "react-useanimations";
+import { ModalDialogScrollable } from "../../components/ModalDialogScrollable/ModalDialogScrollable";
+import { AlertSuccess } from "../../components/AlertSuccess/AlertSuccess";
 
 export const WorkersList: React.FC = () => {
   const workersContext = useContext<WorkersContextType | undefined>(
@@ -16,7 +18,6 @@ export const WorkersList: React.FC = () => {
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [workerToDelete, setWorkerToDelete] = useState<Workers | null>(null);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
-//   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedWorker, setSelectedWorker] = useState<Workers | null>(null);
 
   const isDisabled =
@@ -48,7 +49,7 @@ export const WorkersList: React.FC = () => {
 
   const handleDelete = (worker: Workers) => {
     setWorkerToDelete(worker);
-    // setModalOpen(true);
+    setShowDeleteAlert(true);
   };
 
   const confirmDelete = () => {
@@ -57,12 +58,9 @@ export const WorkersList: React.FC = () => {
       setIsEditing(false);
       setEditedWorker(null);
       setShowDeleteAlert(false);
+      setSelectedWorker(null);
     }
   };
-
-//   const handleCloseModal = () => {
-//     setModalOpen(false);
-//   };
 
   const handleLoadMore = () => {
     if (workersContext && workersContext.pageNumber < workersContext.maxPage) {
@@ -100,7 +98,7 @@ export const WorkersList: React.FC = () => {
   );
 
   return (
-    <div className="workers-container bg-gray-200 p-4">
+    <div className="workers-container bg-gray-200 p-4 dark:bg-slate-600">
       <div className="flex items-start justify-between">
         <h1 className="text-2xl font-bold mb-4">Find Workers</h1>
         <UniversalButton
@@ -117,7 +115,7 @@ export const WorkersList: React.FC = () => {
           placeholder={searchText ? "" : "Search for a worker..."}
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
-          className="border rounded p-2 w-full"
+          className="border rounded p-2 w-full dark:bg-slate-300"
         />
         {searchText && (
           <p className="text-center mt-2">Searching for workers...</p>
@@ -125,7 +123,7 @@ export const WorkersList: React.FC = () => {
       </div>
       <div className="WorkersList">
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-300">
+          <table className="min-w-full bg-white border border-gray-300 dark:bg-slate-600 dark:text-white">
             <thead className="bg-gray-800 text-white">
               <tr>
                 <th className="py-2 px-4 text-center">#</th>
@@ -187,7 +185,9 @@ export const WorkersList: React.FC = () => {
                       <tbody>
                         <tr>
                           <td>ID:</td>
-                          <td>{selectedWorker.id}</td>
+                          <td>
+                            <input className="px-2" readOnly value={selectedWorker.id} />
+                          </td>
                         </tr>
                         <tr>
                           <td>
@@ -366,8 +366,8 @@ export const WorkersList: React.FC = () => {
                         }}
                         title={isEditing ? "Save" : "Edit"}
                         classes={`mr-2 ${
-                          isEditing ? "bg-blue-500" : "bg-green-500"
-                        } text-white py-1 px-2 rounded-md`}
+                          isEditing ? "btn-save" : "btn-edit"
+                        } text-white rounded-md`}
                       />
 
                       <div className="cursor-pointer">
@@ -396,35 +396,15 @@ export const WorkersList: React.FC = () => {
 
       {/* THE END OF MODAL WINDOW  */}
 
-    
+      {showSuccessAlert && <AlertSuccess />}
 
-      {showSuccessAlert && (
-        <div className="bg-green-500 text-white p-4 mb-4 rounded-md">
-          Data updated successfully!
-        </div>
-      )}
       {showDeleteAlert && (
-        <div className="bg-red-500 text-white p-4 mb-4 rounded-md">
-          <div className="bg-red-500 text-white p-4 mb-4 rounded-md">
-            <p className="mb-2">
-              Are you sure you want to delete this employee?
-            </p>
-            <div className="flex justify-end">
-              <UniversalButton
-                type="button"
-                action={() => setShowDeleteAlert(false)}
-                title="No"
-                classes="text-white bg-green-500 py-1 px-2 rounded-full mr-2"
-              />
-              <UniversalButton
-                type="button"
-                action={confirmDelete}
-                title="Yes"
-                classes="text-white bg-red-500 py-1 px-2 rounded-full"
-              />
-            </div>
-          </div>
-        </div>
+        <ModalDialogScrollable
+          name={selectedWorker?.firstName}
+          surname={selectedWorker?.lastName}
+          setShowDeleteAlert={setShowDeleteAlert}
+          confirmDelete={confirmDelete}
+        />
       )}
     </div>
   );
