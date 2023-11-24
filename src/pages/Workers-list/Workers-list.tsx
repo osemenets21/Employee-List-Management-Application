@@ -185,7 +185,9 @@ export const WorkersList: React.FC = () => {
                       <tbody>
                         <tr>
                           <td>ID:</td>
-                          <td>{selectedWorker.id}</td>
+                          <td>
+                            <input className="px-2" readOnly value={selectedWorker.id} />
+                          </td>
                         </tr>
                         <tr>
                           <td>
@@ -364,8 +366,8 @@ export const WorkersList: React.FC = () => {
                         }}
                         title={isEditing ? "Save" : "Edit"}
                         classes={`mr-2 ${
-                          isEditing ? "bg-blue-500" : "bg-green-500"
-                        } text-white py-1 px-2 rounded-md`}
+                          isEditing ? "btn-save" : "btn-edit"
+                        } text-white rounded-md`}
                       />
 
                       <div className="cursor-pointer">
