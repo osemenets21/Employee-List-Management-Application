@@ -79,7 +79,7 @@ export const ModalDialogScrollable = ({
                       confirmDelete()
                     }}
                   >
-                    Deactivate
+                    Delete
                   </button>
                   <button
                     type="button"
