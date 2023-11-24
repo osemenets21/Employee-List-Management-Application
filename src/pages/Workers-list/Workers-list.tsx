@@ -5,6 +5,8 @@ import { Workers, WorkersContextType } from "../../types";
 import { WorkersListContext } from "../../context/WorkersListContext";
 import UniversalButton from "../../components/UniversalButton/UniversalButton";
 import UseAnimations from "react-useanimations";
+import { ModalDialogScrollable } from "../../components/ModalDialogScrollable/ModalDialogScrollable";
+import { AlertSuccess } from "../../components/AlertSuccess/AlertSuccess";
 
 export const WorkersList: React.FC = () => {
   const workersContext = useContext<WorkersContextType | undefined>(
@@ -16,7 +18,6 @@ export const WorkersList: React.FC = () => {
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [workerToDelete, setWorkerToDelete] = useState<Workers | null>(null);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
-//   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedWorker, setSelectedWorker] = useState<Workers | null>(null);
 
   const isDisabled =
@@ -48,7 +49,7 @@ export const WorkersList: React.FC = () => {
 
   const handleDelete = (worker: Workers) => {
     setWorkerToDelete(worker);
-    // setModalOpen(true);
+    setShowDeleteAlert(true);
   };
 
   const confirmDelete = () => {
@@ -57,12 +58,9 @@ export const WorkersList: React.FC = () => {
       setIsEditing(false);
       setEditedWorker(null);
       setShowDeleteAlert(false);
+      setSelectedWorker(null);
     }
   };
-
-//   const handleCloseModal = () => {
-//     setModalOpen(false);
-//   };
 
   const handleLoadMore = () => {
     if (workersContext && workersContext.pageNumber < workersContext.maxPage) {
@@ -396,35 +394,15 @@ export const WorkersList: React.FC = () => {
 
       {/* THE END OF MODAL WINDOW  */}
 
-    
+      {showSuccessAlert && <AlertSuccess />}
 
-      {showSuccessAlert && (
-        <div className="bg-green-500 text-white p-4 mb-4 rounded-md">
-          Data updated successfully!
-        </div>
-      )}
       {showDeleteAlert && (
-        <div className="bg-red-500 text-white p-4 mb-4 rounded-md">
-          <div className="bg-red-500 text-white p-4 mb-4 rounded-md">
-            <p className="mb-2">
-              Are you sure you want to delete this employee?
-            </p>
-            <div className="flex justify-end">
-              <UniversalButton
-                type="button"
-                action={() => setShowDeleteAlert(false)}
-                title="No"
-                classes="text-white bg-green-500 py-1 px-2 rounded-full mr-2"
-              />
-              <UniversalButton
-                type="button"
-                action={confirmDelete}
-                title="Yes"
-                classes="text-white bg-red-500 py-1 px-2 rounded-full"
-              />
-            </div>
-          </div>
-        </div>
+        <ModalDialogScrollable
+          name={selectedWorker?.firstName}
+          surname={selectedWorker?.lastName}
+          setShowDeleteAlert={setShowDeleteAlert}
+          confirmDelete={confirmDelete}
+        />
       )}
     </div>
   );

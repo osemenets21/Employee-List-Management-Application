@@ -44,6 +44,8 @@ export type EditWorkersContextType = {
 };
 
 export type ModalDialogScrollableProps = {
-    onClose: () => void;
-    setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    name: string | undefined;
+    surname: string | undefined;
+    setShowDeleteAlert: React.Dispatch<React.SetStateAction<boolean>>;
+    confirmDelete: () => void;
 };
