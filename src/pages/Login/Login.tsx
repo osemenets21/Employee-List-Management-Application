@@ -1,20 +1,24 @@
 import React, { useState } from "react";
 import "./Login.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import useAuth from "../../hooks/useAuth";
 
- export const Login: React.FC = () => {
+export const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {  handleLogin } = useAuth();
+  const { handleLogin } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       await handleLogin(email, password);
+
+      navigate('/');
+      window.location.reload();
     } catch (error) {
-      console.error('error.message');
+      console.error("error.message");
     }
   };
 

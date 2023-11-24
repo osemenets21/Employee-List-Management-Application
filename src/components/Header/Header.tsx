@@ -5,6 +5,7 @@ import Hamburger from "hamburger-react";
 import UniversalButton from "../Button&Link/UniversalButton";
 import avatar from "../../assets/avatar.png";
 import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const [isMobile, setIsMobile] = useState(false);

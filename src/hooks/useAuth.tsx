@@ -50,6 +50,7 @@ const useAuth = () => {
     clearTokenFromLocalStorage();
     setToken(null);
     setUser(null);
+    window.location.reload();
   };
 
   useEffect(() => {
