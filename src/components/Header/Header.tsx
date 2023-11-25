@@ -88,7 +88,7 @@ export const Header = () => {
                         type="link"
                         action="/workers-list"
                         title={<span className="dark:text-white">Workers</span>}
-                        classes="find-workers-link"
+                        classes="find-workers-link mr-1"
                       />
                     </li>
                   )}
@@ -99,13 +99,13 @@ export const Header = () => {
                           <img
                             src={avatar}
                             alt="User Avatar"
-                            className="avatar rounded-full h-7 w-7 object-cover"
+                            className="avatar rounded-full h-7 w-7 object-cover mr-1"
                           />
                         ) : (
                           <img
                             src={avatar}
                             alt="Default Avatar"
-                            className="avatar rounded-full h-7 w-7 object-cover"
+                            className="avatar rounded-full h-7 w-7 object-cover mr-1"
                           />
                         )}
                       </div>
@@ -151,7 +151,7 @@ export const Header = () => {
                   type="link"
                   action="/workers-list"
                   title={<span className="dark:text-white">Workers</span>}
-                  classes="find-workers-link"
+                  classes="find-workers-link mr-3"
                 />
               </li>
             )}
@@ -163,13 +163,13 @@ export const Header = () => {
                     <img
                       src={avatar}
                       alt="User Avatar"
-                      className="avatar rounded-full h-7 w-7 object-cover"
+                      className="avatar rounded-full h-7 w-7 object-cover mr-1"
                     />
                   ) : (
                     <img
                       src={avatar}
                       alt="Default Avatar"
-                      className="avatar rounded-full h-7 w-7 object-cover"
+                      className="avatar rounded-full h-7 w-7 object-cover mr-1"
                     />
                   )}
                 </div>
@@ -180,7 +180,7 @@ export const Header = () => {
                   type="link"
                   action="/login"
                   title={<span className="dark:text-black">Login</span>}
-                  classes="btn-login"
+                  classes="btn-login mr-1"
                 />
               </li>
             )}
@@ -189,7 +189,7 @@ export const Header = () => {
                 type="link"
                 action="/sign-up"
                 title={<span className="dark:text-black">Sign Up</span>}
-                classes="btn-sign-up"
+                classes="btn-sign-up mr-1 ml-2"
               />
             </li>
             {token && (
@@ -198,7 +198,7 @@ export const Header = () => {
                   type="button"
                   action={handleLogout}
                   title={<span className="dark:text-black">Logout</span>}
-                  classes="btn-logout"
+                  classes="btn-logout mr-1"
                 />
               </li>
             )}
