@@ -47,6 +47,7 @@ export const AddWorker = () => {
 
   return (
     <div className="add-page">
+      <div className="form-container">
       <h2 className="text-2xl font-bold mb-4 text-gray-800">
         Add new worker form
       </h2>
@@ -234,5 +235,6 @@ export const AddWorker = () => {
         </div>
       </form>
     </div>
-  );
+  </div>
+);
 };
