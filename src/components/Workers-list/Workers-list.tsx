@@ -41,14 +41,14 @@ export const WorkersList: React.FC = () => {
 //     setEditedWorker({ ...worker });
 //   };
 
-//   const handleSave = () => {
-//     if (editedWorker && workersContext) {
-//       workersContext.editWorker(editedWorker);
-//       setSelectedWorker(editedWorker);
-//       setIsEditing(false);
-//       setShowSuccessAlert(true);
-//     }
-//   };
+  const handleSave = () => {
+    if (editedWorker && workersContext) {
+      workersContext.editWorker(editedWorker);
+      setSelectedWorker(editedWorker);
+      setIsEditing(false);
+      setShowSuccessAlert(true);
+    }
+  };
 
 //   const handleEditSave = () => {
 //     if (isEditing) {

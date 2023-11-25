@@ -1,45 +1,69 @@
-import React, { useState } from "react";
-import "./SignUp.scss";
-import UniversalButton from "../../components/UniversalButton/UniversalButton";
+import React, { useState } from 'react';
+import './SignUp.scss';
+import UniversalButton from '../../components/UniversalButton/UniversalButton';
 
 export const SignUp: React.FC = () => {
   const [password, setPassword] = useState("");
-  const [confirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [userName, setUserName] = useState("");
+  const [signupError, setSignupError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const validateEmail = (email: string) => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailPattern.test(email);
   };
 
+  
+
   const validatePassword = (password: string) => {
     return password.length >= 8;
   };
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     setEmailError("");
     setPasswordError("");
+    setSignupError("");
 
     if (!validateEmail(email)) {
       setEmailError("Invalid email address");
       return;
     }
 
-    if (password !== confirmPassword) {
-      setPasswordError("Passwords do not match.");
-      return;
-    }
 
     if (!validatePassword(password)) {
       setPasswordError("Password must be at least 8 characters long.");
       return;
     }
 
-    setPasswordError("");
-    setEmailError("");
+    try {
+      const response = await fetch('http://localhost:5002/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: userName,
+          email: email,
+          password: password,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error during sign-up');
+      }
+
+      setSuccessMessage('User registered successfully');
+
+      setPasswordError("");
+      setEmailError("");
+      setSignupError("");
+      console.log('User registered successfully');
+    } catch (error) {
+      setSignupError('Error during sign-up. Please try again.');
+    }
   };
 
   return (
@@ -62,7 +86,6 @@ export const SignUp: React.FC = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-
         <div className={`input-group ${passwordError ? "error" : ""}`}>
           <input
             type="password"
@@ -75,10 +98,16 @@ export const SignUp: React.FC = () => {
         </div>
         {emailError && <div className="error-message">{emailError}</div>}
         {passwordError && <div className="error-message">{passwordError}</div>}
-        <button className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80">
+        {signupError && <div className="error-message">{signupError}</div>}
+        <button
+          type="button"
+          className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+          onClick={handleSignUp}
+        >
           {"Sign Up"}
         </button>
       </form>
+      {successMessage && <div className="success-message">{successMessage}</div>}
       <div className="flex gap-2 mt-5">
         <p>Have an account?</p>
 
@@ -88,7 +117,6 @@ export const SignUp: React.FC = () => {
           title={<span className="text-blue-700">Sign in</span>}
         />
       </div>
-      {<p className="text-red-500 mt-5"></p>}
     </div>
   );
 };
