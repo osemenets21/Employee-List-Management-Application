@@ -7,7 +7,7 @@ import useAuth from "../../hooks/useAuth";
 export const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState<string | null>(null); // Type assertion for error
+  const [error, setError] = useState<string | null>(null);
   const { handleLogin } = useAuth();
   const navigate = useNavigate();
 
