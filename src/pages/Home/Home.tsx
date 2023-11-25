@@ -9,11 +9,11 @@ export const Home = () => {
         <h1 className="home-heading">Our team is the key to your</h1>
         <h2 className="home-heading-word">SUCCESS</h2>
       </div>
-      <div className="about-us">
+      <div className="about-us dark:bg-slate-800">
         <h2 className="about-us-heading">
-          <span>About us</span>
+          <span className="dark:bg-slate-500 dark:text-white">About us</span>
         </h2>
-        <p className="about-us-text">
+        <p className="about-us-text dark:bg-slate-500 dark:text-white">
           "TechSolutions" reigns supreme in the IT domain, headquartered in the
           vibrant city of Warsaw, with an expansive team of over 250 highly
           skilled professionals excelling in both backend and frontend
@@ -27,8 +27,9 @@ export const Home = () => {
           "TechSolutions" stands as the epitome of excellence.
         </p>
       </div>
+
       <div className="carousel">
-        <CarouselOfPhoto/>
+        <CarouselOfPhoto />
       </div>
     </main>
   );
