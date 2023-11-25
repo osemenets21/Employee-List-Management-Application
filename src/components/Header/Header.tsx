@@ -5,7 +5,6 @@ import Hamburger from "hamburger-react";
 import UniversalButton from "../UniversalButton/UniversalButton";
 import avatar from "../../assets/avatar.png";
 import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router";
 
 export const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -15,7 +14,6 @@ export const Header = () => {
   const [isOpen, setOpen] = useState(false);
   const [token, setToken] = useState<string | null>(null);
   const { user, handleLogout } = useAuth();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const storedToken = localStorage.getItem("accessToken");
