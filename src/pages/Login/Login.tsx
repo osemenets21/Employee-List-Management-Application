@@ -5,8 +5,9 @@ import UniversalButton from "../../components/UniversalButton/UniversalButton";
 import useAuth from "../../hooks/useAuth";
 
 export const Login: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string | null>(null); // Type assertion for error
   const { handleLogin } = useAuth();
   const navigate = useNavigate();
 
@@ -17,14 +18,23 @@ export const Login: React.FC = () => {
 
       navigate('/');
       window.location.reload();
-    } catch (error) {
-      console.error("error.message");
+    } catch (error: any) {
+      if (error.response && error.response.status === 401) {
+        setError("An error occurred. Please try again.");
+      } else {
+        console.error("Server error:", error.message); 
+        setError("Wrong email or password"); 
+      }
     }
   };
 
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl text-center font-semibold my-7">Login</h1>
+
+      {error && (
+        <div className="text-red-500 text-center my-3">{error}</div>
+      )}
 
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <input
