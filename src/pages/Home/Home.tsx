@@ -6,10 +6,10 @@ export const Home = () => {
   return (
     <main>
       <div className="home">
-        <h1 className="home-heading">Our team is the key to your</h1>
-        <h2 className="home-heading-word">SUCCESS</h2>
+        <h1 className="home-heading dark:bg-slate-900/30 dark:text-white">Our team is the key to your</h1>
+        <h2 className="home-heading-word dark:bg-slate-900/30 dark:text-white">SUCCESS</h2>
       </div>
-      <div className="about-us dark:bg-slate-800">
+      <div className="about-us dark:bg-slate-800 ">
         <h2 className="about-us-heading">
           <span className="dark:bg-slate-500 dark:text-white">About us</span>
         </h2>
