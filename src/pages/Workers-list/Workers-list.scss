@@ -2,25 +2,15 @@
 
 $lighter-beige-gradient-table: linear-gradient(to bottom, #FDF1C8, #E0B88A);
 
-
 .workers-container {
-
+    $lighter-beige-gradient-table: linear-gradient(to bottom, #fdf1c8, #e0b88a);
     padding: 20px;
     font-size: 16px;
 
+
+
     .container {
         max-width: 100%;
-    }
-
-    .datails-of-worker {
-        .input-editing {
-            border: 2px solid #AEC3AE;
-            border-radius: 5px
-        }
-
-        .trash-icon {
-            cursor: pointer;
-        }
     }
 
     .btn {
@@ -31,46 +21,25 @@ $lighter-beige-gradient-table: linear-gradient(to bottom, #FDF1C8, #E0B88A);
             background: $lighter-beige-gradient-table;
             color: white;
         }
-
     }
-
-    .btn-edit {
-        @include  background-secondary;
-        width: 79px;
-        height: 31px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-        transition: background .2s;
-        &:hover {
-            @include background-primary;
-
-        }
-    }
-
-    
-    .btn-save {
-        @extend .btn-edit;
-        background-color: rgb(215, 201, 5);
-        &:hover {
-            background-color: rgb(254, 238, 13);
-            color: black;
-
-        }
-    }
-
-
 
     .table {
         font-size: 17px;
         width: 100%;
-
-
     }
 
     td {
         width: 150px;
+    }
+
+    .up-arrow {
+        cursor: pointer;
+        margin-left: 7px;
+    }
+
+    .down-arrow {
+        cursor: pointer;
+        margin-left: 7px;
     }
 
     @media (min-width: 768px) {
@@ -78,9 +47,55 @@ $lighter-beige-gradient-table: linear-gradient(to bottom, #FDF1C8, #E0B88A);
             max-width: 768px;
         }
 
+        .datails-of-worker {
+            .input-editing {
+                border: 2px solid #AEC3AE;
+                border-radius: 5px;
+            }
+
+            .trash-icon {
+                cursor: pointer;
+            }
+        }
+
         .btn {
             font-size: 16px;
             padding: 12px 24px;
         }
+
+        .btn-edit {
+            @include background-secondary;
+            width: 79px;
+            height: 31px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            transition: all .2s;
+
+            &:hover {
+                @include background-primary;
+            }
+        }
+
+        .btn-save {
+            @extend .btn-edit;
+            background-color: rgb(215, 201, 5);
+
+            &:hover {
+                background-color: rgb(254, 238, 13);
+                color: black;
+            }
+        }
+
+        .table {
+            font-size: 17px;
+            width: 100%;
+        }
+
+        td {
+            width: 150px;
+        }
     }
+
 }

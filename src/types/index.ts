@@ -49,3 +49,5 @@ export type ModalDialogScrollableProps = {
     setShowDeleteAlert: React.Dispatch<React.SetStateAction<boolean>>;
     confirmDelete: () => void;
 };
+
+export type SortKeys = keyof Workers;
