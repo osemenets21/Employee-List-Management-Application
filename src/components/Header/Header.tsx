@@ -5,6 +5,7 @@ import Hamburger from "hamburger-react";
 import UniversalButton from "../UniversalButton/UniversalButton";
 import avatar from "../../assets/avatar.png";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router";
 
 export const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -14,6 +15,7 @@ export const Header = () => {
   const [isOpen, setOpen] = useState(false);
   const [token, setToken] = useState<string | null>(null);
   const { user, handleLogout } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedToken = localStorage.getItem("accessToken");
@@ -82,14 +84,18 @@ export const Header = () => {
             {showMenu && (
               <div className="menu-wrapper dark:bg-slate-700">
                 <ul className={`header-nav-menu vertical `}>
-                  <li>
-                    <UniversalButton
-                      type="link"
-                      action="/workers-list"
-                      title={<span className="dark:text-white">Workers</span>}
-                      classes="find-workers-link"
-                    />
-                  </li>
+                  {token && (
+                    <li>
+                      <UniversalButton
+                        type="link"
+                        action={() =>
+                          navigate(token ? "/workers-list" : "/login")
+                        }
+                        title={<span className="dark:text-white">Workers</span>}
+                        classes="find-workers-link"
+                      />
+                    </li>
+                  )}
                   {token ? (
                     <li>
                       <div className="avatar-container rounded-full h-7 w-7 object-cover">
@@ -118,15 +124,7 @@ export const Header = () => {
                       />
                     </li>
                   )}
-                  
-                  <li>
-                    <UniversalButton
-                      type="link"
-                      action="/login"
-                      title={<span className="dark:text-black">Login</span>}
-                      classes="btn-login"
-                    />
-                  </li>
+
                   <li>
                     <UniversalButton
                       type="link"
@@ -135,7 +133,7 @@ export const Header = () => {
                       classes="btn-sign-up"
                     />
                   </li>
-                  {token && ( 
+                  {token && (
                     <li>
                       <UniversalButton
                         type="button"
@@ -151,14 +149,17 @@ export const Header = () => {
           </>
         ) : (
           <ul className={`header-nav-menu horizontal`}>
-            <li>
-              <UniversalButton
-                type="link"
-                action="/workers-list"
-                title={<span className="dark:text-white">Workers</span>}
-                classes="find-workers-link"
-              />
-            </li>
+            {token && (
+              <li>
+                <UniversalButton
+                  type="link"
+                  action={() => navigate(token ? "/workers-list" : "/login")}
+                  title={<span className="dark:text-white">Workers</span>}
+                  classes="find-workers-link"
+                />
+              </li>
+            )}
+
             {token ? (
               <li>
                 <div className="avatar-container rounded-full h-7 w-7 object-cover">
@@ -190,20 +191,12 @@ export const Header = () => {
             <li>
               <UniversalButton
                 type="link"
-                action="/login"
-                title={<span className="dark:text-black">Login</span>}
-                classes="btn-login"
-              />
-            </li>
-            <li>
-              <UniversalButton
-                type="link"
                 action="/sign-up"
                 title={<span className="dark:text-black">Sign Up</span>}
                 classes="btn-sign-up"
               />
             </li>
-            {token && ( 
+            {token && (
               <li>
                 <UniversalButton
                   type="button"
@@ -215,7 +208,6 @@ export const Header = () => {
             )}
           </ul>
         )}
-
 
         <div className="switch-mode">
           {darkMode ? (

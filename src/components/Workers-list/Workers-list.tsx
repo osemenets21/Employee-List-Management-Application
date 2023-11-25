@@ -4,7 +4,7 @@ import {Workers, WorkersContextType} from '../../types/index'
 import "./Workers-list.scss";
 import UniversalButton from "../UniversalButton/UniversalButton";
 
-export const WorkersList: React.FC = () => {
+const WorkersList: React.FC = () => {
   const workersContext = useContext<WorkersContextType | undefined>(
     WorkersListContext
   );
@@ -36,28 +36,6 @@ export const WorkersList: React.FC = () => {
     setSelectedWorker(null);
   };
 
-//   const handleEdit = (worker: Workers) => {
-//     setIsEditing(true);
-//     setEditedWorker({ ...worker });
-//   };
-
-  const handleSave = () => {
-    if (editedWorker && workersContext) {
-      workersContext.editWorker(editedWorker);
-      setSelectedWorker(editedWorker);
-      setIsEditing(false);
-      setShowSuccessAlert(true);
-    }
-  };
-
-//   const handleEditSave = () => {
-//     if (isEditing) {
-//       handleSave();
-//     } else {
-//       handleEdit(selectedWorker);
-//     }
-//     setIsEditing(!isEditing);
-//   };
 
   const handleDelete = (worker: Workers) => {
     setWorkerToDelete(worker);
