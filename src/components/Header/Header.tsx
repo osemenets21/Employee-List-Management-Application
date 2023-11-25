@@ -88,9 +88,7 @@ export const Header = () => {
                     <li>
                       <UniversalButton
                         type="link"
-                        action={() =>
-                          navigate(token ? "/workers-list" : "/login")
-                        }
+                        action="/workers-list"
                         title={<span className="dark:text-white">Workers</span>}
                         classes="find-workers-link"
                       />
@@ -153,7 +151,7 @@ export const Header = () => {
               <li>
                 <UniversalButton
                   type="link"
-                  action={() => navigate(token ? "/workers-list" : "/login")}
+                  action="/workers-list"
                   title={<span className="dark:text-white">Workers</span>}
                   classes="find-workers-link"
                 />
