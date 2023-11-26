@@ -135,7 +135,7 @@ export const WorkersList: React.FC = () => {
   return (
     <div className="workers-container bg-gray-200 p-4 dark:bg-slate-600">
       <div className="flex items-start justify-between">
-        <h1 className="text-2xl font-bold mb-4">Find Workers</h1>
+        <h1 className="text-2xl font-bold mb-4 dark:text-white">Find Workers</h1>
         <UniversalButton
           type="link"
           action="/add-worker"
