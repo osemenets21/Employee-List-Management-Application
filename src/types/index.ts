@@ -51,3 +51,15 @@ export type ModalDialogScrollableProps = {
 };
 
 export type SortKeys = keyof Workers;
+
+export type ModalDetailsProps = {
+    selectedWorker: Workers;
+    editedWorker: Workers | null;
+    isEditing: boolean;
+    renderField: (field: keyof Workers) => (event: React.ChangeEvent<HTMLInputElement>) => void;
+    handleSave: () => void;
+    handleEdit: (worker: Workers) => void;
+    setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
+    handleDelete: (worker: Workers) => void;
+    handleCloseDetails: () => void;
+}
