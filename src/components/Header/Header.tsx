@@ -3,7 +3,10 @@ import "./Header.scss";
 import { BsMoon, BsSun } from "react-icons/bs";
 import Hamburger from "hamburger-react";
 import UniversalButton from "../UniversalButton/UniversalButton";
-import avatar from "../../assets/avatar.png";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserTie } from "@fortawesome/free-solid-svg-icons";
+
 import useAuth from "../../hooks/useAuth";
 
 export const Header = () => {
@@ -94,18 +97,16 @@ export const Header = () => {
                   )}
                   {token ? (
                     <li>
-                      <div className="avatar-container rounded-full h-7 w-7 object-cover">
+                      <div className="avatar-container rounded-full h-7 w-7 object-cover flex justify-center items-center">
                         {user && user.avatar ? (
-                          <img
-                            src={avatar}
-                            alt="User Avatar"
-                            className="avatar rounded-full h-7 w-7 object-cover mr-1"
+                          <FontAwesomeIcon
+                            icon={faUserTie}
+                            style={{ color: "white", fontSize: "20px" }}
                           />
                         ) : (
-                          <img
-                            src={avatar}
-                            alt="Default Avatar"
-                            className="avatar rounded-full h-7 w-7 object-cover mr-1"
+                          <FontAwesomeIcon
+                            icon={faUserTie}
+                            style={{ color: "white", fontSize: "20px" }}
                           />
                         )}
                       </div>
@@ -120,22 +121,23 @@ export const Header = () => {
                       />
                     </li>
                   )}
-
-                  <li>
-                    <UniversalButton
-                      type="link"
-                      action="/sign-up"
-                      title={<span className="dark:text-black">Sign Up</span>}
-                      classes="btn-sign-up"
-                    />
-                  </li>
+                  {!token && (
+                    <li>
+                      <UniversalButton
+                        type="link"
+                        action="/sign-up"
+                        title={<span className="dark:text-black">Sign Up</span>}
+                        classes="btn-sign-up"
+                      />
+                    </li>
+                  )}
                   {token && (
                     <li>
                       <UniversalButton
                         type="button"
                         action={handleLogout}
                         title={<span className="dark:text-black">Logout</span>}
-                        classes="btn-logout"
+                        classes="btn-logout "
                       />
                     </li>
                   )}
@@ -158,18 +160,18 @@ export const Header = () => {
 
             {token ? (
               <li>
-                <div className="avatar-container rounded-full h-7 w-7 object-cover">
+                <div className="avatar-container rounded-full h-7 w-7 object-cover flex justify-center items-center">
                   {user && user.avatar ? (
-                    <img
-                      src={avatar}
-                      alt="User Avatar"
-                      className="avatar rounded-full h-7 w-7 object-cover mr-1"
+                    <FontAwesomeIcon
+                    className="ml-4"
+                      icon={faUserTie}
+                      style={{ color: "white", fontSize: "23px" }}
                     />
                   ) : (
-                    <img
-                      src={avatar}
-                      alt="Default Avatar"
-                      className="avatar rounded-full h-7 w-7 object-cover mr-1"
+                    <FontAwesomeIcon
+                    className="ml-3"
+                      icon={faUserTie}
+                      style={{ color: "white", fontSize: "23px" }}
                     />
                   )}
                 </div>
@@ -184,21 +186,23 @@ export const Header = () => {
                 />
               </li>
             )}
-            <li>
-              <UniversalButton
-                type="link"
-                action="/sign-up"
-                title={<span className="dark:text-black">Sign Up</span>}
-                classes="btn-sign-up mr-1 ml-2"
-              />
-            </li>
+            {!token && (
+              <li>
+                <UniversalButton
+                  type="link"
+                  action="/sign-up"
+                  title={<span className="dark:text-black">Sign Up</span>}
+                  classes="btn-sign-up mr-1 ml-2"
+                />
+              </li>
+            )}
             {token && (
               <li>
                 <UniversalButton
                   type="button"
                   action={handleLogout}
                   title={<span className="dark:text-black">Logout</span>}
-                  classes="btn-logout mr-1"
+                  classes="btn-logout mr-1 ml-2"
                 />
               </li>
             )}
