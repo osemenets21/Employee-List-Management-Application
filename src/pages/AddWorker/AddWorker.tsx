@@ -31,6 +31,11 @@ export const AddWorker = () => {
         ? Math.max(...workers.map((worker) => worker.id)) + 1
         : 1;
 
+    if (!newWorker.statusOfWork) {
+      alert("Please select a status of work");
+      return;
+    }
+
     addWorker({ ...newWorker, id: newId });
     setNewWorker({
       firstName: "",
@@ -51,7 +56,13 @@ export const AddWorker = () => {
         <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
           Add new employee
         </h2>
-        <form className="add-form w-full max-w-lg">
+        <form
+          className="add-form w-full max-w-lg"
+          onSubmit={(e) => {
+            e.preventDefault(); 
+            handleAddWorker();
+          }}
+        >
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <div className="flex flex-wrap -mx-3">
@@ -210,12 +221,14 @@ export const AddWorker = () => {
                 required
                 name="status-of-work"
               >
-                <option value="employed">Employee</option>
+                <option value="" disabled>
+                  Select status of work...
+                </option>
+                <option value="Employed">Employee</option>
                 <option value="Self-employed">Self-employed</option>
                 <option value="Maternity-leave">Maternity-leave</option>
                 <option value="Fired">Fired</option>
                 <option value="On-vacation">On vacation</option>
-                
               </select>
             </div>
             <div className="w-full md:w-1/2 px-3">
@@ -240,8 +253,7 @@ export const AddWorker = () => {
           </div>
           <div className="w-full mb-6 md:mb-0">
             <UniversalButton
-              type="button"
-              action={handleAddWorker}
+              type="submit"
               title="Add new employee"
               classes="btn-submit"
             />

@@ -1,3 +1,5 @@
+@import "../../mixins/mixins";
+
 .add-page {
     padding: 20px;
     display: flex;
@@ -13,4 +15,8 @@ button {
     border-radius: 5px;
     padding: 10px 20px;
     font-size: pointer;
+}
+
+.btn-submit {
+    @include button-secondary ;
 }

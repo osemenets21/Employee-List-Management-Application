@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 
 export interface IButtonProps {
-  type: "button" | "link";
-  action: (() => void) | string;
+  type: "button" | "link" | "submit";
+  action?: (() => void) | string;
   title: string | JSX.Element;
   classes?: string;
   isDisabled?: boolean;
