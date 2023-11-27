@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './SignUp.scss';
 import UniversalButton from '../../components/UniversalButton/UniversalButton';
+import { AlertSuccess } from '../../components/AlertSuccess/AlertSuccess';
 
 export const SignUp: React.FC = () => {
   const [password, setPassword] = useState("");
@@ -107,7 +108,7 @@ export const SignUp: React.FC = () => {
           {"Sign Up"}
         </button>
       </form>
-      {successMessage && <div className="success-message">{successMessage}</div>}
+      {successMessage && <AlertSuccess title={"Registration was successful"}/>}
       <div className="flex gap-2 mt-5">
         <p>Have an account?</p>
 

@@ -8,6 +8,10 @@ export interface IButtonProps {
   isDisabled?: boolean;
 }
 
+export interface IAlertSuccess {
+    title: string;
+}
+
 export type Props = {
   children: ReactNode;
 };
@@ -63,3 +67,4 @@ export type ModalDetailsProps = {
     handleDelete: (worker: Workers) => void;
     handleCloseDetails: () => void;
 }
+

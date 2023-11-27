@@ -249,7 +249,7 @@ export const WorkersList: React.FC = () => {
         )}
       </div>
 
-      {showSuccessAlert && <AlertSuccess />}
+    {showSuccessAlert && <AlertSuccess title={"Your item was updated successfully"}/>}
 
       {showDeleteAlert && (
         <ModalDialogScrollable
