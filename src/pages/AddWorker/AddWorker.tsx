@@ -1,8 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, useCallback } from "react";
 import { WorkersListContext } from "../../context/WorkersListContext";
 import { WorkersContextType } from "../../types";
 import "./AddWorker.scss";
 import UniversalButton from "../../components/UniversalButton/UniversalButton";
+import { AlertSuccess } from "../../components/AlertSuccess/AlertSuccess";
 
 export const AddWorker = () => {
   const { workers, addWorker } = useContext(
@@ -19,39 +20,71 @@ export const AddWorker = () => {
     statusOfWork: "",
     phone: "",
   });
+  const [showAlert, setShowAlert] = useState<boolean>(false);
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [disabled, setDisabled] = useState<boolean>(true);
+
+  const isFormValid = useCallback(() => {
+    return (
+      Boolean(newWorker.firstName) &&
+      Boolean(newWorker.lastName) &&
+      Boolean(newWorker.dateOfBirth) &&
+      Boolean(newWorker.street) &&
+      Boolean(newWorker.city) &&
+      Boolean(newWorker.postCode) &&
+      Boolean(newWorker.salary) &&
+      Boolean(newWorker.statusOfWork) &&
+      Boolean(newWorker.phone)
+    );
+  }, [newWorker]);
+
+  useEffect(() => {
+    if (isSubmitted) {
+        setDisabled(false)
+      }
+  }, [isSubmitted])
+
+  useEffect(() => {
+    setIsSubmitted(isFormValid());
+  }, [newWorker, isFormValid]);
+
+
+  
 
   const handleAddWorker = () => {
-    if (newWorker.firstName.trim() === "" || newWorker.lastName.trim() === "") {
-      alert("First name and last name cannot be empty");
-      return;
+    if (isFormValid()) {
+      const newId =
+        workers.length > 0
+          ? Math.max(...workers.map((worker) => worker.id)) + 1
+          : 1;
+
+      if (!newWorker.statusOfWork) {
+        alert("Please select a status of work");
+        return;
+      }
+
+      addWorker({ ...newWorker, id: newId });
+      setNewWorker({
+        firstName: "",
+        lastName: "",
+        dateOfBirth: "",
+        street: "",
+        city: "",
+        postCode: "",
+        salary: 0,
+        statusOfWork: "",
+        phone: "",
+      });
+
+      // setIsSubmitted(true);
+      setShowAlert(true);
+      setTimeout(() => setShowAlert(false), 3000);
     }
-
-    const newId =
-      workers.length > 0
-        ? Math.max(...workers.map((worker) => worker.id)) + 1
-        : 1;
-
-    if (!newWorker.statusOfWork) {
-      alert("Please select a status of work");
-      return;
-    }
-
-    addWorker({ ...newWorker, id: newId });
-    setNewWorker({
-      firstName: "",
-      lastName: "",
-      dateOfBirth: "",
-      street: "",
-      city: "",
-      postCode: "",
-      salary: 0,
-      statusOfWork: "",
-      phone: "",
-    });
   };
 
   return (
     <div className="add-page dark:bg-slate-600">
+      {showAlert && <AlertSuccess title={"Worker added successfully!"} />}
       <div className="form-container">
         <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
           Add new employee
@@ -59,7 +92,7 @@ export const AddWorker = () => {
         <form
           className="add-form w-full max-w-lg"
           onSubmit={(e) => {
-            e.preventDefault(); 
+            e.preventDefault();
             handleAddWorker();
           }}
         >
@@ -255,7 +288,8 @@ export const AddWorker = () => {
             <UniversalButton
               type="submit"
               title="Add new employee"
-              classes="btn-submit"
+              isDisabled={disabled}
+              classes={isSubmitted ? "btn-submit" : "btn-submit-transparent"}
             />
           </div>
         </form>

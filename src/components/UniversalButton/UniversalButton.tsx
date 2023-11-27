@@ -22,7 +22,7 @@ const UniversalButton: React.FC<IButtonProps> = ({
     );
   } else if (type === "submit") {
     return (
-      <button {...commonProps} type="submit" onClick={action as () => void}>
+      <button {...commonProps} disabled={isDisabled} type="submit" onClick={action as () => void}>
         {title}
       </button>
     );
