@@ -38,7 +38,7 @@ export const SignUp: React.FC = () => {
 
     try {
       const response = await fetch(
-        "https://fair-teal-puppy-veil.cyclic.app/register",
+        "http://localhost:8000/register",
         {
           method: "POST",
           headers: {
