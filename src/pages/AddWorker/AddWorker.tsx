@@ -40,16 +40,13 @@ export const AddWorker = () => {
 
   useEffect(() => {
     if (isSubmitted) {
-        setDisabled(false)
-      }
-  }, [isSubmitted])
+      setDisabled(false);
+    }
+  }, [isSubmitted]);
 
   useEffect(() => {
     setIsSubmitted(isFormValid());
   }, [newWorker, isFormValid]);
-
-
-  
 
   const handleAddWorker = () => {
     if (isFormValid()) {
@@ -76,7 +73,6 @@ export const AddWorker = () => {
         phone: "",
       });
 
-      // setIsSubmitted(true);
       setShowAlert(true);
       setTimeout(() => setShowAlert(false), 3000);
     }
@@ -90,6 +86,7 @@ export const AddWorker = () => {
           Add new employee
         </h2>
         <form
+          name="AddNewWorker"
           className="add-form w-full max-w-lg"
           onSubmit={(e) => {
             e.preventDefault();
