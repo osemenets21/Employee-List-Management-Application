@@ -7,7 +7,7 @@ import useAuth from "../../hooks/useAuth";
 export const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState<string | null>(null); // Type assertion for error
+  const [error, setError] = useState<string | null>(null);
   const { handleLogin } = useAuth();
   const navigate = useNavigate();
 
@@ -30,7 +30,7 @@ export const Login: React.FC = () => {
 
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <h1 className="text-3xl text-center font-semibold my-7">Login</h1>
+      <h1 className="text-3xl text-center font-semibold my-7 dark:text-white">Login</h1>
 
       {error && (
         <div className="text-red-500 text-center my-3">{error}</div>
@@ -67,7 +67,7 @@ export const Login: React.FC = () => {
         <UniversalButton
           type="link"
           action="/sign-up"
-          title={<span className="text-blue-700">Sign up</span>}
+          title={<span className="text-blue-700 dark:text-white">Sign up</span>}
         />
       </div>
     </div>
