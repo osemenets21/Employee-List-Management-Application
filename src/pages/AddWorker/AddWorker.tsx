@@ -54,6 +54,7 @@ export const AddWorker = () => {
         workers.length > 0
           ? Math.max(...workers.map((worker) => worker.id)) + 1
           : 1;
+          
 
       if (!newWorker.statusOfWork) {
         alert("Please select a status of work");
