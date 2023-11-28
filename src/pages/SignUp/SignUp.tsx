@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import './SignUp.scss';
-import UniversalButton from '../../components/UniversalButton/UniversalButton';
+import React, { useState } from "react";
+import "./SignUp.scss";
+import UniversalButton from "../../components/UniversalButton/UniversalButton";
+import { AlertSuccess } from "../../components/AlertSuccess/AlertSuccess";
 
 export const SignUp: React.FC = () => {
   const [password, setPassword] = useState("");
@@ -16,8 +17,6 @@ export const SignUp: React.FC = () => {
     return emailPattern.test(email);
   };
 
-  
-
   const validatePassword = (password: string) => {
     return password.length >= 8;
   };
@@ -32,43 +31,48 @@ export const SignUp: React.FC = () => {
       return;
     }
 
-
     if (!validatePassword(password)) {
       setPasswordError("Password must be at least 8 characters long.");
       return;
     }
 
     try {
-      const response = await fetch('https://fair-teal-puppy-veil.cyclic.app/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: userName,
-          email: email,
-          password: password,
-        }),
-      });
+      const response = await fetch(
+        "https://fair-teal-puppy-veil.cyclic.app/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: userName,
+            email: email,
+            password: password,
+          }),
+        }
+      );
 
       if (!response.ok) {
-        throw new Error('Error during sign-up');
+        throw new Error("Error during sign-up");
       }
 
-      setSuccessMessage('User registered successfully');
+      setSuccessMessage("User registered successfully");
 
       setPasswordError("");
       setEmailError("");
       setSignupError("");
-      console.log('User registered successfully');
+      console.log("User registered successfully");
     } catch (error) {
-      setSignupError('Error during sign-up. Please try again.');
+      setSignupError("Error during sign-up. Please try again.");
     }
   };
 
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <h1 className="text-3xl text-center font-semibold my-7">Sign Up</h1>
+      {successMessage && <AlertSuccess title={"Registration was successful"} />}
+      <h1 className="text-3xl text-center font-semibold my-7 dark:text-white">
+        Sign Up
+      </h1>
       <form className="flex flex-col gap-4">
         <input
           type="text"
@@ -107,14 +111,13 @@ export const SignUp: React.FC = () => {
           {"Sign Up"}
         </button>
       </form>
-      {successMessage && <div className="success-message">{successMessage}</div>}
       <div className="flex gap-2 mt-5">
         <p>Have an account?</p>
 
         <UniversalButton
           type="link"
           action="/login"
-          title={<span className="text-blue-700">Sign in</span>}
+          title={<span className="text-blue-700 dark:text-white">Sign in</span>}
         />
       </div>
     </div>

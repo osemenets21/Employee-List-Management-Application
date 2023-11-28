@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <main className="content">
+      <main className="content dark:bg-slate-600">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

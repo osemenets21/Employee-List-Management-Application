@@ -1,8 +1,9 @@
 import React from "react";
+import { IAlertSuccess } from "../../types";
 
-export const AlertSuccess = () => {
+export const AlertSuccess = ({title}: IAlertSuccess) => {
   return (
-    <div className="py-10 bg-transparent dark:bg-dark absolute top-0">
+    <div className="py-10 bg-transparent dark:bg-dark absolute top-0 left-10">
       <div className="container">
         <div className="rounded-md bg-[#C4F9E2] p-4">
           <p className="flex items-center text-sm font-medium text-[#004434]">
@@ -23,7 +24,7 @@ export const AlertSuccess = () => {
                 />
               </svg>
             </span>
-            Your item has been updated successfully
+                {title}
           </p>
         </div>
       </div>

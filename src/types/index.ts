@@ -1,11 +1,15 @@
 import { ReactNode } from "react";
 
 export interface IButtonProps {
-  type: "button" | "link";
-  action: (() => void) | string;
+  type: "button" | "link" | "submit";
+  action?: (() => void) | string;
   title: string | JSX.Element;
   classes?: string;
   isDisabled?: boolean;
+}
+
+export interface IAlertSuccess {
+    title: string;
 }
 
 export type Props = {
@@ -51,3 +55,16 @@ export type ModalDialogScrollableProps = {
 };
 
 export type SortKeys = keyof Workers;
+
+export type ModalDetailsProps = {
+    selectedWorker: Workers;
+    editedWorker: Workers | null;
+    isEditing: boolean;
+    renderField: (field: keyof Workers) => (event: React.ChangeEvent<HTMLInputElement>) => void;
+    handleSave: () => void;
+    handleEdit: (worker: Workers) => void;
+    setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
+    handleDelete: (worker: Workers) => void;
+    handleCloseDetails: () => void;
+}
+
