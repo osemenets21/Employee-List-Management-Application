@@ -18,7 +18,7 @@ const useAuth = () => {
 
   const handleLogin = async (email: string, password: string) => {
     try {
-      const response = await fetch("http://localhost:8000/login", {
+      const response = await fetch("https://fair-teal-puppy-veil.cyclic.app/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
