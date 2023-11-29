@@ -7,7 +7,6 @@ import { ModalDialogScrollable } from "../../components/ModalDialogScrollable/Mo
 import { AlertSuccess } from "../../components/AlertSuccess/AlertSuccess";
 import { ModalDetails } from "../../components/ModalDetails/ModalDetails";
 
-
 export const WorkersList: React.FC = () => {
   const workersContext = useContext<WorkersContextType | undefined>(
     WorkersListContext
@@ -162,14 +161,7 @@ export const WorkersList: React.FC = () => {
           <table className="min-w-full bg-white border border-gray-300 dark:bg-slate-600 dark:text-white">
             <thead className="bg-gray-800 text-white">
               <tr>
-                <th onClick={() => handleSort("id")}>
-                  #
-                  {sortColumn === "id" && sortOrder === "asc" ? (
-                    <span className="up-arrow">▲</span>
-                  ) : (
-                    <span className="down-arrow">▼</span>
-                  )}
-                </th>
+                <th>#</th>
                 <th onClick={() => handleSort("firstName")}>
                   Name
                   {sortColumn === "firstName" && sortOrder === "asc" ? (
@@ -251,7 +243,9 @@ export const WorkersList: React.FC = () => {
         )}
       </div>
 
-    {showSuccessAlert && <AlertSuccess title={"Your item was updated successfully"}/>}
+      {showSuccessAlert && (
+        <AlertSuccess title={"Your item was updated successfully"} />
+      )}
 
       {showDeleteAlert && (
         <ModalDialogScrollable
