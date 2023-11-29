@@ -4,9 +4,10 @@ import { WorkersContextType } from "../../types";
 import "./AddWorker.scss";
 import UniversalButton from "../../components/UniversalButton/UniversalButton";
 import { AlertSuccess } from "../../components/AlertSuccess/AlertSuccess";
+const { v4: uuidv4 } = require('uuid');
 
 export const AddWorker = () => {
-  const { workers, addWorker } = useContext(
+  const { addWorker } = useContext(
     WorkersListContext
   ) as WorkersContextType;
   const [newWorker, setNewWorker] = useState({
@@ -50,10 +51,8 @@ export const AddWorker = () => {
 
   const handleAddWorker = () => {
     if (isFormValid()) {
-      const newId =
-        workers.length > 0
-          ? Math.max(...workers.map((worker) => worker.id)) + 1
-          : 1;
+      const newId = uuidv4();
+      console.log(newId);
           
 
       if (!newWorker.statusOfWork) {
@@ -61,7 +60,7 @@ export const AddWorker = () => {
         return;
       }
 
-      addWorker({ ...newWorker, id: newId });
+      addWorker({  id: newId, ...newWorker });
       setNewWorker({
         firstName: "",
         lastName: "",
