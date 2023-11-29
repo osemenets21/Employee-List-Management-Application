@@ -6,6 +6,7 @@ import UniversalButton from "../../components/UniversalButton/UniversalButton";
 import { ModalDialogScrollable } from "../../components/ModalDialogScrollable/ModalDialogScrollable";
 import { AlertSuccess } from "../../components/AlertSuccess/AlertSuccess";
 import { ModalDetails } from "../../components/ModalDetails/ModalDetails";
+const { v4: uuidv4 } = require('uuid');
 
 export const WorkersList: React.FC = () => {
   const workersContext = useContext<WorkersContextType | undefined>(
@@ -146,6 +147,7 @@ export const WorkersList: React.FC = () => {
       <div className="mb-4">
         <input
           type="text"
+          name="Search"
           placeholder={searchText ? "" : "Search for a worker..."}
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
@@ -204,9 +206,9 @@ export const WorkersList: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {workersToDisplay.map((worker) => (
-                <tr key={worker.id}>
-                  <td className="py-2 px-4 text-center">{worker.id}</td>
+              {workersToDisplay.map((worker, index) => (
+                <tr key={uuidv4()}>
+                  <td className="py-2 px-4 text-center">{index + 1}</td>
                   <td className="py-2 px-4 text-center">{worker.firstName}</td>
                   <td className="py-2 px-4 text-center">{worker.lastName}</td>
                   <td className="py-2 px-4 text-center">{worker.salary} zł</td>

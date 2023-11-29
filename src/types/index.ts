@@ -35,7 +35,7 @@ export type WorkersContextType = {
   addWorker: (newWorker: Workers) => void;
   editWorker: (worker: Workers) => void;
   updatedWorker: Workers | null;
-  deleteWorker: (workerId: number) => Promise<void>;
+  deleteWorker: (workerId: string) => Promise<void>;
   maxPage: number;
   pageNumber: number;
   getWorkers: (page: number, limit: number) => Promise<void>;

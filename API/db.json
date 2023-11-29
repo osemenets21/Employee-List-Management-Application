@@ -241,16 +241,28 @@
       "phone": "+48663332211"
     },
     {
-      "id": "f902d982-0233-4d29-be56-428fc997e0e1",
-      "firstName": "fdgfhg",
-      "lastName": "hgfh",
+      "id": "7be783b3-ea76-4338-bc6f-bd1d3f10c77a",
+      "firstName": "Oleh",
+      "lastName": "Semenets",
+      "dateOfBirth": "2023-11-16",
+      "street": "gdgeegtr",
+      "city": "fdsf",
+      "postCode": "345435",
+      "salary": 345435,
+      "statusOfWork": "Fired",
+      "phone": "5434353"
+    },
+    {
+      "id": "5b25e86e-e63b-4015-a136-894402c46f75",
+      "firstName": "Andrii",
+      "lastName": "Karyi",
       "dateOfBirth": "2023-11-15",
-      "street": "gfgdfg",
-      "city": "fdgfg",
-      "postCode": "456456",
-      "salary": 45645,
-      "statusOfWork": "Maternity-leave",
-      "phone": "546456"
+      "street": "fdfhfghhh",
+      "city": "sgdfgfdg",
+      "postCode": "4645657",
+      "salary": 344645,
+      "statusOfWork": "Fired",
+      "phone": "34465456"
     }
   ]
 }

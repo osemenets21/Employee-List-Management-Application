@@ -36,7 +36,7 @@ export const Login: React.FC = () => {
         <div className="text-red-500 text-center my-3">{error}</div>
       )}
 
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-4" name="LoginForm" onSubmit={handleSubmit}>
         <input
           type="email"
           placeholder="email"

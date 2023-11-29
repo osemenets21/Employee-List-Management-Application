@@ -73,7 +73,7 @@ export const SignUp: React.FC = () => {
       <h1 className="text-3xl text-center font-semibold my-7 dark:text-white">
         Sign Up
       </h1>
-      <form className="flex flex-col gap-4">
+      <form className="flex flex-col gap-4" name="SignUpForm">
         <input
           type="text"
           placeholder="username"
