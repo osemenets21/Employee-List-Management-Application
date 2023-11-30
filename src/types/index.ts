@@ -6,6 +6,7 @@ export interface IButtonProps {
   title: string | JSX.Element;
   classes?: string;
   isDisabled?: boolean;
+  onClick?: () => void;
 }
 
 export interface IAlertSuccess {

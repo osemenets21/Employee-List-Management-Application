@@ -157,7 +157,7 @@ export const WorkersList: React.FC = () => {
         )}
       </div>
       <div className="WorkersList">
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto sm:overflow-x-hidden">
           <table className="min-w-full bg-white border border-gray-300 dark:bg-slate-600 dark:text-white">
             <thead className="bg-gray-800 text-white">
               <tr>
