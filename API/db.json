@@ -263,6 +263,30 @@
       "salary": 3980,
       "statusOfWork": "Employed",
       "phone": "987456123"
+    },
+    {
+      "firstName": "Andrii",
+      "lastName": "fdgf",
+      "dateOfBirth": "2023-11-29",
+      "street": "regrg",
+      "city": "ergregr",
+      "postCode": "345345",
+      "salary": "454534",
+      "statusOfWork": "Self-employed",
+      "phone": "34534543545",
+      "id": "30a4b4dc-8d22-4a6a-b46f-75b0cc2e6a15"
+    },
+    {
+      "firstName": "dsfdsf",
+      "lastName": "ferfeds",
+      "dateOfBirth": "2023-12-01",
+      "street": "sdfsdf",
+      "city": "sdfdsf",
+      "postCode": "997",
+      "salary": "90890",
+      "statusOfWork": "Self-employed",
+      "phone": "870",
+      "id": "dd6a768d-216c-4730-9550-55e999cd4136"
     }
   ]
 }
