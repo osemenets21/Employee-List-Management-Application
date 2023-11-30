@@ -335,6 +335,30 @@
       "statusOfWork": "Maternity-leave",
       "phone": "234234234",
       "id": "a061c991-af8b-419f-a8bb-420df6dbb5c4"
+    },
+    {
+      "phone": 4454544534,
+      "statusOfWork": "Fired",
+      "salary": 3837733,
+      "postCode": 333333,
+      "city": "sfdgdg",
+      "street": "fdgdfgf",
+      "dateOfBirth": "2023-11-15T23:00:00.000Z",
+      "lastName": "HBkkj",
+      "firstName": "gdffdggfd",
+      "id": "1625f49f-1e9f-441c-8987-ddde8ed893dd"
+    },
+    {
+      "phone": 8988,
+      "statusOfWork": "Self-employed",
+      "salary": 89889,
+      "postCode": 9090,
+      "city": "999",
+      "street": "oimkr",
+      "dateOfBirth": "2023-11-16T23:00:00.000Z",
+      "lastName": "fdgdg",
+      "firstName": "7747747",
+      "id": "a0cc16f1-b4e4-4051-9941-f4a315080158"
     }
   ]
 }

@@ -1,12 +1,11 @@
 import React, { useContext, useState } from "react";
-import { useForm, Controller, SubmitHandler, Resolver } from "react-hook-form";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { WorkersListContext } from "../../context/WorkersListContext";
 import { Workers, WorkersContextType } from "../../types";
 import "./AddWorker.scss";
 import UniversalButton from "../../components/UniversalButton/UniversalButton";
 import { AlertSuccess } from "../../components/AlertSuccess/AlertSuccess";
 import { addWorkerSchema } from "../../Validations/AddWorkerValidation";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 const { v4: uuidv4 } = require("uuid");
 
@@ -87,23 +86,6 @@ export const AddWorker = () => {
             render={({ field }) => (
               <input
                 {...field}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                type="date"
-                placeholder="Дата народження"
-                value={
-                  field.value instanceof Date
-                    ? field.value.toISOString().split("T")[0]
-                    : field.value
-                }
-              />
-            )}
-          />
-          <Controller
-            name="dateOfBirth"
-            control={control}
-            render={({ field }) => (
-              <input
-                {...field}
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 type="date"
                 placeholder="Дата народження"
@@ -145,6 +127,7 @@ export const AddWorker = () => {
           <Controller
             name="postCode"
             control={control}
+            defaultValue={0}
             render={({ field }) => (
               <input
                 {...field}

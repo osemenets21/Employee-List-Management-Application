@@ -59,7 +59,7 @@ export const WorkersList: React.FC = () => {
   };
 
   const confirmDelete = () => {
-    if (workerToDelete && workersContext) {
+    if (workerToDelete && workerToDelete.id && workersContext) {
       workersContext.deleteWorker(workerToDelete.id);
       setIsEditing(false);
       setEditedWorker(null);

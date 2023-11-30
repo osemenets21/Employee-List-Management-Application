@@ -18,7 +18,7 @@ export type Props = {
 };
 
 export type Workers = {
-  id: string;
+  id?: string;
   firstName: string;
   lastName: string;
   dateOfBirth: Date;

@@ -77,7 +77,13 @@ export const ModalDetails = ({
                       <input
                         id="DateOfBirth"
                         type="text"
-                        value={editedWorker ? editedWorker.dateOfBirth : ""}
+                        value={
+                          editedWorker
+                            ? editedWorker.dateOfBirth
+                                .toISOString()
+                                .split("T")[0]
+                            : new Date().toISOString().split("T")[0]
+                        }
                         className={`px-2 ${isEditing ? "input-editing" : ""}`}
                         onChange={renderField("dateOfBirth")}
                       />
