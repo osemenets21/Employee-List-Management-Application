@@ -229,18 +229,6 @@
       "phone": "+48778889900"
     },
     {
-      "id": "10d0d442-14fe-4a37-87e9-1c0bc15f31a6",
-      "firstName": "Adrian",
-      "lastName": "Lewandowski",
-      "dateOfBirth": "14-12-1984",
-      "street": "Różana",
-      "city": "Bielsko-Biała",
-      "postCode": "43-010",
-      "salary": "1900",
-      "statusOfWork": "employed",
-      "phone": "+48663332211"
-    },
-    {
       "id": "7be783b3-ea76-4338-bc6f-bd1d3f10c77a",
       "firstName": "Oleh",
       "lastName": "Semenets",
@@ -263,6 +251,18 @@
       "salary": 344645,
       "statusOfWork": "Fired",
       "phone": "34465456"
+    },
+    {
+      "id": "6c406240-189e-4904-a5b5-73112a25ea10",
+      "firstName": "Krystyna",
+      "lastName": "Pawlak",
+      "dateOfBirth": "1987-09-09",
+      "street": "Słowackiego",
+      "city": "Bydgoszcz",
+      "postCode": "12987",
+      "salary": 3980,
+      "statusOfWork": "Employed",
+      "phone": "987456123"
     }
   ]
 }

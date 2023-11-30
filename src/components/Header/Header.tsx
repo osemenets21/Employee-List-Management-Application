@@ -58,6 +58,11 @@ export const Header = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
+  const handleItemClick = () => {
+    setShowMenu(false);
+    setOpen(false);
+  };
+
   return (
     <header
       className={`header ${
@@ -83,7 +88,10 @@ export const Header = () => {
               <Hamburger size={20} toggled={isOpen} toggle={setOpen} />
             </div>
             {showMenu && (
-              <div className="menu-wrapper dark:bg-slate-700">
+              <div
+                className="menu-wrapper dark:bg-slate-700"
+                onClick={() => handleItemClick()}
+              >
                 <ul className={`header-nav-menu vertical `}>
                   {token && (
                     <li>
@@ -163,13 +171,13 @@ export const Header = () => {
                 <div className="avatar-container rounded-full h-7 w-7 object-cover flex justify-center items-center">
                   {user && user.avatar ? (
                     <FontAwesomeIcon
-                    className="ml-4"
+                      className="ml-4"
                       icon={faUserTie}
                       style={{ color: "white", fontSize: "23px" }}
                     />
                   ) : (
                     <FontAwesomeIcon
-                    className="ml-3"
+                      className="ml-3"
                       icon={faUserTie}
                       style={{ color: "white", fontSize: "23px" }}
                     />
