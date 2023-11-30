@@ -287,6 +287,54 @@
       "statusOfWork": "Self-employed",
       "phone": "870",
       "id": "dd6a768d-216c-4730-9550-55e999cd4136"
+    },
+    {
+      "firstName": "",
+      "lastName": "",
+      "dateOfBirth": "",
+      "street": "",
+      "city": "",
+      "postCode": "",
+      "salary": 0,
+      "statusOfWork": "",
+      "phone": "",
+      "id": "ce93f0e1-4b30-4c5f-9f00-f4b09967fade"
+    },
+    {
+      "firstName": "",
+      "lastName": "",
+      "dateOfBirth": "",
+      "street": "",
+      "city": "",
+      "postCode": "",
+      "salary": 0,
+      "statusOfWork": "",
+      "phone": "",
+      "id": "84a1bfdc-5317-463f-b9a3-e216efa0ee6e"
+    },
+    {
+      "firstName": "O",
+      "lastName": "",
+      "dateOfBirth": "",
+      "street": "",
+      "city": "",
+      "postCode": "",
+      "salary": 0,
+      "statusOfWork": "",
+      "phone": "",
+      "id": "83ca281e-cbcb-4508-97b6-0de59a843344"
+    },
+    {
+      "firstName": "Oleh",
+      "lastName": "Semenets",
+      "dateOfBirth": "2023-11-16",
+      "street": "Kknkj",
+      "city": "dfdfgr",
+      "postCode": "234324",
+      "salary": "423423",
+      "statusOfWork": "Maternity-leave",
+      "phone": "234234234",
+      "id": "a061c991-af8b-419f-a8bb-420df6dbb5c4"
     }
   ]
 }

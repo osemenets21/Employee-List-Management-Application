@@ -1,39 +1,47 @@
-import React, { useContext, useEffect, useCallback, useState } from "react";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import React, { useContext, useState } from "react";
+import { useForm, Controller, SubmitHandler, Resolver } from "react-hook-form";
 import { WorkersListContext } from "../../context/WorkersListContext";
 import { Workers, WorkersContextType } from "../../types";
 import "./AddWorker.scss";
 import UniversalButton from "../../components/UniversalButton/UniversalButton";
 import { AlertSuccess } from "../../components/AlertSuccess/AlertSuccess";
+import { addWorkerSchema } from "../../Validations/AddWorkerValidation";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 const { v4: uuidv4 } = require("uuid");
 
 export const AddWorker = () => {
   const { addWorker } = useContext(WorkersListContext) as WorkersContextType;
-  const { handleSubmit, control, reset } = useForm<Workers>();
+  const { handleSubmit, control, reset } = useForm<Workers>({
+    resolver: yupResolver(addWorkerSchema),
+  });
   const [showAlert, setShowAlert] = useState<boolean>(false);
-//   const [isDiasabled, setIsDisabled] = useState<boolean>(true);
-  
 
-  const onSubmit: SubmitHandler<Workers> = (data) => {
+  const onSubmit: SubmitHandler<Workers> = async (data) => {
     const newId = uuidv4();
-    if (!data.statusOfWork) {
-      alert("Будь ласка, оберіть статус праці");
-      return;
-    }
+
+    let formData = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      dateOfBirth: data.dateOfBirth,
+      street: data.street,
+      city: data.city,
+      postCode: data.postCode,
+      salary: data.salary,
+      statusOfWork: data.statusOfWork,
+      phone: data.phone,
+    };
+
+    const isValid = await addWorkerSchema.isValid(formData);
+
+    console.log(isValid);
 
     const newWorker = { ...data, id: newId };
-    console.log(newWorker);
-    
-
     addWorker(newWorker);
-
-
     reset();
     setShowAlert(true);
     setTimeout(() => setShowAlert(false), 3000);
   };
-
-
 
   return (
     <div className="add-page dark:bg-slate-600">
@@ -76,13 +84,34 @@ export const AddWorker = () => {
           <Controller
             name="dateOfBirth"
             control={control}
-            defaultValue=""
             render={({ field }) => (
               <input
                 {...field}
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 type="date"
                 placeholder="Дата народження"
+                value={
+                  field.value instanceof Date
+                    ? field.value.toISOString().split("T")[0]
+                    : field.value
+                }
+              />
+            )}
+          />
+          <Controller
+            name="dateOfBirth"
+            control={control}
+            render={({ field }) => (
+              <input
+                {...field}
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                type="date"
+                placeholder="Дата народження"
+                value={
+                  field.value instanceof Date
+                    ? field.value.toISOString().split("T")[0]
+                    : field.value || ""
+                }
               />
             )}
           />
@@ -116,7 +145,6 @@ export const AddWorker = () => {
           <Controller
             name="postCode"
             control={control}
-            defaultValue=""
             render={({ field }) => (
               <input
                 {...field}
@@ -166,7 +194,7 @@ export const AddWorker = () => {
           <Controller
             name="phone"
             control={control}
-            defaultValue=""
+            defaultValue={0}
             render={({ field }) => (
               <input
                 {...field}

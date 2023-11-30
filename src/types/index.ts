@@ -21,13 +21,13 @@ export type Workers = {
   id: string;
   firstName: string;
   lastName: string;
-  dateOfBirth: string;
+  dateOfBirth: Date;
   street: string;
   city: string;
-  postCode: string;
+  postCode: number;
   salary: number;
   statusOfWork: string;
-  phone: string;
+  phone: number;
 };
 
 export type WorkersContextType = {
