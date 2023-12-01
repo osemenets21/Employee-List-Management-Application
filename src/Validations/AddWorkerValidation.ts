@@ -10,6 +10,7 @@ export const addWorkerSchema = yup.object().shape({
   salary: yup.number().required(),
   statusOfWork: yup.string().required(),
   phone: yup.number().required(),
+  dateOfEmployment: yup.date().required(),
 })
 
 

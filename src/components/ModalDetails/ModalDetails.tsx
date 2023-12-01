@@ -3,6 +3,7 @@ import UniversalButton from "../UniversalButton/UniversalButton";
 import UseAnimations from "react-useanimations";
 import trash2 from "react-useanimations/lib/trash2";
 import { ModalDetailsProps } from "../../types";
+import './ModalDetails.scss';
 
 export const ModalDetails = ({
   selectedWorker,
@@ -78,10 +79,14 @@ export const ModalDetails = ({
                         id="DateOfBirth"
                         type="text"
                         value={
-                          editedWorker
+                          editedWorker &&
+                          editedWorker.dateOfBirth instanceof Date
                             ? editedWorker.dateOfBirth
                                 .toISOString()
                                 .split("T")[0]
+                            : editedWorker &&
+                              typeof editedWorker.dateOfBirth === "string"
+                            ? editedWorker.dateOfBirth
                             : new Date().toISOString().split("T")[0]
                         }
                         className={`px-2 ${isEditing ? "input-editing" : ""}`}
@@ -170,6 +175,30 @@ export const ModalDetails = ({
                         value={editedWorker ? editedWorker.phone : ""}
                         className={`px-2 ${isEditing ? "input-editing" : ""}`}
                         onChange={renderField("phone")}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label htmlFor="employment">Employment:</label>
+                    </td>
+                    <td>
+                    <input
+                        id="employment"
+                        type="text"
+                        value={
+                          editedWorker &&
+                          editedWorker.dateOfEmployment instanceof Date
+                            ? editedWorker.dateOfEmployment
+                                .toISOString()
+                                .split("T")[0]
+                            : editedWorker &&
+                              typeof editedWorker.dateOfEmployment === "string"
+                            ? editedWorker.dateOfEmployment
+                            : new Date().toISOString().split("T")[0]
+                        }
+                        className={`px-2 ${isEditing ? "input-editing" : ""}`}
+                        onChange={renderField("dateOfEmployment")}
                       />
                     </td>
                   </tr>

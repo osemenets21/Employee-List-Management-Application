@@ -45,13 +45,13 @@ export const AddWorker = () => {
   return (
     <div className="add-page dark:bg-slate-600">
       {showAlert && <AlertSuccess title={"Працівника успішно додано!"} />}
-      <div className="form-container">
+      <div>
         <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
           Add new employee
         </h2>
         <form
           name="AddNewWorker"
-          className="add-form w-full max-w-lg"
+          className="add-form flex flex-wrap justify-end"
           onSubmit={handleSubmit(onSubmit)}
         >
           <Controller
@@ -61,7 +61,7 @@ export const AddWorker = () => {
             render={({ field }) => (
               <input
                 {...field}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:putline-none focus:bg-white"
+                className="appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mr-5 leading-tight focus:putline-none focus:bg-white"
                 placeholder="Ім'я"
               />
             )}
@@ -74,7 +74,7 @@ export const AddWorker = () => {
             render={({ field }) => (
               <input
                 {...field}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:putline-none focus:bg-white"
+                className="appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:putline-none focus:bg-white"
                 placeholder="Прізвище"
               />
             )}
@@ -86,13 +86,13 @@ export const AddWorker = () => {
             render={({ field }) => (
               <input
                 {...field}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounded mr-5 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 type="date"
                 placeholder="Дата народження"
                 value={
                   field.value instanceof Date
                     ? field.value.toISOString().split("T")[0]
-                    : field.value || ""
+                    : (field.value as string) || ""
                 }
               />
             )}
@@ -105,7 +105,7 @@ export const AddWorker = () => {
             render={({ field }) => (
               <input
                 {...field}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 placeholder="Вулиця"
               />
             )}
@@ -118,7 +118,7 @@ export const AddWorker = () => {
             render={({ field }) => (
               <input
                 {...field}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 mr-5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 placeholder="Місто"
               />
             )}
@@ -131,7 +131,7 @@ export const AddWorker = () => {
             render={({ field }) => (
               <input
                 {...field}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 type="number"
                 placeholder="Поштовий індекс"
               />
@@ -145,7 +145,7 @@ export const AddWorker = () => {
             render={({ field }) => (
               <input
                 {...field}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 mr-5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 type="number"
                 placeholder="Зарплата"
               />
@@ -159,7 +159,7 @@ export const AddWorker = () => {
             render={({ field }) => (
               <select
                 {...field}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 placeholder="Статус роботи"
               >
                 <option value="" disabled>
@@ -181,9 +181,29 @@ export const AddWorker = () => {
             render={({ field }) => (
               <input
                 {...field}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 mr-5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 type="number"
                 placeholder="Номер телефону"
+              />
+            )}
+          />
+
+          <Controller
+            name="dateOfEmployment"
+            control={control}
+            render={({ field }) => (
+              <input
+                {...field}
+                className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                type="date"
+                placeholder="Date of employment"
+                value={
+                  field.value
+                    ? typeof field.value === "string"
+                      ? field.value
+                      : new Date(field.value).toISOString().split("T")[0]
+                    : ""
+                }
               />
             )}
           />

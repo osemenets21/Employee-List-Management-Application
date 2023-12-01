@@ -194,6 +194,14 @@ export const WorkersList: React.FC = () => {
                     <span className="down-arrow">▼</span>
                   )}
                 </th>
+                <th onClick={() => handleSort("dateOfEmployment")}>
+                  Employment
+                  {sortColumn === "dateOfEmployment" && sortOrder === "asc" ? (
+                    <span className="up-arrow">▲</span>
+                  ) : (
+                    <span className="down-arrow">▼</span>
+                  )}
+                </th>
                 <th className="py-2 px-4 text-center">Details</th>
               </tr>
             </thead>
@@ -206,6 +214,9 @@ export const WorkersList: React.FC = () => {
                   <td className="py-2 px-4 text-center">{worker.salary} zł</td>
                   <td className="py-2 px-4 text-center">
                     {worker.statusOfWork}
+                  </td>
+                  <td className="py-2 px-4 text-center">
+                    {new Date(worker.dateOfEmployment).toLocaleDateString()}
                   </td>
                   <td className="py-2 px-4 text-center">
                     <UniversalButton

@@ -28,6 +28,7 @@ export type Workers = {
   salary: number;
   statusOfWork: string;
   phone: number;
+  dateOfEmployment: Date;
 };
 
 export type WorkersContextType = {
