@@ -43,7 +43,7 @@ export const AddWorker = () => {
   };
 
   return (
-    <div className="add-page dark:bg-slate-600">
+    <div className="add-page flex dark:bg-slate-600">
       {showAlert && <AlertSuccess title={"Працівника успішно додано!"} />}
       <div>
         <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
@@ -55,7 +55,7 @@ export const AddWorker = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="mb-4">
-            <label htmlFor="firstName">First name</label>
+            <label htmlFor="firstName" className="dark:text-white">First name</label>
             <Controller
               name="firstName"
               control={control}
@@ -64,14 +64,14 @@ export const AddWorker = () => {
                 <input
                   {...field}
                   id="firstName"
-                  className="appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mr-5 leading-tight focus:putline-none focus:bg-white"
+                  className="appearance-none block bg-gray-200 text-gray-700 border py-3 px-4 mr-5 leading-tight focus:putline-none focus:bg-white"
                 />
               )}
             />
           </div>
 
           <div className="mb-4">
-            <label htmlFor="surname">Surname</label>
+            <label htmlFor="surname" className="dark:text-white">Surname</label>
             <Controller
               name="lastName"
               control={control}
@@ -80,21 +80,21 @@ export const AddWorker = () => {
                 <input
                   {...field}
                   id="surname"
-                  className="appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:putline-none focus:bg-white"
+                  className="appearance-none block bg-gray-200 text-gray-700 border py-3 px-4 leading-tight focus:putline-none focus:bg-white"
                 />
               )}
             />
           </div>
 
           <div className="mb-4">
-            <label htmlFor="dateOfBirth">Date of birth</label>
+            <label htmlFor="dateOfBirth" className="dark:text-white">Date of birth</label>
             <Controller
               name="dateOfBirth"
               control={control}
               render={({ field }) => (
                 <input
                   {...field}
-                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounded mr-5 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 mr-5 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   type="date"
                   id="dateOfBirth"
                   value={
@@ -108,7 +108,7 @@ export const AddWorker = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="street">Street</label>
+            <label htmlFor="street" className="dark:text-white">Street</label>
             <Controller
               name="street"
               control={control}
@@ -117,14 +117,14 @@ export const AddWorker = () => {
                 <input
                   {...field}
                   id="street"
-                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 />
               )}
             />
           </div>
 
           <div className="mb-4">
-            <label htmlFor="city">City</label>
+            <label htmlFor="city" className="dark:text-white">City</label>
             <Controller
               name="city"
               control={control}
@@ -140,7 +140,7 @@ export const AddWorker = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="postCode">Post code</label>
+            <label htmlFor="postCode" className="dark:text-white">Post code</label>
             <Controller
               name="postCode"
               control={control}
@@ -156,7 +156,7 @@ export const AddWorker = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="salary">Salary</label>
+            <label htmlFor="salary" className="dark:text-white">Salary</label>
             <Controller
               name="salary"
               control={control}
@@ -172,7 +172,7 @@ export const AddWorker = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="statusOfWork">Status of work</label>
+            <label htmlFor="statusOfWork" className="dark:text-white">Status of work</label>
             <Controller
               name="statusOfWork"
               control={control}
@@ -197,7 +197,7 @@ export const AddWorker = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="phoneNumber">Phone number</label>
+            <label htmlFor="phoneNumber" className="dark:text-white">Phone number</label>
             <Controller
               name="phone"
               control={control}
@@ -213,7 +213,7 @@ export const AddWorker = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="dateOfEmployment">Date of employment</label>
+            <label htmlFor="dateOfEmployment" className="dark:text-white">Date of employment</label>
             <Controller
               name="dateOfEmployment"
               control={control}
@@ -238,8 +238,8 @@ export const AddWorker = () => {
           <div className="w-full mb-6 md:mb-0">
             <UniversalButton
               type="submit"
-              title="Додати нового працівника"
-              classes={"btn-submit"}
+              title="Add new employee"
+              classes={"btn-submit mb-10 dark:bg-slate-800"}
             />
           </div>
         </form>

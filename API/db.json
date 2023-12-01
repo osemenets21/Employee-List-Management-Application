@@ -285,6 +285,19 @@
       "statusOfWork": "Employed",
       "phone": "987456123",
       "dateOfEmployment": "2016-07-11"
+    },
+    {
+      "dateOfEmployment": "2023-12-19T23:00:00.000Z",
+      "phone": 234234,
+      "statusOfWork": "Maternity-leave",
+      "salary": 234234,
+      "postCode": 2435,
+      "city": "fscdgdf",
+      "street": "gdfg",
+      "dateOfBirth": "2023-12-26T23:00:00.000Z",
+      "lastName": "Semenets",
+      "firstName": "Oleh",
+      "id": "5f00a4bb-8ece-443e-bea6-dc459b16b706"
     }
   ]
 }
