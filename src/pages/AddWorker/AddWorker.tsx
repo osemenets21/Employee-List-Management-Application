@@ -54,159 +54,186 @@ export const AddWorker = () => {
           className="add-form flex flex-wrap justify-end"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <Controller
-            name="firstName"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <input
-                {...field}
-                className="appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mr-5 leading-tight focus:putline-none focus:bg-white"
-                placeholder="Ім'я"
-              />
-            )}
-          />
+          <div className="mb-4">
+            <label htmlFor="firstName">First name</label>
+            <Controller
+              name="firstName"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <input
+                  {...field}
+                  id="firstName"
+                  className="appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mr-5 leading-tight focus:putline-none focus:bg-white"
+                />
+              )}
+            />
+          </div>
 
-          <Controller
-            name="lastName"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <input
-                {...field}
-                className="appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:putline-none focus:bg-white"
-                placeholder="Прізвище"
-              />
-            )}
-          />
+          <div className="mb-4">
+            <label htmlFor="surname">Surname</label>
+            <Controller
+              name="lastName"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <input
+                  {...field}
+                  id="surname"
+                  className="appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:putline-none focus:bg-white"
+                />
+              )}
+            />
+          </div>
 
-          <Controller
-            name="dateOfBirth"
-            control={control}
-            render={({ field }) => (
-              <input
-                {...field}
-                className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounded mr-5 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                type="date"
-                placeholder="Дата народження"
-                value={
-                  field.value instanceof Date
-                    ? field.value.toISOString().split("T")[0]
-                    : (field.value as string) || ""
-                }
-              />
-            )}
-          />
+          <div className="mb-4">
+            <label htmlFor="dateOfBirth">Date of birth</label>
+            <Controller
+              name="dateOfBirth"
+              control={control}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounded mr-5 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  type="date"
+                  id="dateOfBirth"
+                  value={
+                    field.value instanceof Date
+                      ? field.value.toISOString().split("T")[0]
+                      : (field.value as string) || ""
+                  }
+                />
+              )}
+            />
+          </div>
 
-          <Controller
-            name="street"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <input
-                {...field}
-                className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                placeholder="Вулиця"
-              />
-            )}
-          />
+          <div className="mb-4">
+            <label htmlFor="street">Street</label>
+            <Controller
+              name="street"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <input
+                  {...field}
+                  id="street"
+                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                />
+              )}
+            />
+          </div>
 
-          <Controller
-            name="city"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <input
-                {...field}
-                className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 mr-5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                placeholder="Місто"
-              />
-            )}
-          />
+          <div className="mb-4">
+            <label htmlFor="city">City</label>
+            <Controller
+              name="city"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <input
+                  {...field}
+                  id="city"
+                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 mr-5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                />
+              )}
+            />
+          </div>
 
-          <Controller
-            name="postCode"
-            control={control}
-            defaultValue={0}
-            render={({ field }) => (
-              <input
-                {...field}
-                className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                type="number"
-                placeholder="Поштовий індекс"
-              />
-            )}
-          />
+          <div className="mb-4">
+            <label htmlFor="postCode">Post code</label>
+            <Controller
+              name="postCode"
+              control={control}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  type="number"
+                  id="postCode"
+                />
+              )}
+            />
+          </div>
 
-          <Controller
-            name="salary"
-            control={control}
-            defaultValue={0}
-            render={({ field }) => (
-              <input
-                {...field}
-                className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 mr-5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                type="number"
-                placeholder="Зарплата"
-              />
-            )}
-          />
+          <div className="mb-4">
+            <label htmlFor="salary">Salary</label>
+            <Controller
+              name="salary"
+              control={control}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 mr-5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  type="number"
+                  id="salary"
+                />
+              )}
+            />
+          </div>
 
-          <Controller
-            name="statusOfWork"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <select
-                {...field}
-                className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                placeholder="Статус роботи"
-              >
-                <option value="" disabled>
-                  Виберіть статус роботи...
-                </option>
-                <option value="Employed">Employee</option>
-                <option value="Self-employed">Self-employed</option>
-                <option value="Maternity-leave">Maternity-leave</option>
-                <option value="Fired">Fired</option>
-                <option value="On-vacation">On vacation</option>
-              </select>
-            )}
-          />
+          <div className="mb-4">
+            <label htmlFor="statusOfWork">Status of work</label>
+            <Controller
+              name="statusOfWork"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <select
+                  {...field}
+                  id="statusOfWork"
+                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                >
+                  <option value="" disabled>
+                    Select the job status...
+                  </option>
+                  <option value="Employed">Employee</option>
+                  <option value="Self-employed">Self-employed</option>
+                  <option value="Maternity-leave">Maternity-leave</option>
+                  <option value="Fired">Fired</option>
+                  <option value="On-vacation">On vacation</option>
+                </select>
+              )}
+            />
+          </div>
 
-          <Controller
-            name="phone"
-            control={control}
-            defaultValue={0}
-            render={({ field }) => (
-              <input
-                {...field}
-                className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 mr-5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                type="number"
-                placeholder="Номер телефону"
-              />
-            )}
-          />
+          <div className="mb-4">
+            <label htmlFor="phoneNumber">Phone number</label>
+            <Controller
+              name="phone"
+              control={control}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 mr-5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  type="number"
+                  id="phoneNumber"
+                />
+              )}
+            />
+          </div>
 
-          <Controller
-            name="dateOfEmployment"
-            control={control}
-            render={({ field }) => (
-              <input
-                {...field}
-                className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                type="date"
-                placeholder="Date of employment"
-                value={
-                  field.value
-                    ? typeof field.value === "string"
-                      ? field.value
-                      : new Date(field.value).toISOString().split("T")[0]
-                    : ""
-                }
-              />
-            )}
-          />
+          <div className="mb-4">
+            <label htmlFor="dateOfEmployment">Date of employment</label>
+            <Controller
+              name="dateOfEmployment"
+              control={control}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  type="date"
+                  id="dateOfEmployment"
+                  value={
+                    field.value
+                      ? typeof field.value === "string"
+                        ? field.value
+                        : new Date(field.value).toISOString().split("T")[0]
+                      : ""
+                  }
+                />
+              )}
+            />
+          </div>
 
           <div className="w-full mb-6 md:mb-0">
             <UniversalButton

@@ -32,6 +32,7 @@ export const WorkersList: React.FC = () => {
 
   const handleCloseDetails = () => {
     setSelectedWorker(null);
+    setIsEditing(false);
   };
 
   const handleEdit = (worker: Workers) => {
