@@ -43,7 +43,7 @@ export const ModalDetails = ({
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td className="flex items-start">
                       <label htmlFor="input-name">Name:</label>
                     </td>
                     <td>
@@ -51,13 +51,13 @@ export const ModalDetails = ({
                         id="input-name"
                         type="text"
                         value={editedWorker ? editedWorker.firstName : ""}
-                        className={`px-2 ${isEditing ? "input-editing" : ""}`}
+                        className={`px-2 mb-2 ${isEditing ? "input-editing" : ""}`}
                         onChange={renderField("firstName")}
                       />
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td className="flex items-start">
                       <label htmlFor="sureName">Sure name:</label>
                     </td>
                     <td>
@@ -65,13 +65,13 @@ export const ModalDetails = ({
                         id="sureName"
                         type="text"
                         value={editedWorker ? editedWorker.lastName : ""}
-                        className={`px-2 ${isEditing ? "input-editing" : ""}`}
+                        className={`px-2 mb-2 ${isEditing ? "input-editing" : ""}`}
                         onChange={renderField("lastName")}
                       />
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td className="flex items-start">
                       <label htmlFor="DateOfBirth">Date of birth:</label>
                     </td>
                     <td>
@@ -89,13 +89,13 @@ export const ModalDetails = ({
                             ? editedWorker.dateOfBirth
                             : new Date().toISOString().split("T")[0]
                         }
-                        className={`px-2 ${isEditing ? "input-editing" : ""}`}
+                        className={`px-2 mb-2 ${isEditing ? "input-editing" : ""}`}
                         onChange={renderField("dateOfBirth")}
                       />
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td className="flex items-start">
                       <label htmlFor="street">Street:</label>
                     </td>
                     <td>
@@ -103,13 +103,13 @@ export const ModalDetails = ({
                         id="street"
                         type="text"
                         value={editedWorker ? editedWorker.street : ""}
-                        className={`px-2 ${isEditing ? "input-editing" : ""}`}
+                        className={`px-2 mb-2 ${isEditing ? "input-editing" : ""}`}
                         onChange={renderField("street")}
                       />
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td className="flex items-start">
                       <label htmlFor="city">City:</label>
                     </td>
                     <td>
@@ -117,7 +117,7 @@ export const ModalDetails = ({
                         id="city"
                         type="text"
                         value={editedWorker ? editedWorker.city : ""}
-                        className={`px-2 ${isEditing ? "input-editing" : ""}`}
+                        className={`px-2 mb-2 ${isEditing ? "input-editing" : ""}`}
                         onChange={renderField("city")}
                       />
                     </td>
@@ -126,18 +126,18 @@ export const ModalDetails = ({
                     <td>
                       <label htmlFor="postCode">Post code:</label>
                     </td>
-                    <td>
+                    <td className="flex items-start">
                       <input
                         id="postCode"
                         type="text"
                         value={editedWorker ? editedWorker.postCode : ""}
-                        className={`px-2 ${isEditing ? "input-editing" : ""}`}
+                        className={`px-2 mb-2 ${isEditing ? "input-editing" : ""}`}
                         onChange={renderField("postCode")}
                       />
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td className="flex items-start">
                       <label htmlFor="salary">Salary:</label>
                     </td>
                     <td>
@@ -145,13 +145,13 @@ export const ModalDetails = ({
                         id="salary"
                         type="text"
                         value={editedWorker ? `${editedWorker.salary}` : ""}
-                        className={`px-2 ${isEditing ? "input-editing" : ""}`}
+                        className={`px-2 mb-2 ${isEditing ? "input-editing" : ""}`}
                         onChange={renderField("salary")}
                       />
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td className="flex items-start">
                       <label htmlFor="statusOfWork">Status of work:</label>
                     </td>
                     <td>
@@ -159,13 +159,13 @@ export const ModalDetails = ({
                         id="statusOfWork"
                         type="text"
                         value={editedWorker ? editedWorker.statusOfWork : ""}
-                        className={`px-2 ${isEditing ? "input-editing" : ""}`}
+                        className={`px-2 mb-2 ${isEditing ? "input-editing" : ""}`}
                         onChange={renderField("statusOfWork")}
                       />
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td className="flex items-start">
                       <label htmlFor="phone">Phone:</label>
                     </td>
                     <td>
@@ -173,13 +173,13 @@ export const ModalDetails = ({
                         id="phone"
                         type="text"
                         value={editedWorker ? editedWorker.phone : ""}
-                        className={`px-2 ${isEditing ? "input-editing" : ""}`}
+                        className={`px-2 mb-2 ${isEditing ? "input-editing" : ""}`}
                         onChange={renderField("phone")}
                       />
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td className="flex items-start">
                       <label htmlFor="employment">Employment:</label>
                     </td>
                     <td>
@@ -197,7 +197,7 @@ export const ModalDetails = ({
                             ? editedWorker.dateOfEmployment
                             : new Date().toISOString().split("T")[0]
                         }
-                        className={`px-2 ${isEditing ? "input-editing" : ""}`}
+                        className={`px-2 mb-2 ${isEditing ? "input-editing" : ""}`}
                         onChange={renderField("dateOfEmployment")}
                       />
                     </td>
