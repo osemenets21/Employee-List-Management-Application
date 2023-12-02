@@ -6,6 +6,7 @@ export interface IButtonProps {
   title: string | JSX.Element;
   classes?: string;
   isDisabled?: boolean;
+  onClick?: () => void;
 }
 
 export interface IAlertSuccess {
@@ -17,16 +18,17 @@ export type Props = {
 };
 
 export type Workers = {
-  id: number;
+  id?: string;
   firstName: string;
   lastName: string;
-  dateOfBirth: string;
+  dateOfBirth: Date;
   street: string;
   city: string;
-  postCode: string;
+  postCode: number;
   salary: number;
   statusOfWork: string;
-  phone: string;
+  phone: number;
+  dateOfEmployment: Date;
 };
 
 export type WorkersContextType = {
@@ -35,7 +37,7 @@ export type WorkersContextType = {
   addWorker: (newWorker: Workers) => void;
   editWorker: (worker: Workers) => void;
   updatedWorker: Workers | null;
-  deleteWorker: (workerId: number) => Promise<void>;
+  deleteWorker: (workerId: string) => Promise<void>;
   maxPage: number;
   pageNumber: number;
   getWorkers: (page: number, limit: number) => Promise<void>;

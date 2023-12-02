@@ -32,6 +32,7 @@ export const WorkersList: React.FC = () => {
 
   const handleCloseDetails = () => {
     setSelectedWorker(null);
+    setIsEditing(false);
   };
 
   const handleEdit = (worker: Workers) => {
@@ -59,7 +60,7 @@ export const WorkersList: React.FC = () => {
   };
 
   const confirmDelete = () => {
-    if (workerToDelete && workersContext) {
+    if (workerToDelete && workerToDelete.id && workersContext) {
       workersContext.deleteWorker(workerToDelete.id);
       setIsEditing(false);
       setEditedWorker(null);
@@ -146,6 +147,7 @@ export const WorkersList: React.FC = () => {
       <div className="mb-4">
         <input
           type="text"
+          name="Search"
           placeholder={searchText ? "" : "Search for a worker..."}
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
@@ -156,18 +158,11 @@ export const WorkersList: React.FC = () => {
         )}
       </div>
       <div className="WorkersList">
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto sm:overflow-x-hidden">
           <table className="min-w-full bg-white border border-gray-300 dark:bg-slate-600 dark:text-white">
             <thead className="bg-gray-800 text-white">
               <tr>
-                <th onClick={() => handleSort("id")}>
-                  #
-                  {sortColumn === "id" && sortOrder === "asc" ? (
-                    <span className="up-arrow">▲</span>
-                  ) : (
-                    <span className="down-arrow">▼</span>
-                  )}
-                </th>
+                <th>#</th>
                 <th onClick={() => handleSort("firstName")}>
                   Name
                   {sortColumn === "firstName" && sortOrder === "asc" ? (
@@ -200,18 +195,29 @@ export const WorkersList: React.FC = () => {
                     <span className="down-arrow">▼</span>
                   )}
                 </th>
+                <th onClick={() => handleSort("dateOfEmployment")}>
+                  Employment
+                  {sortColumn === "dateOfEmployment" && sortOrder === "asc" ? (
+                    <span className="up-arrow">▲</span>
+                  ) : (
+                    <span className="down-arrow">▼</span>
+                  )}
+                </th>
                 <th className="py-2 px-4 text-center">Details</th>
               </tr>
             </thead>
             <tbody>
-              {workersToDisplay.map((worker) => (
-                <tr key={worker.id}>
-                  <td className="py-2 px-4 text-center">{worker.id}</td>
+              {workersToDisplay.map((worker, index) => (
+                <tr key={index + 1}>
+                  <td className="py-2 px-4 text-center">{index + 1}</td>
                   <td className="py-2 px-4 text-center">{worker.firstName}</td>
                   <td className="py-2 px-4 text-center">{worker.lastName}</td>
                   <td className="py-2 px-4 text-center">{worker.salary} zł</td>
                   <td className="py-2 px-4 text-center">
                     {worker.statusOfWork}
+                  </td>
+                  <td className="py-2 px-4 text-center">
+                    {new Date(worker.dateOfEmployment).toLocaleDateString()}
                   </td>
                   <td className="py-2 px-4 text-center">
                     <UniversalButton
@@ -249,7 +255,9 @@ export const WorkersList: React.FC = () => {
         )}
       </div>
 
-    {showSuccessAlert && <AlertSuccess title={"Your item was updated successfully"}/>}
+      {showSuccessAlert && (
+        <AlertSuccess title={"Your item was updated successfully"} />
+      )}
 
       {showDeleteAlert && (
         <ModalDialogScrollable

@@ -23,6 +23,18 @@
       "username": "Oleh",
       "email": "oleh@gmail.com",
       "password": "$2b$10$7zedhxbZ9VfNpW5xE9qtf.7n4X6.lrAligmHWavOmGHTKhUWq4zpi"
+    },
+    {
+      "id": "85234626-0e80-4736-b32f-396b58c6d712",
+      "username": "Piotrek",
+      "email": "piotrek@gmail.com",
+      "password": "$2b$10$9IEY263x6mjpJhVuljZou.vU0aoMgWF5Ub.XCInuUOZXeigsMTW/C"
+    },
+    {
+      "id": "dd3f3e5b-56dd-48bd-b823-0011ff5d0105",
+      "username": "olehko",
+      "email": "olehko@semenets.fff",
+      "password": "$2b$10$hfFXv1eNkgKhIJxcAvKAzuRlxkfBryRYBCULsxfpbLLI1D/bm91Ye"
     }
   ]
 }

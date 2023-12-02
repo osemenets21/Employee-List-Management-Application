@@ -1,7 +1,7 @@
 {
   "workerList": [
     {
-      "id": 1,
+      "id": "82ef89a9-8b0a-4d2d-9e03-20d42a0eb9ea",
       "firstName": "Anna",
       "lastName": "Koralik",
       "dateOfBirth": "19-05-1990",
@@ -10,10 +10,11 @@
       "postCode": "05-090",
       "salary": "1770",
       "statusOfWork": "employed",
-      "phone": "+48094565475"
+      "phone": "+48094565475",
+      "dateOfEmployment": "1998-02-02"
     },
     {
-      "id": 2,
+      "id": "9b8a1a9f-d5a1-4f76-9b9c-cc9a3f2e0598",
       "firstName": "Jan",
       "lastName": "Nowak",
       "dateOfBirth": "25-08-1985",
@@ -22,10 +23,11 @@
       "postCode": "30-020",
       "salary": "2000",
       "statusOfWork": "employed",
-      "phone": "+48123456789"
+      "phone": "+48123456789",
+      "dateOfEmployment": "1998-04-09"
     },
     {
-      "id": 3,
+      "id": "c2e4dddb-61dd-4c32-a875-94f6d3ebc418",
       "firstName": "Katarzyna",
       "lastName": "Wiśniewska",
       "dateOfBirth": "12-11-1992",
@@ -34,10 +36,11 @@
       "postCode": "80-001",
       "salary": "2200",
       "statusOfWork": "employed",
-      "phone": "+48765432100"
+      "phone": "+48765432100",
+      "dateOfEmployment": "1998-05-06"
     },
     {
-      "id": 4,
+      "id": "b5a5c773-6d2d-4719-b739-7c91f3527328",
       "firstName": "Piotr",
       "lastName": "Jankowski",
       "dateOfBirth": "03-04-1987",
@@ -46,10 +49,11 @@
       "postCode": "50-100",
       "salary": "1800",
       "statusOfWork": "employed",
-      "phone": "+48987654321"
+      "phone": "+48987654321",
+      "dateOfEmployment": "1998-06-23"
     },
     {
-      "id": 5,
+      "id": "f7c8cb8d-44c3-4c63-a134-7d5f57bb2e7d",
       "firstName": "Magdalena",
       "lastName": "Lis",
       "dateOfBirth": "15-09-1995",
@@ -58,10 +62,11 @@
       "postCode": "60-010",
       "salary": "1900",
       "statusOfWork": "employed",
-      "phone": "+48456473829"
+      "phone": "+48456473829",
+      "dateOfEmployment": "1998-09-11"
     },
     {
-      "id": 6,
+      "id": "de48e836-ebd8-4a2a-858f-5b72a2b9f5e7",
       "firstName": "Michał",
       "lastName": "Kowalski",
       "dateOfBirth": "22-07-1983",
@@ -70,10 +75,11 @@
       "postCode": "40-050",
       "salary": "2100",
       "statusOfWork": "employed",
-      "phone": "+48678123456"
+      "phone": "+48678123456",
+      "dateOfEmployment": "1998-10-03"
     },
     {
-      "id": 7,
+      "id": "76c4e944-7c44-492a-af90-37c9c86c1552",
       "firstName": "Agnieszka",
       "lastName": "Dąbrowska",
       "dateOfBirth": "01-12-1989",
@@ -82,10 +88,11 @@
       "postCode": "90-001",
       "salary": "1950",
       "statusOfWork": "employed",
-      "phone": "+48711223344"
+      "phone": "+48711223344",
+      "dateOfEmployment": "1998-11-04"
     },
     {
-      "id": 8,
+      "id": "2bfcfaa4-ff56-4d93-a0b3-2314b216f497",
       "firstName": "Krzysztof",
       "lastName": "Zieliński",
       "dateOfBirth": "14-06-1993",
@@ -94,10 +101,11 @@
       "postCode": "70-100",
       "salary": "2300",
       "statusOfWork": "employed",
-      "phone": "+48440987654"
+      "phone": "+48440987654",
+      "dateOfEmployment": "2003-05-12"
     },
     {
-      "id": 9,
+      "id": "0c429f95-dc03-4daa-b999-9921eb4889a0",
       "firstName": "Ewa",
       "lastName": "Kaczmarek",
       "dateOfBirth": "09-02-1986",
@@ -106,10 +114,11 @@
       "postCode": "81-001",
       "salary": "2000",
       "statusOfWork": "employed",
-      "phone": "+48766554433"
+      "phone": "+48766554433",
+      "dateOfEmployment": "2023-01-01"
     },
     {
-      "id": 10,
+      "id": "9e93a6d8-2d0d-4b66-8cb3-90a18d2ad132",
       "firstName": "Grzegorz",
       "lastName": "Szymański",
       "dateOfBirth": "18-03-1991",
@@ -118,10 +127,11 @@
       "postCode": "10-050",
       "salary": "1800",
       "statusOfWork": "employed",
-      "phone": "+48881234567"
+      "phone": "+48881234567",
+      "dateOfEmployment": "2004-05-12"
     },
     {
-      "id": 11,
+      "id": "2571150c-5e99-495e-8e17-1417482380f4",
       "firstName": "Aleksandra",
       "lastName": "Wójcik",
       "dateOfBirth": "26-08-1984",
@@ -130,10 +140,11 @@
       "postCode": "85-010",
       "salary": "2100",
       "statusOfWork": "employed",
-      "phone": "+48566778899"
+      "phone": "+48566778899",
+      "dateOfEmployment": "2004-12-05"
     },
     {
-      "id": 12,
+      "id": "f1aa2e15-1903-4cf4-8b9f-16c5e127952f",
       "firstName": "Marcin",
       "lastName": "Kruk",
       "dateOfBirth": "07-01-1990",
@@ -142,10 +153,11 @@
       "postCode": "35-100",
       "salary": "1900",
       "statusOfWork": "employed",
-      "phone": "+48431234567"
+      "phone": "+48431234567",
+      "dateOfEmployment": "2005-03-22"
     },
     {
-      "id": 13,
+      "id": "12e3129f-76e9-4fc3-8f35-3f9e9d88cf0b",
       "firstName": "Monika",
       "lastName": "Mazurek",
       "dateOfBirth": "13-06-1988",
@@ -154,10 +166,11 @@
       "postCode": "20-050",
       "salary": "2200",
       "statusOfWork": "employed",
-      "phone": "+48775432100"
+      "phone": "+48775432100",
+      "dateOfEmployment": "2005-02-07"
     },
     {
-      "id": 14,
+      "id": "58962a5f-6745-49f3-b5a0-4f3270b2b0b3",
       "firstName": "Tomasz",
       "lastName": "Olszewski",
       "dateOfBirth": "05-09-1996",
@@ -166,10 +179,11 @@
       "postCode": "25-001",
       "salary": "2000",
       "statusOfWork": "employed",
-      "phone": "+48666778899"
+      "phone": "+48666778899",
+      "dateOfEmployment": "2006-01-11"
     },
     {
-      "id": 15,
+      "id": "c00b7773-3d1f-4f7d-aa2d-ccf981bd6d6a",
       "firstName": "Natalia",
       "lastName": "Adamczyk",
       "dateOfBirth": "21-02-1987",
@@ -178,10 +192,11 @@
       "postCode": "60-020",
       "salary": "1800",
       "statusOfWork": "employed",
-      "phone": "+48779887766"
+      "phone": "+48779887766",
+      "dateOfEmployment": "2007-04-15"
     },
     {
-      "id": 16,
+      "id": "51a8ea71-0a85-4a84-9a8a-64606b6a76bb",
       "firstName": "Artur",
       "lastName": "Kowalewski",
       "dateOfBirth": "30-11-1985",
@@ -190,10 +205,11 @@
       "postCode": "26-100",
       "salary": "2100",
       "statusOfWork": "employed",
-      "phone": "+48661234567"
+      "phone": "+48661234567",
+      "dateOfEmployment": "2007-08-20"
     },
     {
-      "id": 17,
+      "id": "93aa0d69-2363-4de7-aa56-01362fc1c103",
       "firstName": "Alicja",
       "lastName": "Nowakowska",
       "dateOfBirth": "19-08-1993",
@@ -202,10 +218,11 @@
       "postCode": "43-100",
       "salary": "1950",
       "statusOfWork": "employed",
-      "phone": "+48765432211"
+      "phone": "+48765432211",
+      "dateOfEmployment": "2011-01-10"
     },
     {
-      "id": 18,
+      "id": "167c9d88-d183-4bbd-8e7b-1d0ad83abf89",
       "firstName": "Kamil",
       "lastName": "Wojciechowski",
       "dateOfBirth": "10-04-1986",
@@ -214,10 +231,11 @@
       "postCode": "19-001",
       "salary": "2300",
       "statusOfWork": "employed",
-      "phone": "+48440123456"
+      "phone": "+48440123456",
+      "dateOfEmployment": "2011-05-19"
     },
     {
-      "id": 19,
+      "id": "c4ee0771-5937-4f08-933d-d03a08881ce3",
       "firstName": "Dominika",
       "lastName": "Kubiak",
       "dateOfBirth": "27-07-1991",
@@ -226,19 +244,60 @@
       "postCode": "76-001",
       "salary": "2000",
       "statusOfWork": "employed",
-      "phone": "+48778889900"
+      "phone": "+48778889900",
+      "dateOfEmployment": "2012-09-11"
     },
     {
-      "id": 20,
-      "firstName": "Adrian",
-      "lastName": "Lewandowski",
-      "dateOfBirth": "14-12-1984",
-      "street": "Różana",
-      "city": "Bielsko-Biała",
-      "postCode": "43-010",
-      "salary": "1900",
-      "statusOfWork": "employed",
-      "phone": "+48663332211"
+      "id": "7be783b3-ea76-4338-bc6f-bd1d3f10c77a",
+      "firstName": "Oleh",
+      "lastName": "Semenets",
+      "dateOfBirth": "2023-11-16",
+      "street": "gdgeegtr",
+      "city": "fdsf",
+      "postCode": "345435",
+      "salary": 345435,
+      "statusOfWork": "Fired",
+      "phone": "5434353",
+      "dateOfEmployment": "2012-12-01"
+    },
+    {
+      "id": "5b25e86e-e63b-4015-a136-894402c46f75",
+      "firstName": "Andrii",
+      "lastName": "Karyi",
+      "dateOfBirth": "2023-11-15",
+      "street": "fdfhfghhh",
+      "city": "sgdfgfdg",
+      "postCode": "4645657",
+      "salary": 344645,
+      "statusOfWork": "Fired",
+      "phone": "34465456",
+      "dateOfEmployment": "2016-02-03"
+    },
+    {
+      "id": "6c406240-189e-4904-a5b5-73112a25ea10",
+      "firstName": "Krystyna",
+      "lastName": "Pawlak",
+      "dateOfBirth": "1987-09-09",
+      "street": "Słowackiego",
+      "city": "Bydgoszcz",
+      "postCode": "12987",
+      "salary": 3980,
+      "statusOfWork": "Employed",
+      "phone": "987456123",
+      "dateOfEmployment": "2016-07-11"
+    },
+    {
+      "dateOfEmployment": "2023-12-19T23:00:00.000Z",
+      "phone": 234234,
+      "statusOfWork": "Maternity-leave",
+      "salary": 234234,
+      "postCode": 2435,
+      "city": "fscdgdf",
+      "street": "gdfg",
+      "dateOfBirth": "2023-12-26T23:00:00.000Z",
+      "lastName": "Semenets",
+      "firstName": "Oleh",
+      "id": "5f00a4bb-8ece-443e-bea6-dc459b16b706"
     }
   ]
 }
