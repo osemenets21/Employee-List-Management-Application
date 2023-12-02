@@ -11,6 +11,7 @@ const { v4: uuidv4 } = require("uuid");
 
 export const AddWorker = () => {
   const { addWorker } = useContext(WorkersListContext) as WorkersContextType;
+
   const { handleSubmit, control, reset } = useForm<Workers>({
     resolver: yupResolver(addWorkerSchema),
   });
@@ -44,7 +45,7 @@ export const AddWorker = () => {
 
   return (
     <div className="add-page flex dark:bg-slate-600">
-      {showAlert && <AlertSuccess title={"Працівника успішно додано!"} />}
+      {showAlert && <AlertSuccess title={"Employee successfully added!"} />}
       <div>
         <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
           Add new employee
@@ -247,3 +248,4 @@ export const AddWorker = () => {
     </div>
   );
 };
+

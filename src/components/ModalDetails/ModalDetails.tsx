@@ -36,7 +36,7 @@ export const ModalDetails = ({
                     <td>ID:</td>
                     <td>
                       <input
-                        className="px-2"
+                        className="px-2 "
                         readOnly
                         value={selectedWorker.id}
                       />

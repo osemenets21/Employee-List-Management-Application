@@ -11,7 +11,4 @@ export const addWorkerSchema = yup.object().shape({
   statusOfWork: yup.string().required(),
   phone: yup.number().required(),
   dateOfEmployment: yup.date().required(),
-})
-
-
-
+}).defined();
