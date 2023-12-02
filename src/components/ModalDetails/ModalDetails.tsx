@@ -33,7 +33,7 @@ export const ModalDetails = ({
               <table className="datails-of-worker">
                 <tbody>
                   <tr>
-                    <td>ID:</td>
+                    <td><b>ID:</b></td>
                     <td>
                       <input
                         className="px-2 "
@@ -44,7 +44,7 @@ export const ModalDetails = ({
                   </tr>
                   <tr>
                     <td className="flex items-start">
-                      <label htmlFor="input-name">Name:</label>
+                      <label htmlFor="input-name"><b>Name:</b></label>
                     </td>
                     <td>
                       <input
@@ -58,7 +58,7 @@ export const ModalDetails = ({
                   </tr>
                   <tr>
                     <td className="flex items-start">
-                      <label htmlFor="sureName">Sure name:</label>
+                      <label htmlFor="sureName"><b>Sure name:</b></label>
                     </td>
                     <td>
                       <input
@@ -72,7 +72,7 @@ export const ModalDetails = ({
                   </tr>
                   <tr>
                     <td className="flex items-start">
-                      <label htmlFor="DateOfBirth">Date of birth:</label>
+                      <label htmlFor="DateOfBirth"><b>Date of birth:</b></label>
                     </td>
                     <td>
                       <input
@@ -96,7 +96,7 @@ export const ModalDetails = ({
                   </tr>
                   <tr>
                     <td className="flex items-start">
-                      <label htmlFor="street">Street:</label>
+                      <label htmlFor="street"><b>Street:</b></label>
                     </td>
                     <td>
                       <input
@@ -110,7 +110,7 @@ export const ModalDetails = ({
                   </tr>
                   <tr>
                     <td className="flex items-start">
-                      <label htmlFor="city">City:</label>
+                      <label htmlFor="city"><b>City:</b></label>
                     </td>
                     <td>
                       <input
@@ -124,7 +124,7 @@ export const ModalDetails = ({
                   </tr>
                   <tr>
                     <td>
-                      <label htmlFor="postCode">Post code:</label>
+                      <label htmlFor="postCode"><b>Post code:</b></label>
                     </td>
                     <td className="flex items-start">
                       <input
@@ -138,7 +138,7 @@ export const ModalDetails = ({
                   </tr>
                   <tr>
                     <td className="flex items-start">
-                      <label htmlFor="salary">Salary:</label>
+                      <label htmlFor="salary"><b>Salary:</b></label>
                     </td>
                     <td>
                       <input
@@ -152,7 +152,7 @@ export const ModalDetails = ({
                   </tr>
                   <tr>
                     <td className="flex items-start">
-                      <label htmlFor="statusOfWork">Status of work:</label>
+                      <label htmlFor="statusOfWork"><b>Status of work:</b></label>
                     </td>
                     <td>
                       <input
@@ -166,7 +166,7 @@ export const ModalDetails = ({
                   </tr>
                   <tr>
                     <td className="flex items-start">
-                      <label htmlFor="phone">Phone:</label>
+                      <label htmlFor="phone"><b>Phone:</b></label>
                     </td>
                     <td>
                       <input
@@ -180,7 +180,7 @@ export const ModalDetails = ({
                   </tr>
                   <tr>
                     <td className="flex items-start">
-                      <label htmlFor="employment">Employment:</label>
+                      <label htmlFor="employment"><b>Employment:</b></label>
                     </td>
                     <td>
                     <input
