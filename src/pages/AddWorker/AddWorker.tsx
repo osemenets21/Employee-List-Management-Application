@@ -38,7 +38,16 @@ export const AddWorker = () => {
 
     const newWorker = { ...data, id: newId };
     addWorker(newWorker);
-    reset();
+    reset({
+        firstName: "",
+        lastName: "",
+        street: "",
+        city: "",
+        postCode: 0,
+        salary: 0,
+        statusOfWork: "",
+        phone: 0,
+      });
     setShowAlert(true);
     setTimeout(() => setShowAlert(false), 3000);
   };
@@ -245,7 +254,9 @@ export const AddWorker = () => {
           </div>
         </form>
       </div>
+      
     </div>
+    
   );
 };
 

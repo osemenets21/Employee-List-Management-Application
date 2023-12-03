@@ -10,7 +10,7 @@ export interface IButtonProps {
 }
 
 export interface IAlertSuccess {
-    title: string;
+  title: string;
 }
 
 export type Props = {
@@ -33,40 +33,41 @@ export type Workers = {
 
 export type WorkersContextType = {
   workers: Workers[];
+  updatedWorker: Workers | null;
+  maxPage: number;
+  pageNumber: number;
   setWorkers: React.Dispatch<React.SetStateAction<Workers[]>>;
   addWorker: (newWorker: Workers) => void;
   editWorker: (worker: Workers) => void;
-  updatedWorker: Workers | null;
   deleteWorker: (workerId: string) => Promise<void>;
-  maxPage: number;
-  pageNumber: number;
   getWorkers: (page: number, limit: number) => Promise<void>;
   setPageNumber: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export type EditWorkersContextType = {
-  editWorker: (worker: Workers) => void;
   updatedWorker: Workers | null;
+  editWorker: (worker: Workers) => void;
 };
 
 export type ModalDialogScrollableProps = {
-    name: string | undefined;
-    surname: string | undefined;
-    setShowDeleteAlert: React.Dispatch<React.SetStateAction<boolean>>;
-    confirmDelete: () => void;
+  name: string | undefined;
+  surname: string | undefined;
+  setShowDeleteAlert: React.Dispatch<React.SetStateAction<boolean>>;
+  confirmDelete: () => void;
 };
 
 export type SortKeys = keyof Workers;
 
 export type ModalDetailsProps = {
-    selectedWorker: Workers;
-    editedWorker: Workers | null;
-    isEditing: boolean;
-    renderField: (field: keyof Workers) => (event: React.ChangeEvent<HTMLInputElement>) => void;
-    handleSave: () => void;
-    handleEdit: (worker: Workers) => void;
-    setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
-    handleDelete: (worker: Workers) => void;
-    handleCloseDetails: () => void;
-}
-
+  selectedWorker: Workers;
+  editedWorker: Workers | null;
+  isEditing: boolean;
+  renderField: (
+    field: keyof Workers
+  ) => (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSave: () => void;
+  handleEdit: (worker: Workers) => void;
+  setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
+  handleDelete: (worker: Workers) => void;
+  handleCloseDetails: () => void;
+};
