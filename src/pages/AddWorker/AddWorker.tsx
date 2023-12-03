@@ -69,7 +69,6 @@ export const AddWorker = () => {
             <Controller
               name="firstName"
               control={control}
-              defaultValue=""
               render={({ field }) => (
                 <input
                   {...field}
