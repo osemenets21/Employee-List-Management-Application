@@ -1,0 +1,51 @@
+@import "../../mixins/mixins";
+
+.add-page {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 100vh;
+}
+
+.add-form {
+    width: 420px;
+    max-width: 520px;
+}
+
+.appearance-none {
+    border-radius: 5px;
+    width: 200px;
+    height: 45px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-submit {
+    @include button-secondary;
+    transition: all 0.2s;
+}
+
+@media (max-width: 768px) {
+
+    .add-form {
+        padding: 0 20px;
+        width: 320px;
+        justify-content: flex-start;
+
+    }
+
+    .appearance-none {
+        width: 250px;
+        margin-right: 0;
+    }
+}

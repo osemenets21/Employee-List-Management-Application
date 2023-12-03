@@ -1,27 +1,38 @@
 import React from "react";
-import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import "./App.scss";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home/Home";
-import { WorkersList } from "./pages/WorkersList/WorkersList";
 import { Footer } from "./components/Footer/Footer";
-import { NavBar } from "./components/Header/NavBar/NavBar";
-import { Login } from "./components/Login/Login";
-import { SingUp } from "./components/SingUp/SingUp";
+import { Login } from "./pages/Login/Login";
+import { SignUp } from "./pages/SignUp/SignUp";
+import NotFound from "./pages/NotFound/NotFound";
+import { AddWorker } from "./pages/AddWorker/AddWorker";
+import { Header } from "./components/Header/Header";
+import WorkersList from "./pages/Workers-list/Workers-list";
 
 function App() {
+  const isAuthenticated = !!localStorage.getItem("accessToken");
+
   return (
     <div className="App">
-      <NavBar />
-      <main className="content">
+      <Header />
+      <main className="content dark:bg-slate-600">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/workers-list" element={<WorkersList />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/sing-up" element={<SingUp />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route
+            path="/workers-list"
+            element={
+              isAuthenticated ? <WorkersList /> : <Navigate to="/login" />
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/add-worker" element={<AddWorker />} />
         </Routes>
       </main>
 
-      <Footer/>
+      <Footer />
     </div>
   );
 }
