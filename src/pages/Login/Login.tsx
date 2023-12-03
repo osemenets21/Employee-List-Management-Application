@@ -11,8 +11,34 @@ export const Login: React.FC = () => {
   const { handleLogin } = useAuth();
   const navigate = useNavigate();
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/; 
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newEmail = e.target.value;
+    setEmail(newEmail);
+    setError(null);
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+    setError(null);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!emailRegex.test(email)) {
+      setError("Invalid email format");
+      return;
+    }
+
+    if (!passwordRegex.test(password)) {
+      setError("Password must contain at least one digit, one lowercase and one uppercase letter, and be at least 8 characters long");
+      return;
+    }
+
     try {
       await handleLogin(email, password);
 
@@ -22,8 +48,8 @@ export const Login: React.FC = () => {
       if (error.response && error.response.status === 401) {
         setError("An error occurred. Please try again.");
       } else {
-        console.error("Server error:", error.message); 
-        setError("Wrong email or password"); 
+        console.error("Server error:", error.message);
+        setError("Wrong email or password");
       }
     }
   };
@@ -40,18 +66,22 @@ export const Login: React.FC = () => {
         <input
           type="email"
           placeholder="email"
-          className="border p-3 rounded-lg"
+          className={`border p-3 rounded-lg ${
+            email && emailRegex.test(email) ? 'border-green-500' : email ? 'border-red-500' : ''
+          }`}
           id="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleEmailChange}
         />
         <input
           type="password"
           placeholder="password"
-          className="border p-3 rounded-lg"
+          className={`border p-3 rounded-lg ${
+            password && passwordRegex.test(password) ? 'border-green-500' : password ? 'border-red-500' : ''
+          }`}
           id="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handlePasswordChange}
         />
 
         <button

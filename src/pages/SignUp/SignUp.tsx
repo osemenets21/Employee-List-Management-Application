@@ -9,21 +9,30 @@ export const SignUp: React.FC = () => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [userName, setUserName] = useState("");
+  const [userNameError, setUserNameError] = useState("");
   const [signupError, setSignupError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+  const usernameRegex = /^[a-zA-Z]+[a-zA-Z0-9_]*$/;
+
   const validateEmail = (email: string) => {
-    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    return emailPattern.test(email);
+    return emailRegex.test(email);
   };
 
   const validatePassword = (password: string) => {
-    return password.length >= 8;
+    return passwordRegex.test(password);
+  };
+
+  const validateUserName = (username: string) => {
+    return usernameRegex.test(username);
   };
 
   const handleSignUp = async () => {
     setEmailError("");
     setPasswordError("");
+    setUserNameError("");
     setSignupError("");
 
     if (!validateEmail(email)) {
@@ -32,25 +41,31 @@ export const SignUp: React.FC = () => {
     }
 
     if (!validatePassword(password)) {
-      setPasswordError("Password must be at least 8 characters long.");
+      setPasswordError(
+        "Password must contain at least one digit, one lowercase and one uppercase letter, and be at least 8 characters long."
+      );
+      return;
+    }
+
+    if (!validateUserName(userName)) {
+      setUserNameError(
+        "Username can only contain letters, numbers, and underscores."
+      );
       return;
     }
 
     try {
-      const response = await fetch(
-        "http://localhost:5002/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: userName,
-            email: email,
-            password: password,
-          }),
-        }
-      );
+      const response = await fetch("http://localhost:5002/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: userName,
+          email: email,
+          password: password,
+        }),
+      });
 
       if (!response.ok) {
         throw new Error("Error during sign-up");
@@ -60,6 +75,7 @@ export const SignUp: React.FC = () => {
 
       setPasswordError("");
       setEmailError("");
+      setUserNameError("");
       setSignupError("");
       console.log("User registered successfully");
     } catch (error) {
@@ -77,15 +93,28 @@ export const SignUp: React.FC = () => {
         <input
           type="text"
           placeholder="username"
-          className="border p-3 rounded-lg"
+          className={`border p-3 rounded-lg ${
+            userName && !validateUserName(userName)
+              ? "border-red-500"
+              : userName
+              ? "border-green-500"
+              : ""
+          }`}
           id="username"
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
         />
+        {userNameError && <div className="error-message">{userNameError}</div>}
         <input
           type="email"
           placeholder="email"
-          className="border p-3 rounded-lg"
+          className={`border p-3 rounded-lg ${
+            email && !emailRegex.test(email)
+              ? "border-red-500"
+              : email
+              ? "border-green-500"
+              : ""
+          }`}
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -94,7 +123,13 @@ export const SignUp: React.FC = () => {
           <input
             type="password"
             placeholder="password"
-            className="border p-3 py-3 rounded-lg w-full"
+            className={`border p-3 py-3 rounded-lg w-full ${
+              password && !validatePassword(password)
+                ? "border-red-500"
+                : password
+                ? "border-green-500"
+                : ""
+            }`}
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -113,7 +148,6 @@ export const SignUp: React.FC = () => {
       </form>
       <div className="flex gap-2 mt-5">
         <p>Have an account?</p>
-
         <UniversalButton
           type="link"
           action="/login"
@@ -123,3 +157,5 @@ export const SignUp: React.FC = () => {
     </div>
   );
 };
+
+export default SignUp;
