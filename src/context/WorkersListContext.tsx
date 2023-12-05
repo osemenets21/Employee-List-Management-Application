@@ -22,7 +22,7 @@ export const WorkersListContextProvider: React.FC<{ children: ReactNode }> = ({
   const getWorkers = useCallback(async (page: number, limit: number) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/workerList?_page=${page}&_limit=${limit}`
+        `https://fair-teal-puppy-veil.cyclic.app/api/workerList?_page=${page}&_limit=${limit}`
       );
       if (!response.ok) {
         throw new Error("Problem z serwerem");
@@ -46,7 +46,7 @@ export const WorkersListContextProvider: React.FC<{ children: ReactNode }> = ({
     try {
         console.log(newWorkerData);
         
-      const response = await fetch("http://localhost:5000/workerList", {
+      const response = await fetch("https://fair-teal-puppy-veil.cyclic.app/api/workerList", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -68,7 +68,7 @@ export const WorkersListContextProvider: React.FC<{ children: ReactNode }> = ({
   const editWorker = async (updatedWorkerData: Workers) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/workerList/${updatedWorkerData.id}`,
+        `fair-teal-puppy-veil.cyclic.app/api/workerList/${updatedWorkerData.id}`,
         {
           method: "PUT",
           headers: {
@@ -92,31 +92,11 @@ export const WorkersListContextProvider: React.FC<{ children: ReactNode }> = ({
     }
   };
 
-//   const deleteWorker = async (workerId: string) => {
-//     try {
-//       const response = await fetch(
-//         `http://localhost:5000/workerList/${workerId}`,
-//         {
-//           method: "DELETE",
-//         }
-//       );
-
-//       if (!response.ok) {
-//         throw new Error("Problem with the server");
-//       }
-
-//       setWorkers((prevWorkers) =>
-//         prevWorkers.filter((worker) => worker.id !== workerId)
-//       );
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
 
 const deleteWorker = async (workerId: string) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/workerList/${workerId}`,
+        `https://fair-teal-puppy-veil.cyclic.app/api/workerList/${workerId}`,
         {
           method: "DELETE",
         }

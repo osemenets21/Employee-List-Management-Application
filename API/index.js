@@ -88,7 +88,7 @@ const usersRouter = jsonServer.router('users.json');
 app.use('/api', usersRouter);
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on https://fair-teal-puppy-veil.cyclic.app/:${port}`);
 });
 
 
