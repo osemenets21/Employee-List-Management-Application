@@ -6,25 +6,25 @@
     text-align: center;
     padding: 10px;
     width: 100%;
-}
 
-.footer-icons {
-    font-size: 2rem;
-    margin-right: 5px;
-    color: white;
+    &-media {
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-}
+        &-icons {
+            font-size: 2rem;
+            margin-right: 5px;
+            color: white;
+        }
+    }
 
-.social-media {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    &-text {
+        font-size: 14px;
+    }
 
-.github-ico {
-    font-size: 27px;
-}
+    .github-ico {
+        font-size: 27px;
+    }
 
-.footer-text {
-    font-size: 14px;
 }
