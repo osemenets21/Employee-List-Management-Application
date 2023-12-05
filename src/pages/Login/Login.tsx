@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./Login.scss";
 import { useNavigate } from "react-router-dom";
 import UniversalButton from "../../components/UniversalButton/UniversalButton";
 import useAuth from "../../hooks/useAuth";

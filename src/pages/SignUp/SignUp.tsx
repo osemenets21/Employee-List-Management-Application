@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./SignUp.scss";
 import UniversalButton from "../../components/UniversalButton/UniversalButton";
 import { AlertSuccess } from "../../components/AlertSuccess/AlertSuccess";
 

@@ -166,41 +166,41 @@ export const WorkersList: React.FC = () => {
                 <th onClick={() => handleSort("firstName")}>
                   Name
                   {sortColumn === "firstName" && sortOrder === "asc" ? (
-                    <span className="up-arrow">▲</span>
+                    <span className="up-arrow-btn">▲</span>
                   ) : (
-                    <span className="down-arrow">▼</span>
+                    <span className="down-arrow-btn">▼</span>
                   )}
                 </th>
                 <th onClick={() => handleSort("lastName")}>
                   Surname
                   {sortColumn === "lastName" && sortOrder === "asc" ? (
-                    <span className="up-arrow">▲</span>
+                    <span className="up-arrow-btn">▲</span>
                   ) : (
-                    <span className="down-arrow">▼</span>
+                    <span className="down-arrow-btn">▼</span>
                   )}
                 </th>
                 <th onClick={() => handleSort("salary")}>
                   Salary
                   {sortColumn === "salary" && sortOrder === "asc" ? (
-                    <span className="up-arrow">▲</span>
+                    <span className="up-arrow-btn">▲</span>
                   ) : (
-                    <span className="down-arrow">▼</span>
+                    <span className="down-arrow-btn">▼</span>
                   )}
                 </th>
                 <th onClick={() => handleSort("statusOfWork")}>
                   Status
                   {sortColumn === "statusOfWork" && sortOrder === "asc" ? (
-                    <span className="up-arrow">▲</span>
+                    <span className="up-arrow-btn">▲</span>
                   ) : (
-                    <span className="down-arrow">▼</span>
+                    <span className="down-arrow-btn">▼</span>
                   )}
                 </th>
                 <th onClick={() => handleSort("dateOfEmployment")}>
                   Employment
                   {sortColumn === "dateOfEmployment" && sortOrder === "asc" ? (
-                    <span className="up-arrow">▲</span>
+                    <span className="up-arrow-btn">▲</span>
                   ) : (
-                    <span className="down-arrow">▼</span>
+                    <span className="down-arrow-btn">▼</span>
                   )}
                 </th>
                 <th className="py-2 px-4 text-center">Details</th>

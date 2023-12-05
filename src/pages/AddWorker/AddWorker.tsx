@@ -53,15 +53,15 @@ export const AddWorker = () => {
   };
 
   return (
-    <div className="add-page flex dark:bg-slate-600">
+    <div className="add-component flex dark:bg-slate-600">
       {showAlert && <AlertSuccess title={"Employee successfully added!"} />}
       <div>
-        <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
+        <h2 className="add-component-heading text-2xl font-bold mb-4 text-gray-800 dark:text-white">
           Add new employee
         </h2>
         <form
           name="AddNewWorker"
-          className="add-form flex flex-wrap justify-end"
+          className="add-component-form flex flex-wrap justify-end"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="mb-4">
@@ -73,7 +73,7 @@ export const AddWorker = () => {
                 <input
                   {...field}
                   id="firstName"
-                  className="appearance-none block bg-gray-200 text-gray-700 border py-3 px-4 mr-5 leading-tight focus:putline-none focus:bg-white"
+                  className="form-input block bg-gray-200 text-gray-700 border py-3 px-4 mr-5 leading-tight focus:putline-none focus:bg-white"
                 />
               )}
             />
@@ -89,7 +89,7 @@ export const AddWorker = () => {
                 <input
                   {...field}
                   id="surname"
-                  className="appearance-none block bg-gray-200 text-gray-700 border py-3 px-4 leading-tight focus:putline-none focus:bg-white"
+                  className="form-input block bg-gray-200 text-gray-700 border py-3 px-4 leading-tight focus:putline-none focus:bg-white"
                 />
               )}
             />
@@ -103,7 +103,7 @@ export const AddWorker = () => {
               render={({ field }) => (
                 <input
                   {...field}
-                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 mr-5 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="form-input block bg-gray-200 text-gray-700 border-gray-200 mr-5 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   type="date"
                   id="dateOfBirth"
                   value={
@@ -126,7 +126,7 @@ export const AddWorker = () => {
                 <input
                   {...field}
                   id="street"
-                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="form-input block bg-gray-200 text-gray-700 border-gray-200 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 />
               )}
             />
@@ -142,7 +142,7 @@ export const AddWorker = () => {
                 <input
                   {...field}
                   id="city"
-                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 mr-5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="form-input block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 mr-5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 />
               )}
             />
@@ -156,7 +156,7 @@ export const AddWorker = () => {
               render={({ field }) => (
                 <input
                   {...field}
-                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="form-input block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   type="number"
                   id="postCode"
                 />
@@ -172,7 +172,7 @@ export const AddWorker = () => {
               render={({ field }) => (
                 <input
                   {...field}
-                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 mr-5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="form-input block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 mr-5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   type="number"
                   id="salary"
                 />
@@ -190,7 +190,7 @@ export const AddWorker = () => {
                 <select
                   {...field}
                   id="statusOfWork"
-                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="form-input block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 >
                   <option value="" disabled>
                     Select the job status...
@@ -213,7 +213,7 @@ export const AddWorker = () => {
               render={({ field }) => (
                 <input
                   {...field}
-                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 mr-5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="form-input block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 mr-5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   type="number"
                   id="phoneNumber"
                 />
@@ -229,7 +229,7 @@ export const AddWorker = () => {
               render={({ field }) => (
                 <input
                   {...field}
-                  className="appearance-none block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="form-input block bg-gray-200 text-gray-700 border-gray-200 rounder py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   type="date"
                   id="dateOfEmployment"
                   value={
@@ -244,7 +244,7 @@ export const AddWorker = () => {
             />
           </div>
 
-          <div className="w-full mb-6 md:mb-0">
+          <div className="btn-wrapper w-full mb-6 md:mb-0">
             <UniversalButton
               type="submit"
               title="Add new employee"

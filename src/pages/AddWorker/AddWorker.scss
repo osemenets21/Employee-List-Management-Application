@@ -1,33 +1,23 @@
 @import "../../mixins/mixins";
 
-.add-page {
+.add-component {
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     min-height: 100vh;
-}
 
-.add-form {
-    width: 420px;
-    max-width: 520px;
-}
+    &-form {
+        width: 420px;
+        max-width: 520px;
+    }
 
-.appearance-none {
-    border-radius: 5px;
-    width: 200px;
-    height: 45px;
-}
-
-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 14px;
-    cursor: pointer;
+    .form-input {
+        border-radius: 5px;
+        width: 200px;
+        height: 45px;
+    }
 }
 
 .btn-submit {
@@ -37,15 +27,27 @@ button {
 
 @media (max-width: 768px) {
 
-    .add-form {
-        padding: 0 20px;
-        width: 320px;
-        justify-content: flex-start;
+    .add-component {
+        &-form {
+            padding: 0 20px;
+            width: 320px;
+            justify-content: center;
+    
+        }
 
+        &-heading {
+            display: flex;
+            justify-content: center;
+        }
     }
 
-    .appearance-none {
+    .form-input {
         width: 250px;
         margin-right: 0;
+    }
+
+    .btn-wrapper {
+        display: flex;
+        justify-content: center;
     }
 }

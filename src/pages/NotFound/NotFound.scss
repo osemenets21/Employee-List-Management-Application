@@ -5,15 +5,16 @@
     justify-content: center;
     height: 100vh;
     background-color: #f0f0f0;
-  
-    h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
+
+    &-heading {
+        font-size: 36px;
+        margin-bottom: 10px;
+
     }
-  
-    p {
-      font-size: 18px;
-      color: #555;
+
+
+    &-text {
+        font-size: 18px;
+        color: #555;
     }
-  }
-  
+}
