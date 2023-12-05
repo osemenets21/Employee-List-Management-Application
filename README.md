@@ -8,9 +8,10 @@ Clone project repository to your local directory:
 git clone https://github.com/osemenets21/Employee-List-Management-Application.git
 ```
 
-Install project dependencies:
+Navigate into the project directory and install the required dependencies:
 
 ```bash
+cd Employee-List-Management-Application
 npm install
 ```
 
@@ -18,6 +19,7 @@ npm install
 
 
 Run production mode
+To run the application in production mode, use the following command:
 
 ```bash
 npm run server
@@ -39,4 +41,6 @@ On other browsers some functionalities may not work as intended.
 - Node.js
 - SASS
 - BEM (CSS)
+
+Feel free to reach out if you encounter any issues or have questions!
 
