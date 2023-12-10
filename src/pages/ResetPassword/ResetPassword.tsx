@@ -3,12 +3,10 @@ import "./ResetPassword.scss";
 import { auth } from "../../firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { AlertSuccess } from "../../components/AlertSuccess/AlertSuccess";
-import AlertAttention from "../../components/AlertAttention/AlertAttention";
 
 export const ResetPassword = () => {
   const [email, setEmail] = useState<string>("");
   const [resetSuccess, setResetSuccess] = useState<boolean | null>(null);
-  const [error, setError] = useState<boolean | null>(null);
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -21,7 +19,8 @@ export const ResetPassword = () => {
       await sendPasswordResetEmail(auth, emailValue);
       setResetSuccess(true);
     } catch (error) {
-      setError(true);
+      console.log(error);
+      
     }
   };
 

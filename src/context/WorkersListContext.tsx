@@ -92,27 +92,6 @@ export const WorkersListContextProvider: React.FC<{ children: ReactNode }> = ({
     }
   };
 
-//   const deleteWorker = async (workerId: string) => {
-//     try {
-//       const response = await fetch(
-//         `http://localhost:5000/workerList/${workerId}`,
-//         {
-//           method: "DELETE",
-//         }
-//       );
-
-//       if (!response.ok) {
-//         throw new Error("Problem with the server");
-//       }
-
-//       setWorkers((prevWorkers) =>
-//         prevWorkers.filter((worker) => worker.id !== workerId)
-//       );
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-
 const deleteWorker = async (workerId: string) => {
     try {
       const response = await fetch(
