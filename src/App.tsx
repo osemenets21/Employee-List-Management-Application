@@ -9,9 +9,11 @@ import NotFound from "./pages/NotFound/NotFound";
 import { AddWorker } from "./pages/AddWorker/AddWorker";
 import { Header } from "./components/Header/Header";
 import WorkersList from "./pages/Workers-list/Workers-list";
+import { useAuth } from "./hooks/useAuth";
+import { ResetPassword } from "./pages/ResetPassword/ResetPassword";
 
 function App() {
-  const isAuthenticated = !!localStorage.getItem("accessToken");
+  const { authUser } = useAuth();
 
   return (
     <div className="App">
@@ -19,16 +21,22 @@ function App() {
       <main className="content dark:bg-slate-600">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/reset-password" element={<ResetPassword />}/>
+          <Route
+            path="/login"
+            element={!authUser ? <Login /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/sign-up"
+            element={!authUser ? <SignUp /> : <Navigate to="/" />}
+          />
           <Route
             path="/workers-list"
-            element={
-              isAuthenticated ? <WorkersList /> : <Navigate to="/login" />
-            }
+            element={authUser ? <WorkersList /> : <Navigate to="/login" />}
           />
+         
+          <Route path="/add-worker" element={authUser ? <AddWorker /> : <Navigate to="/login" />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/add-worker" element={<AddWorker />} />
         </Routes>
       </main>
 

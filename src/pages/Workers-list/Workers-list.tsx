@@ -21,6 +21,7 @@ export const WorkersList: React.FC = () => {
   const [sortColumn, setSortColumn] = useState<SortKeys>("id");
   const [sortOrder, setSortOrder] = useState<string>("asc");
 
+
   const isDisabled =
     !workersContext ||
     workersContext.pageNumber >= (workersContext.maxPage || 1);

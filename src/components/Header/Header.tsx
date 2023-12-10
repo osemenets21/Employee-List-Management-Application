@@ -3,11 +3,9 @@ import "./Header.scss";
 import { BsMoon, BsSun } from "react-icons/bs";
 import Hamburger from "hamburger-react";
 import UniversalButton from "../UniversalButton/UniversalButton";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserTie } from "@fortawesome/free-solid-svg-icons";
-
-import useAuth from "../../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -15,13 +13,7 @@ export const Header = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [isOpen, setOpen] = useState(false);
-  const [token, setToken] = useState<string | null>(null);
-  const { user, handleLogout } = useAuth();
-
-  useEffect(() => {
-    const storedToken = localStorage.getItem("accessToken");
-    setToken(storedToken);
-  }, []);
+  const { authUser, handleLogout  } = useAuth();
 
   useEffect(() => {
     const handleResize = () => {
@@ -40,6 +32,10 @@ export const Header = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  
+
+ 
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -93,61 +89,62 @@ export const Header = () => {
                 onClick={() => handleItemClick()}
               >
                 <ul className={`header-nav-menu vertical `}>
-                  {token && (
-                    <li>
-                      <UniversalButton
-                        type="link"
-                        action="/workers-list"
-                        title={<span className="dark:text-white">Workers</span>}
-                        classes="find-workers-link mr-1"
-                      />
-                    </li>
+                  {authUser && (
+                    <>
+                      <li className="avatar-container rounded-full h-7 w-7 object-cover flex justify-center items-center">
+                        <FontAwesomeIcon
+                          className="ml-4"
+                          icon={faUserTie}
+                          style={{ color: "white", fontSize: "23px" }}
+                        />
+                        <p className="dark:text-white">{authUser.email}</p>
+                      </li>
+                      <li>
+                        <UniversalButton
+                          type="link"
+                          action="/workers-list"
+                          title={
+                            <span className="dark:text-white">Workers</span>
+                          }
+                          classes="find-workers-link mr-3"
+                        />
+                      </li>
+
+                      <li>
+                        <UniversalButton
+                          type="button"
+                          action={handleLogout}
+                          title={
+                            <span className="dark:text-black">Logout</span>
+                          }
+                          classes="btn-logout mr-1 ml-2"
+                        />
+                      </li>
+                    </>
                   )}
-                  {token ? (
-                    <li>
-                      <div className="avatar-container rounded-full h-7 w-7 object-cover flex justify-center items-center">
-                        {user && user.avatar ? (
-                          <FontAwesomeIcon
-                            icon={faUserTie}
-                            style={{ color: "white", fontSize: "20px" }}
-                          />
-                        ) : (
-                          <FontAwesomeIcon
-                            icon={faUserTie}
-                            style={{ color: "white", fontSize: "20px" }}
-                          />
-                        )}
-                      </div>
-                    </li>
-                  ) : (
-                    <li>
-                      <UniversalButton
-                        type="link"
-                        action="/login"
-                        title={<span className="dark:text-black">Login</span>}
-                        classes="btn-login"
-                      />
-                    </li>
-                  )}
-                  {!token && (
-                    <li>
-                      <UniversalButton
-                        type="link"
-                        action="/sign-up"
-                        title={<span className="dark:text-black">Sign Up</span>}
-                        classes="btn-sign-up"
-                      />
-                    </li>
-                  )}
-                  {token && (
-                    <li>
-                      <UniversalButton
-                        type="button"
-                        action={handleLogout}
-                        title={<span className="dark:text-black">Logout</span>}
-                        classes="btn-logout "
-                      />
-                    </li>
+
+                  {!authUser && (
+                    <>
+                      <li>
+                        <UniversalButton
+                          type="link"
+                          action="/login"
+                          title={<span className="dark:text-black">Login</span>}
+                          classes="btn-login mr-1"
+                        />
+                      </li>
+
+                      <li>
+                        <UniversalButton
+                          type="link"
+                          action="/sign-up"
+                          title={
+                            <span className="dark:text-black">Sign Up</span>
+                          }
+                          classes="btn-sign-up mr-1 ml-2"
+                        />
+                      </li>
+                    </>
                   )}
                 </ul>
               </div>
@@ -155,64 +152,57 @@ export const Header = () => {
           </>
         ) : (
           <ul className={`header-nav-menu horizontal`}>
-            {token && (
-              <li>
-                <UniversalButton
-                  type="link"
-                  action="/workers-list"
-                  title={<span className="dark:text-white">Workers</span>}
-                  classes="find-workers-link mr-3"
-                />
-              </li>
+            {authUser && (
+              <>
+                <li className="avatar-container rounded-full h-7 w-7 object-cover flex justify-center items-center">
+                  <FontAwesomeIcon
+                    className="ml-4"
+                    icon={faUserTie}
+                    style={{ color: "white", fontSize: "23px" }}
+                  />
+                  
+                </li>
+                <li className="mr-5 ml-2 dark:text-white"><div>{authUser.email}</div></li>
+                <li>
+                  <UniversalButton
+                    type="link"
+                    action="/workers-list"
+                    title={<span className="dark:text-white">Workers</span>}
+                    classes="find-workers-link mr-3"
+                  />
+                </li>
+
+                <li>
+                  <UniversalButton
+                    type="button"
+                    action={handleLogout}
+                    title={<span className="dark:text-black">Logout</span>}
+                    classes="btn-logout mr-1 ml-2"
+                  />
+                </li>
+              </>
             )}
 
-            {token ? (
-              <li>
-                <div className="avatar-container rounded-full h-7 w-7 object-cover flex justify-center items-center">
-                  {user && user.avatar ? (
-                    <FontAwesomeIcon
-                      className="ml-4"
-                      icon={faUserTie}
-                      style={{ color: "white", fontSize: "23px" }}
-                    />
-                  ) : (
-                    <FontAwesomeIcon
-                      className="ml-3"
-                      icon={faUserTie}
-                      style={{ color: "white", fontSize: "23px" }}
-                    />
-                  )}
-                </div>
-              </li>
-            ) : (
-              <li>
-                <UniversalButton
-                  type="link"
-                  action="/login"
-                  title={<span className="dark:text-black">Login</span>}
-                  classes="btn-login mr-1"
-                />
-              </li>
-            )}
-            {!token && (
-              <li>
-                <UniversalButton
-                  type="link"
-                  action="/sign-up"
-                  title={<span className="dark:text-black">Sign Up</span>}
-                  classes="btn-sign-up mr-1 ml-2"
-                />
-              </li>
-            )}
-            {token && (
-              <li>
-                <UniversalButton
-                  type="button"
-                  action={handleLogout}
-                  title={<span className="dark:text-black">Logout</span>}
-                  classes="btn-logout mr-1 ml-2"
-                />
-              </li>
+            {!authUser && (
+              <>
+                <li>
+                  <UniversalButton
+                    type="link"
+                    action="/login"
+                    title={<span className="dark:text-black">Login</span>}
+                    classes="btn-login mr-1"
+                  />
+                </li>
+
+                <li>
+                  <UniversalButton
+                    type="link"
+                    action="/sign-up"
+                    title={<span className="dark:text-black">Sign Up</span>}
+                    classes="btn-sign-up mr-1 ml-2"
+                  />
+                </li>
+              </>
             )}
           </ul>
         )}

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import UniversalButton from "../../components/UniversalButton/UniversalButton";
 import { AlertSuccess } from "../../components/AlertSuccess/AlertSuccess";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
 
 export const SignUp: React.FC = () => {
   const [password, setPassword] = useState("");
@@ -10,7 +12,7 @@ export const SignUp: React.FC = () => {
   const [userName, setUserName] = useState("");
   const [userNameError, setUserNameError] = useState("");
   const [signupError, setSignupError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  const [successMessage] = useState("");
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
@@ -28,7 +30,8 @@ export const SignUp: React.FC = () => {
     return usernameRegex.test(username);
   };
 
-  const handleSignUp = async () => {
+  const handleSignUp = async (e: React.FormEvent) => {
+    e.preventDefault();
     setEmailError("");
     setPasswordError("");
     setUserNameError("");
@@ -52,34 +55,13 @@ export const SignUp: React.FC = () => {
       );
       return;
     }
-
-    try {
-      const response = await fetch("http://localhost:5002/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: userName,
-          email: email,
-          password: password,
-        }),
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log(userCredential);
+      })
+      .catch((error) => {
+        console.log(error);
       });
-
-      if (!response.ok) {
-        throw new Error("Error during sign-up");
-      }
-
-      setSuccessMessage("User registered successfully");
-
-      setPasswordError("");
-      setEmailError("");
-      setUserNameError("");
-      setSignupError("");
-      console.log("User registered successfully");
-    } catch (error) {
-      setSignupError("Error during sign-up. Please try again.");
-    }
   };
 
   return (
