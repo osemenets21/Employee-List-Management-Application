@@ -12,7 +12,7 @@ export const SignUp: React.FC = () => {
   const [userName, setUserName] = useState("");
   const [userNameError, setUserNameError] = useState("");
   const [signupError, setSignupError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  const [successMessage] = useState("");
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
@@ -37,14 +37,6 @@ export const SignUp: React.FC = () => {
     setUserNameError("");
     setSignupError("");
 
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        console.log(userCredential)
-    }).catch((error) => {
-        console.log(error);
-        
-    })
-
     if (!validateEmail(email)) {
       setEmailError("Invalid email address");
       return;
@@ -63,36 +55,13 @@ export const SignUp: React.FC = () => {
       );
       return;
     }
-
-
-
-    // try {
-    //   const response = await fetch("http://localhost:5002/register", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       username: userName,
-    //       email: email,
-    //       password: password,
-    //     }),
-    //   });
-
-    //   if (!response.ok) {
-    //     throw new Error("Error during sign-up");
-    //   }
-
-    //   setSuccessMessage("User registered successfully");
-
-    //   setPasswordError("");
-    //   setEmailError("");
-    //   setUserNameError("");
-    //   setSignupError("");
-    //   console.log("User registered successfully");
-    // } catch (error) {
-    //   setSignupError("Error during sign-up. Please try again.");
-    // }
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log(userCredential);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (

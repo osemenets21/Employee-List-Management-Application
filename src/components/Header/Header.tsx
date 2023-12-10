@@ -5,10 +5,7 @@ import Hamburger from "hamburger-react";
 import UniversalButton from "../UniversalButton/UniversalButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserTie } from "@fortawesome/free-solid-svg-icons";
-// import useAuth from "../../hooks/useAuth";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "../../firebase";
-import { UserAuth } from "../../types";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -16,10 +13,7 @@ export const Header = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [isOpen, setOpen] = useState(false);
-
-  const [authUser, setAuthUser] = useState<UserAuth | null>(null);
-
-
+  const { authUser, handleLogout  } = useAuth();
 
   useEffect(() => {
     const handleResize = () => {
@@ -39,27 +33,9 @@ export const Header = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const listen = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setAuthUser(user);
-      } else {
-        setAuthUser(null);
-      }
-    });
+  
 
-    return () => {
-      listen();
-    };
-  }, []);
-
-  const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        console.log("Sign Out was successful");
-      })
-      .catch((error) => console.log(error));
-  };
+ 
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -121,7 +97,7 @@ export const Header = () => {
                           icon={faUserTie}
                           style={{ color: "white", fontSize: "23px" }}
                         />
-                        <p>{authUser.email}</p>
+                        <p className="dark:text-white">{authUser.email}</p>
                       </li>
                       <li>
                         <UniversalButton
@@ -184,8 +160,9 @@ export const Header = () => {
                     icon={faUserTie}
                     style={{ color: "white", fontSize: "23px" }}
                   />
-                  <p>{authUser.email}</p>
+                  
                 </li>
+                <li className="mr-5 ml-2 dark:text-white"><div>{authUser.email}</div></li>
                 <li>
                   <UniversalButton
                     type="link"

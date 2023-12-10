@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AlertAttention = (text: string) => {
+const AlertAttention = (text: any) => {
   return (
     <div className="py-10 bg-white dark:bg-dark">
       <div className="container">
