@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import UniversalButton from "../../components/UniversalButton/UniversalButton";
 import { AlertSuccess } from "../../components/AlertSuccess/AlertSuccess";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
 
 export const SignUp: React.FC = () => {
   const [password, setPassword] = useState("");
@@ -28,11 +30,20 @@ export const SignUp: React.FC = () => {
     return usernameRegex.test(username);
   };
 
-  const handleSignUp = async () => {
+  const handleSignUp = async (e: React.FormEvent) => {
+    e.preventDefault();
     setEmailError("");
     setPasswordError("");
     setUserNameError("");
     setSignupError("");
+
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        console.log(userCredential)
+    }).catch((error) => {
+        console.log(error);
+        
+    })
 
     if (!validateEmail(email)) {
       setEmailError("Invalid email address");
@@ -53,33 +64,35 @@ export const SignUp: React.FC = () => {
       return;
     }
 
-    try {
-      const response = await fetch("http://localhost:5002/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: userName,
-          email: email,
-          password: password,
-        }),
-      });
 
-      if (!response.ok) {
-        throw new Error("Error during sign-up");
-      }
 
-      setSuccessMessage("User registered successfully");
+    // try {
+    //   const response = await fetch("http://localhost:5002/register", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       username: userName,
+    //       email: email,
+    //       password: password,
+    //     }),
+    //   });
 
-      setPasswordError("");
-      setEmailError("");
-      setUserNameError("");
-      setSignupError("");
-      console.log("User registered successfully");
-    } catch (error) {
-      setSignupError("Error during sign-up. Please try again.");
-    }
+    //   if (!response.ok) {
+    //     throw new Error("Error during sign-up");
+    //   }
+
+    //   setSuccessMessage("User registered successfully");
+
+    //   setPasswordError("");
+    //   setEmailError("");
+    //   setUserNameError("");
+    //   setSignupError("");
+    //   console.log("User registered successfully");
+    // } catch (error) {
+    //   setSignupError("Error during sign-up. Please try again.");
+    // }
   };
 
   return (

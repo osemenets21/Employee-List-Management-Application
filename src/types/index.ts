@@ -13,6 +13,12 @@ export interface IAlertSuccess {
   title: string;
 }
 
+export interface UserAuth {
+  uid: string;
+  displayName?: string | null;
+  email?: string | null;
+}
+
 export type Props = {
   children: ReactNode;
 };

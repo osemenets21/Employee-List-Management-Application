@@ -3,11 +3,12 @@ import "./Header.scss";
 import { BsMoon, BsSun } from "react-icons/bs";
 import Hamburger from "hamburger-react";
 import UniversalButton from "../UniversalButton/UniversalButton";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserTie } from "@fortawesome/free-solid-svg-icons";
-
-import useAuth from "../../hooks/useAuth";
+// import useAuth from "../../hooks/useAuth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../../firebase";
+import { UserAuth } from "../../types";
 
 export const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -15,13 +16,10 @@ export const Header = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [isOpen, setOpen] = useState(false);
-  const [token, setToken] = useState<string | null>(null);
-  const { user, handleLogout } = useAuth();
 
-  useEffect(() => {
-    const storedToken = localStorage.getItem("accessToken");
-    setToken(storedToken);
-  }, []);
+  const [authUser, setAuthUser] = useState<UserAuth | null>(null);
+
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -40,6 +38,28 @@ export const Header = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    const listen = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setAuthUser(user);
+      } else {
+        setAuthUser(null);
+      }
+    });
+
+    return () => {
+      listen();
+    };
+  }, []);
+
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("Sign Out was successful");
+      })
+      .catch((error) => console.log(error));
+  };
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -93,61 +113,62 @@ export const Header = () => {
                 onClick={() => handleItemClick()}
               >
                 <ul className={`header-nav-menu vertical `}>
-                  {token && (
-                    <li>
-                      <UniversalButton
-                        type="link"
-                        action="/workers-list"
-                        title={<span className="dark:text-white">Workers</span>}
-                        classes="find-workers-link mr-1"
-                      />
-                    </li>
+                  {authUser && (
+                    <>
+                      <li className="avatar-container rounded-full h-7 w-7 object-cover flex justify-center items-center">
+                        <FontAwesomeIcon
+                          className="ml-4"
+                          icon={faUserTie}
+                          style={{ color: "white", fontSize: "23px" }}
+                        />
+                        <p>{authUser.email}</p>
+                      </li>
+                      <li>
+                        <UniversalButton
+                          type="link"
+                          action="/workers-list"
+                          title={
+                            <span className="dark:text-white">Workers</span>
+                          }
+                          classes="find-workers-link mr-3"
+                        />
+                      </li>
+
+                      <li>
+                        <UniversalButton
+                          type="button"
+                          action={handleLogout}
+                          title={
+                            <span className="dark:text-black">Logout</span>
+                          }
+                          classes="btn-logout mr-1 ml-2"
+                        />
+                      </li>
+                    </>
                   )}
-                  {token ? (
-                    <li>
-                      <div className="avatar-container rounded-full h-7 w-7 object-cover flex justify-center items-center">
-                        {user && user.avatar ? (
-                          <FontAwesomeIcon
-                            icon={faUserTie}
-                            style={{ color: "white", fontSize: "20px" }}
-                          />
-                        ) : (
-                          <FontAwesomeIcon
-                            icon={faUserTie}
-                            style={{ color: "white", fontSize: "20px" }}
-                          />
-                        )}
-                      </div>
-                    </li>
-                  ) : (
-                    <li>
-                      <UniversalButton
-                        type="link"
-                        action="/login"
-                        title={<span className="dark:text-black">Login</span>}
-                        classes="btn-login"
-                      />
-                    </li>
-                  )}
-                  {!token && (
-                    <li>
-                      <UniversalButton
-                        type="link"
-                        action="/sign-up"
-                        title={<span className="dark:text-black">Sign Up</span>}
-                        classes="btn-sign-up"
-                      />
-                    </li>
-                  )}
-                  {token && (
-                    <li>
-                      <UniversalButton
-                        type="button"
-                        action={handleLogout}
-                        title={<span className="dark:text-black">Logout</span>}
-                        classes="btn-logout "
-                      />
-                    </li>
+
+                  {!authUser && (
+                    <>
+                      <li>
+                        <UniversalButton
+                          type="link"
+                          action="/login"
+                          title={<span className="dark:text-black">Login</span>}
+                          classes="btn-login mr-1"
+                        />
+                      </li>
+
+                      <li>
+                        <UniversalButton
+                          type="link"
+                          action="/sign-up"
+                          title={
+                            <span className="dark:text-black">Sign Up</span>
+                          }
+                          classes="btn-sign-up mr-1 ml-2"
+                        />
+                      </li>
+                    </>
                   )}
                 </ul>
               </div>
@@ -155,64 +176,56 @@ export const Header = () => {
           </>
         ) : (
           <ul className={`header-nav-menu horizontal`}>
-            {token && (
-              <li>
-                <UniversalButton
-                  type="link"
-                  action="/workers-list"
-                  title={<span className="dark:text-white">Workers</span>}
-                  classes="find-workers-link mr-3"
-                />
-              </li>
+            {authUser && (
+              <>
+                <li className="avatar-container rounded-full h-7 w-7 object-cover flex justify-center items-center">
+                  <FontAwesomeIcon
+                    className="ml-4"
+                    icon={faUserTie}
+                    style={{ color: "white", fontSize: "23px" }}
+                  />
+                  <p>{authUser.email}</p>
+                </li>
+                <li>
+                  <UniversalButton
+                    type="link"
+                    action="/workers-list"
+                    title={<span className="dark:text-white">Workers</span>}
+                    classes="find-workers-link mr-3"
+                  />
+                </li>
+
+                <li>
+                  <UniversalButton
+                    type="button"
+                    action={handleLogout}
+                    title={<span className="dark:text-black">Logout</span>}
+                    classes="btn-logout mr-1 ml-2"
+                  />
+                </li>
+              </>
             )}
 
-            {token ? (
-              <li>
-                <div className="avatar-container rounded-full h-7 w-7 object-cover flex justify-center items-center">
-                  {user && user.avatar ? (
-                    <FontAwesomeIcon
-                      className="ml-4"
-                      icon={faUserTie}
-                      style={{ color: "white", fontSize: "23px" }}
-                    />
-                  ) : (
-                    <FontAwesomeIcon
-                      className="ml-3"
-                      icon={faUserTie}
-                      style={{ color: "white", fontSize: "23px" }}
-                    />
-                  )}
-                </div>
-              </li>
-            ) : (
-              <li>
-                <UniversalButton
-                  type="link"
-                  action="/login"
-                  title={<span className="dark:text-black">Login</span>}
-                  classes="btn-login mr-1"
-                />
-              </li>
-            )}
-            {!token && (
-              <li>
-                <UniversalButton
-                  type="link"
-                  action="/sign-up"
-                  title={<span className="dark:text-black">Sign Up</span>}
-                  classes="btn-sign-up mr-1 ml-2"
-                />
-              </li>
-            )}
-            {token && (
-              <li>
-                <UniversalButton
-                  type="button"
-                  action={handleLogout}
-                  title={<span className="dark:text-black">Logout</span>}
-                  classes="btn-logout mr-1 ml-2"
-                />
-              </li>
+            {!authUser && (
+              <>
+                <li>
+                  <UniversalButton
+                    type="link"
+                    action="/login"
+                    title={<span className="dark:text-black">Login</span>}
+                    classes="btn-login mr-1"
+                  />
+                </li>
+
+                <li>
+                  <UniversalButton
+                    type="link"
+                    action="/sign-up"
+                    title={<span className="dark:text-black">Sign Up</span>}
+                    classes="btn-sign-up mr-1 ml-2"
+                  />
+                </li>
+              </>
             )}
           </ul>
         )}

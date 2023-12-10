@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UniversalButton from "../../components/UniversalButton/UniversalButton";
-import useAuth from "../../hooks/useAuth";
+// import useAuth from "../../hooks/useAuth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
-  const { handleLogin } = useAuth();
+//   const { handleLogin } = useAuth();
   const navigate = useNavigate();
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -38,19 +40,31 @@ export const Login: React.FC = () => {
       return;
     }
 
-    try {
-      await handleLogin(email, password);
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        console.log(userCredential);
+        navigate('/');
+        // window.location.reload();
+    }).catch((error) => {
+        console.log(error);
+        
+    })
 
-      navigate('/');
-      window.location.reload();
-    } catch (error: any) {
-      if (error.response && error.response.status === 401) {
-        setError("An error occurred. Please try again.");
-      } else {
-        console.error("Server error:", error.message);
-        setError("Wrong email or password");
-      }
-    }
+    // try {
+    //   await handleLogin(email, password);
+
+    //   navigate('/');
+    //   window.location.reload();
+    // } catch (error: any) {
+    //   if (error.response && error.response.status === 401) {
+    //     setError("An error occurred. Please try again.");
+    //   } else {
+    //     console.error("Server error:", error.message);
+    //     setError("Wrong email or password");
+    //   }
+    // }
+
+
   };
 
   return (
