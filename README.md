@@ -42,7 +42,6 @@ To run the application in production mode, use the following command:
 
 ```bash
 npm run server
-npm run dev
 npm start
 
 ```
