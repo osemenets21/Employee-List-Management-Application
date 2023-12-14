@@ -1,6 +1,6 @@
 ## About application
 
-Welcome to the Employee List Management Application - your versatile tool for managing your list of employees.
+Welcome to our Employee Management System! This application is designed to help you efficiently manage your employee records. Below, you'll find information on key features, with a focus on Registration and Authorization, both seamlessly integrated through Firebase.
 
 ## Features
 
