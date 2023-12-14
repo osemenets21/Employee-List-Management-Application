@@ -55,6 +55,7 @@ On other browsers some functionalities may not work as intended.
 ## Technologies
 
 - React.tsx
+- TypeScript
 - Tailwind
 - Node.js
 - SASS
